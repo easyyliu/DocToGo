@@ -14,6 +14,21 @@
     <string name="title_patient_payment">PAYMENT DUE</string>
     <string name="title_patient_history">MEDICAL HISTORY</string>
     <string name="title_patient_update_information">PERSONAL INFORMATION</string>
+    <string name="txt_LoginPasswordText">Password</string>
+    <string name="txt_LoginUsernameText">Username</string>
+    <string name="txt_LoginText">Log In</string>
+    <string name="btn_RegisterText">Register</string>
+    <string name="btn_AdminToRegister">Register New Account</string>
+    <string name="btn_AdminToViewAll">View All Accounts</string>
+    <string name="txt_AccountRoles">Account Type</string>
+    <string name="btn_RegisterAccount">Create Account</string>
+    <string name="txt_FilterName">Filter Name</string>
 
-
+    <!--PLACEHOLDERS. REMOVE AT FINAL-->
+    <string-array name="Roles">
+        <item>Admin</item>
+        <item>Patient</item>
+        <item>Doctor</item>
+        <item>Cashier</item>
+    </string-array>
 </resources>

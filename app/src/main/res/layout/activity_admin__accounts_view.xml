@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Admin_AccountsView"
+    android:background="@color/colorBackgroundActivity">
+
+    <Spinner
+        android:id="@+id/spn_AdminViewRoleFilter"
+        android:layout_width="match_parent"
+        android:layout_height="38sp"
+        android:background="#FFFFFF"
+        android:entries="@array/Roles"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/txt_AdminViewAllNameFilter"
+        android:layout_width="match_parent"
+        android:layout_height="38sp"
+        android:background="#FFFFFF"
+        android:ems="10"
+        android:hint="@string/txt_FilterName"
+        android:importantForAutofill="no"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spn_AdminViewRoleFilter" />
+
+    <ListView
+        android:id="@+id/lsv_AllAccounts"
+        android:layout_width="match_parent"
+        android:layout_height="653dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_AdminViewAllNameFilter" />
+</androidx.constraintlayout.widget.ConstraintLayout>
