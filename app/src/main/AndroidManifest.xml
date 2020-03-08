@@ -9,7 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".patientUpdateInformation"></activity>
+        <activity android:name=".checkHistory" />
+        <activity android:name=".patient_payment" />
+        <activity android:name=".locate_doctor" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".Patient_main">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

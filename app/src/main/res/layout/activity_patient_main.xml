@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackgroundActivity"
+    android:tag="jkvjczkv"
+    tools:context=".Patient_main">
+
+    <Button
+        android:id="@+id/btncheckhistory"
+        style="@android:style/Widget.Button.Inset"
+        android:layout_width="150dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="37dp"
+        android:layout_marginLeft="37dp"
+        android:layout_marginTop="45dp"
+        android:drawableTop="@drawable/ic_action_check_history"
+        android:text="@string/button_patient_check_history"
+        android:textColor="@color/colorText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnLocateDoctor" />
+
+    <View
+        android:id="@+id/line3"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/colorLine"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tltMainMenu" />
+
+    <TextView
+        android:id="@+id/tltMainMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="@string/title_patient_main_menu"
+        android:textColor="@color/colorTitle"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragMainMenu" />
+
+    <Button
+        android:id="@+id/btnLocateDoctor"
+        style="@android:style/Widget.Button.Inset"
+        android:layout_width="150dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="37dp"
+        android:layout_marginLeft="37dp"
+        android:layout_marginTop="90dp"
+        android:drawableTop="@drawable/ic_action_locate_doctor"
+        android:text="@string/button_patient_locate_doctor"
+        android:textColor="@color/colorText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/line3" />
+
+    <Button
+        android:id="@+id/btnPayments"
+        style="@android:style/Widget.Button.Inset"
+        android:layout_width="150dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="37dp"
+        android:layout_marginLeft="37dp"
+        android:layout_marginTop="90dp"
+        android:layout_marginEnd="37dp"
+        android:layout_marginRight="37dp"
+        android:drawableTop="@drawable/ic_action_payment"
+        android:text="@string/button_patient_payments"
+        android:textColor="@color/colorText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnLocateDoctor"
+        app:layout_constraintTop_toBottomOf="@+id/line3" />
+
+    <Button
+        android:id="@+id/btnUpdateInformation"
+        style="@android:style/Widget.Button.Inset"
+        android:layout_width="150dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="37dp"
+        android:layout_marginLeft="37dp"
+        android:layout_marginTop="45dp"
+        android:layout_marginEnd="37dp"
+        android:layout_marginRight="37dp"
+        android:drawableTop="@drawable/ic_action_update_information"
+        android:text="@string/button_patient_update_information"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btncheckhistory"
+        app:layout_constraintTop_toBottomOf="@+id/btnPayments" />
+
+    <fragment
+        android:id="@+id/fragMainMenu"
+        android:name="com.example.doctogo.PatientInformationFragment"
+        android:layout_width="414dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout="@layout/fragment_patient_information" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

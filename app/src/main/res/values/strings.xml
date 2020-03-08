@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">DocToGo</string>
+    <string name="title_patient_activity">WELCOME</string>
+    <string name="title_patient_name">Patient Name:</string>
+    <string name="title_patient_age">Age:</string>
+    <string name="title_patient_address">Address:</string>
+    <string name="title_patient_postal_code">Postal Code:</string>
+    <string name="title_patient_main_menu">MAIN MENU</string>
+    <string name="button_patient_locate_doctor">LOCATE DOCTOR</string>
+    <string name="button_patient_payments">PAYMENTS</string>
+    <string name="button_patient_check_history">CHECK HISTORY</string>
+    <string name="button_patient_update_information">UPDATE PERSONAL INFORMATION</string>
+    <string name="title_locate_doctor">LOCATE DOCTOR</string>
+    <string name="title_patient_payment">PAYMENT DUE</string>
+    <string name="title_patient_history">MEDICAL HISTORY</string>
+    <string name="title_patient_update_information">PERSONAL INFORMATION</string>
+
+
 </resources>
