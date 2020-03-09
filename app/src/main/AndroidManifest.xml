@@ -17,14 +17,14 @@
         <activity android:name=".checkHistory" />
         <activity android:name=".patient_payment" />
         <activity android:name=".locate_doctor" />
-        <activity android:name=".MainActivity" />
-        <activity android:name=".Patient_main">
+        <activity android:name=".MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Patient_main"/>
     </application>
 
 </manifest>
