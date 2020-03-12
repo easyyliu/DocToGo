@@ -23,6 +23,7 @@
     <string name="txt_AccountRoles">Account Type</string>
     <string name="btn_RegisterAccount">Create Account</string>
     <string name="txt_FilterName">Filter Name</string>
+    <string name="btn_logout">Log Out</string>
 
     <!--PLACEHOLDERS. REMOVE AT FINAL-->
     <string-array name="Roles">

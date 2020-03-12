@@ -33,6 +33,17 @@
         android:id="@+id/lsv_AllAccounts"
         android:layout_width="match_parent"
         android:layout_height="653dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_AdminViewAllNameFilter" />
+
+    <TextView
+        android:id="@+id/ADMINVIEWPLACEHOLDER"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_AdminViewAllNameFilter" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,6 +10,13 @@
     android:paddingRight="50sp"
     tools:context=".Admin_main">
 
+    <TextView
+        android:id="@+id/lbl_AdminUserName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:textStyle="bold"/>
+
     <Button
         android:id="@+id/btn_AdminToRegisterNew"
         android:layout_width="match_parent"
@@ -21,4 +28,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/btn_AdminToViewAll" />
+
+    <Button
+        android:id="@+id/bbtn_AdminLogOut"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_logout" />
+
 </LinearLayout>
