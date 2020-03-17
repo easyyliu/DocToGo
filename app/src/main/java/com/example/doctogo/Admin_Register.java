@@ -29,6 +29,7 @@ public class Admin_Register extends AppCompatActivity
                 Spinner roleSelectionSpn = findViewById(R.id.spn_AdminRegRole);
                 EditText newAccName = findViewById(R.id.txt_AdminRegUsername);
                 EditText newAccPass = findViewById(R.id.txt_AdminRegPassword);
+                EditText newAccEmail = findViewById(R.id.txt_AdminRegEmail);
 
                 //get datas
                 int accRole = 0;
@@ -49,9 +50,18 @@ public class Admin_Register extends AppCompatActivity
                 }
                 String accName = newAccName.getText().toString();
                 String accPass = newAccPass.getText().toString();
+                String accEmail = newAccEmail.getText().toString();
+
+                //validation: if fields are empty, post toast and do nothing
+                if(accName.isEmpty() || accPass.isEmpty() || accEmail.isEmpty())
+                {
+                    //if one of the req fields are empty, end the op + toast message
+                    Toast.makeText(getBaseContext(),"One or more required fields are empty.",Toast.LENGTH_LONG);
+                    return;
+                }
 
                 //put into db
-                if( dbh.adminRegister(accName,accPass,accRole) )
+                if( dbh.adminRegister(accName,accPass,accRole,accEmail) )
                 //Display results
                 {
                     Toast.makeText(getBaseContext(), "User created.", Toast.LENGTH_LONG).show();

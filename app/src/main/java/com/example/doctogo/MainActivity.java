@@ -29,6 +29,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //Register button- go to registration activity
+        Button registerButton = findViewById(R.id.btn_ToRegister);
+        registerButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view)
+            {
+                startActivity(new Intent(MainActivity.this,Register.class));
+            }
+        });
+
         Button loginButton = findViewById(R.id.btn_LogIn);
         loginButton.setOnClickListener(new OnClickListener()
         {

@@ -24,12 +24,28 @@
     <string name="btn_RegisterAccount">Create Account</string>
     <string name="txt_FilterName">Filter Name</string>
     <string name="btn_logout">Log Out</string>
+    <string name="txt_FirstName">First Name</string>
+    <string name="txt_Username">Username*</string>
+    <string name="txt_Password">Password*</string>
+    <string name="txt_Lastname">Last Name</string>
+    <string name="txt_Address">Address</string>
+    <string name="txt_Email">Email*</string>
+    <string name="txt_PhoneNumber">Phone Number</string>
+    <string name="txt_Age">Age</string>
+    <string name="btn_CancelText">Cancel</string>
+    <string name="txt_RegisterGuide">Fields marked with * are required.</string>
+    <string name="txt_Weight">Weight</string>
 
-    <!--PLACEHOLDERS. REMOVE AT FINAL-->
     <string-array name="Roles">
         <item>Admin</item>
         <item>Patient</item>
         <item>Doctor</item>
         <item>Cashier</item>
+    </string-array>
+
+    <string-array name="Genders">
+        <item>Male</item>
+        <item>Female</item>
+        <item>Other</item>
     </string-array>
 </resources>

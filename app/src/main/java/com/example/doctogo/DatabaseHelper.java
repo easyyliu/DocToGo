@@ -10,7 +10,7 @@ import androidx.annotation.Nullable;
 
 public class DatabaseHelper extends SQLiteOpenHelper
 {
-    private static int DATABASE_VERSION = 2;
+    private static int DATABASE_VERSION = 3;
     //DATABASE TABLES & COLUMNS
     private static final String DATABASE_NAME = "DocToGoDatabase .db";
     /*
@@ -37,9 +37,9 @@ public class DatabaseHelper extends SQLiteOpenHelper
     private final static String T1COL_8 = "Email";           //TEXT
     private final static String T1COL_9 = "Phone";           //TEXT
     private final static String T1COL_10 = "Qualifications"; //TEXT        //Doctors Only REQUIRED
-    private final static String T1COL_11 = "Weight";         //TEXT
+    private final static String T1COL_11 = "Weight";         //INTEGER
     private final static String T1COL_12 = "Gender";         //TEXT
-    private final static String T1COL_13 = "Age";            //INTEGER
+    private final static String T1COL_13 = "Age";            //INTEGER     //Age of 0 MUST become "N/A"
 
     /*
         Appointment table: Defines a patient (role 2) having a schedule with a doctor (role 3).
@@ -127,7 +127,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
                 T1COL_8+" TEXT, " +
                 T1COL_9+" TEXT, " +
                 T1COL_10+" TEXT, " +
-                T1COL_11+" TEXT, " +
+                T1COL_11+" INTEGER, " +
                 T1COL_12+" TEXT, " +
                 T1COL_13+" INTEGER)";
         db.execSQL(query);
@@ -207,7 +207,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
         return db.rawQuery(query,null);
     }
 
-    public boolean adminRegister(String accName, String accPass, int accRole)
+    public boolean adminRegister(String accName, String accPass, int accRole, String accEmail)
     {
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -219,6 +219,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
             cv.put(T1COL_2,accName);
             cv.put(T1COL_3,accPass);
             cv.put(T1COL_4,accRole);
+            cv.put(T1COL_8,accEmail);
             Long reply = db.insert(TABLE1_NAME,null,cv);
 
             //return results
@@ -226,6 +227,31 @@ public class DatabaseHelper extends SQLiteOpenHelper
             {return true;}
         }
         return false;
+    }
+
+    public boolean normalRegister(String accName, String accPass, int accRole, String accEmail, String accFirstName, String accLastName, String accAddress, String accPhone, int accWeight, String accGender, int accAge)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        //insert into db
+        ContentValues cv = new ContentValues();
+        cv.put(T1COL_2,accName);
+        cv.put(T1COL_3,accPass);
+        cv.put(T1COL_4,accRole);
+        cv.put(T1COL_5,accFirstName);
+        cv.put(T1COL_6,accLastName);
+        cv.put(T1COL_7,accAddress);
+        cv.put(T1COL_8,accEmail);
+        cv.put(T1COL_9,accPhone);
+        cv.put(T1COL_11,accWeight);
+        cv.put(T1COL_12,accGender);
+        cv.put(T1COL_13,accAge);
+        Long reply = db.insert(TABLE1_NAME,null,cv);
+
+        //return results
+        if(reply > 0)
+        {return true;}
+        else
+        {return false;}
     }
 
     //placeholder method to get all accounts (id, name, pass, role)
