@@ -10,7 +10,7 @@ import androidx.annotation.Nullable;
 
 public class DatabaseHelper extends SQLiteOpenHelper
 {
-    private static int DATABASE_VERSION = 3;
+    private static int DATABASE_VERSION = 4;
     //DATABASE TABLES & COLUMNS
     private static final String DATABASE_NAME = "DocToGoDatabase .db";
     /*
@@ -40,6 +40,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
     private final static String T1COL_11 = "Weight";         //INTEGER
     private final static String T1COL_12 = "Gender";         //TEXT
     private final static String T1COL_13 = "Age";            //INTEGER     //Age of 0 MUST become "N/A"
+    private final static String T1COL_14 = "FirstLogin";     //INTEGER     //flag, turn to 1 if admin register->have to modify self.
 
     /*
         Appointment table: Defines a patient (role 2) having a schedule with a doctor (role 3).
@@ -129,7 +130,8 @@ public class DatabaseHelper extends SQLiteOpenHelper
                 T1COL_10+" TEXT, " +
                 T1COL_11+" INTEGER, " +
                 T1COL_12+" TEXT, " +
-                T1COL_13+" INTEGER)";
+                T1COL_13+" INTEGER, " +
+                T1COL_14+" INTEGER)";
         db.execSQL(query);
 
         //appointments
@@ -220,6 +222,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
             cv.put(T1COL_3,accPass);
             cv.put(T1COL_4,accRole);
             cv.put(T1COL_8,accEmail);
+            cv.put(T1COL_14,1); //First time login, user HAS to modify account.
             Long reply = db.insert(TABLE1_NAME,null,cv);
 
             //return results
@@ -245,6 +248,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
         cv.put(T1COL_11,accWeight);
         cv.put(T1COL_12,accGender);
         cv.put(T1COL_13,accAge);
+        cv.put(T1COL_14,0);
         Long reply = db.insert(TABLE1_NAME,null,cv);
 
         //return results
