@@ -79,7 +79,7 @@ public class Register extends AppCompatActivity
                 int age = 0;
                 String strAge = (ETAge.getText().toString());
                 if(!strAge.isEmpty())
-                {age = Integer.parseInt(strWeight);}
+                {age = Integer.parseInt(strAge);}
                 int role;
                 switch (SPRole.getSelectedItem().toString())
                 {

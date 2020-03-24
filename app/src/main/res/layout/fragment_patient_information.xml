@@ -23,7 +23,7 @@
     <View
         android:id="@+id/line1"
         android:layout_width="match_parent"
-        android:layout_height="5dp"
+        android:layout_height="10dp"
         android:layout_marginTop="16dp"
         android:background="@color/colorLine"
         app:layout_constraintEnd_toEndOf="parent"
@@ -38,7 +38,7 @@
         android:background="@color/colorLine"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tltPatientPostalCode" />
+        app:layout_constraintTop_toBottomOf="@+id/tltEmail" />
 
     <TextView
         android:id="@+id/txt_AdminViewDetailsName"
@@ -80,38 +80,52 @@
         app:layout_constraintTop_toBottomOf="@+id/tltPatientAge" />
 
     <TextView
-        android:id="@+id/tltPatientPostalCode"
+        android:id="@+id/tltEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="8dp"
-        android:text="@string/title_patient_postal_code"
+        android:text="@string/title_patient_email"
         android:textColor="@color/colorText"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tltPatientAddress" />
 
-    <ImageView
+    <ImageButton
         android:id="@+id/btnExitApp"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
+        android:background="@color/colorBackgroundActivity"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_action_exit_app" />
 
-    <ImageView
+    <ImageButton
         android:id="@+id/btnMainMenu"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
+        android:background="@color/colorBackgroundActivity"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_action_menu" />
+
+    <Spinner
+        android:id="@+id/spScrollMenu"
+        android:layout_width="110dp"
+        android:layout_height="22dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:entries="@array/ScrollMenu"
+        android:spinnerMode="dropdown"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnMainMenu" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

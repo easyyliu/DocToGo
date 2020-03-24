@@ -93,7 +93,7 @@
         app:layout_constraintStart_toEndOf="@+id/btncheckhistory"
         app:layout_constraintTop_toBottomOf="@+id/btnPayments" />
 
-    <fragment
+    <FrameLayout
         android:id="@+id/fragMainMenu"
         android:name="com.example.doctogo.PatientInformationFragment"
         android:layout_width="414dp"

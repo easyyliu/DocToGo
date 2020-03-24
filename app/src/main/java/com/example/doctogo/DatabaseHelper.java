@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 
@@ -209,6 +210,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
         return db.rawQuery(query,null);
     }
 
+
     public boolean adminRegister(String accName, String accPass, int accRole, String accEmail)
     {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -264,5 +266,43 @@ public class DatabaseHelper extends SQLiteOpenHelper
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "SELECT "+T1COL_1+", "+T1COL_2+", "+T1COL_3+", "+T1COL_4+" FROM "+TABLE1_NAME;
         return db.rawQuery(query,null);
+    }
+
+    //Get information from TABLE1_NAME to show in patient activities
+    public Cursor getInformationUser(int userId)
+    {
+
+        try {
+            SQLiteDatabase db = this.getReadableDatabase();
+            String query = "SELECT * FROM " + TABLE1_NAME + " WHERE " + T1COL_1 + "=" + userId;
+            Log.d("DbgetInformationUser ",query);
+            return db.rawQuery(query, null);
+        }catch (Exception msg){
+            Log.e("DbgetInformationUser ",msg.getMessage());
+            return null;
+        }
+    }
+
+//    private final static String T1COL_7 = "Address";         //TEXT
+//    private final static String T1COL_8 = "Email";           //TEXT
+//    private final static String T1COL_9 = "Phone";           //TEXT
+//    private final static String T1COL_10 = "Qualifications"; //TEXT        //Doctors Only REQUIRED
+//    private final static String T1COL_11 = "Weight";         //INTEGER
+
+
+
+    //Update Patient Information
+//    public Cursor updateInformationUser(int userId,String address,String email,String phone,int weight){
+        public Cursor updateInformationUser(int userId,String address,String email,String phone,int weight){
+        try {
+            SQLiteDatabase db = this.getWritableDatabase();
+            String query = "UPDATE " + TABLE1_NAME + " SET " + T1COL_7 + "=" + "'" + address + "'," + T1COL_8 + "=" + "'" + email + "',"
+                    + T1COL_9 + "=" + "'" + phone + "'," + T1COL_11 + "=" + "'" + weight + "'"+ " WHERE " + T1COL_1 + "=" + userId;
+            Log.d("DbupdInfoUser ",query);
+            return db.rawQuery(query, null);
+        }catch (Exception msg){
+            Log.e("DbupdInfoUser ",msg.getMessage());
+            return null;
+        }
     }
 }

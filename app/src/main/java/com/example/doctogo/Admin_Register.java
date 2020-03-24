@@ -27,7 +27,7 @@ public class Admin_Register extends AppCompatActivity
             public void onClick(View view)
             {
                 Spinner roleSelectionSpn = findViewById(R.id.spn_AdminRegRole);
-                EditText newAccName = findViewById(R.id.txt_AdminRegUsername);
+                EditText newAccUsername = findViewById(R.id.txt_AdminRegUsername);
                 EditText newAccPass = findViewById(R.id.txt_AdminRegPassword);
                 EditText newAccEmail = findViewById(R.id.txt_AdminRegEmail);
 
@@ -48,7 +48,7 @@ public class Admin_Register extends AppCompatActivity
                         accRole = 4;
                         break;
                 }
-                String accName = newAccName.getText().toString();
+                String accName = newAccUsername.getText().toString();
                 String accPass = newAccPass.getText().toString();
                 String accEmail = newAccEmail.getText().toString();
 
