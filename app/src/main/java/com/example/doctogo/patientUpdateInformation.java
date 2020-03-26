@@ -20,6 +20,7 @@ public class patientUpdateInformation extends AppCompatActivity {
     DatabaseHelper db = new DatabaseHelper(this);
     PatientInformationFragment updateFragment;
     FragmentManager manager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

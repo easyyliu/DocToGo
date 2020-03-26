@@ -283,16 +283,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
         }
     }
 
-//    private final static String T1COL_7 = "Address";         //TEXT
-//    private final static String T1COL_8 = "Email";           //TEXT
-//    private final static String T1COL_9 = "Phone";           //TEXT
-//    private final static String T1COL_10 = "Qualifications"; //TEXT        //Doctors Only REQUIRED
-//    private final static String T1COL_11 = "Weight";         //INTEGER
-
-
-
-    //Update Patient Information
-//    public Cursor updateInformationUser(int userId,String address,String email,String phone,int weight){
+        //Update Patient Information
         public Cursor updateInformationUser(int userId,String address,String email,String phone,int weight){
         try {
             SQLiteDatabase db = this.getWritableDatabase();
@@ -305,4 +296,47 @@ public class DatabaseHelper extends SQLiteOpenHelper
             return null;
         }
     }
+
+    //Search for Doctor
+    public Cursor searchDoctor(String address){
+        try {
+            SQLiteDatabase db = this.getReadableDatabase();
+            String query = "SELECT * FROM " + TABLE1_NAME + " WHERE " + T1COL_4 + "=3" + " AND " + T1COL_7 + " LIKE '%" + address + "%'";
+            Log.d("DbgetDocInfo ",query);
+            return db.rawQuery(query, null);
+        }catch (Exception msg){
+            Log.e("DbgetDocInfo ",msg.getMessage());
+            return null;
+        }
+    }
+
+    //TABLE 2
+//    private final static String TABLE2_NAME = "Appointments";
+//    private final static String T2CONST_1 = "FK_patient";
+//    private final static String T2CONST_2 = "FK_doctor";
+//    private final static String T2COL_1 = "Appointment_ID";   //INTEGER PRIMARY KEY
+//    private final static String T2COL_2 = "Patient_ID";       //INTEGER FOREIGN KEY
+//    private final static String T2COL_3 = "Doctor_ID";        //INTEGER FOREIGN KEY
+//    private final static String T2COL_4 = "Schedule_Date";    //TEXT YYYY-MM-DD HH:MM:SS.SSS
+//    private final static String T2COL_5 = "Duration";         //INTEGER (duration in minutes)
+
+    //Insert info into appointments table
+    public boolean bookAppointment(int patientID,int doctorID,String date){
+             SQLiteDatabase db = this.getWritableDatabase();
+            //Insert info into Appointments Table
+            ContentValues cv = new ContentValues();
+            cv.put(T2COL_2,patientID);
+            cv.put(T2COL_3,doctorID);
+            cv.put(T2COL_4,date);
+            cv.put(T2COL_5,30);
+            Long reply = db.insert(TABLE2_NAME,null,cv);
+
+            //return results
+            if(reply > 0)
+            {return true;}
+            else
+            {return false;}
+    }
+
+
 }

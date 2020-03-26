@@ -7,6 +7,9 @@
     <string name="title_patient_address">Address:</string>
     <string name="title_patient_email">Email:</string>
     <string name="title_patient_main_menu">MAIN MENU</string>
+    <string name="patientLocationDocName">Doctor Name: </string>
+    <string name="patientLocationDocAddress">Address: </string>
+    <string name="patientLocationBtnApp">Book an appointment</string>
     <string name="button_patient_locate_doctor">LOCATE DOCTOR</string>
     <string name="button_patient_payments">PAYMENTS</string>
     <string name="button_patient_check_history">CHECK HISTORY</string>
@@ -37,6 +40,7 @@
     <string name="btn_CancelText">Cancel</string>
     <string name="txt_RegisterGuide">Fields marked with * are required.</string>
     <string name="txt_Weight">Weight:</string>
+
 
     <string-array name="Roles">
         <item>Admin</item>
