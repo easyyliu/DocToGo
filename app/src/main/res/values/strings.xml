@@ -7,6 +7,9 @@
     <string name="title_patient_address">Address:</string>
     <string name="title_patient_email">Email:</string>
     <string name="title_patient_main_menu">MAIN MENU</string>
+    <string name="patientLocationDocName">Doctor Name: </string>
+    <string name="patientLocationDocAddress">Address: </string>
+    <string name="patientLocationBtnApp">Book an appointment</string>
     <string name="button_patient_locate_doctor">LOCATE DOCTOR</string>
     <string name="button_patient_payments">PAYMENTS</string>
     <string name="button_patient_check_history">CHECK HISTORY</string>
@@ -54,6 +57,7 @@
     <string name="txt_AdminDetailAccountWeight">Weight:</string>
     <string name="txt_AdminDetailAccountQualifications">Qualifications:</string>
     <string name="txt_Qualifications">Qualifications</string>
+
 
     <string-array name="Roles">
         <item>Admin</item>
