@@ -1,8 +1,342 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Admin_AccountDetails"
-    android:background="@color/colorBackgroundActivity"/>
+    android:background="@color/colorBackgroundActivity"
+    tools:context=".Admin_AccountDetails">
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/img_AdminAccountDetailsUserImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/img_adminaccountdetailsimage"
+            android:layout_weight="1"
+            android:layout_column="1"/>
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/lbl_AdminDetailAccountID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:layout_weight="1"/>
+
+        <TextView
+            android:id="@+id/lbl_AdminDetailAccountRole"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="2"
+            android:text=""
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:layout_weight="1"/>
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/lbl_AdminDetailAccountFirstname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/txt_AdminDetailAccountFirstname"
+            android:textStyle="bold"
+            android:layout_weight="1"/>
+
+        <EditText
+            android:id="@+id/txt_AdminDetailAccountFirstname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/txt_FirstName"
+            android:importantForAutofill="no"
+            android:inputType="textPersonName"
+            android:text=""
+            android:layout_weight="1"/>
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/lbl_AdminDetailLastname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/txt_AdminDetailAccountLastname"
+            android:textStyle="bold"
+            android:layout_weight="1"/>
+
+        <EditText
+            android:id="@+id/txt_AdminDetailAccountLastname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/txt_Lastname"
+            android:importantForAutofill="no"
+            android:inputType="textPersonName"
+            android:layout_weight="1"/>
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/lbl_AdminDetailAccountUsername"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/txt_AdminDetailAccountUsername"
+            android:textStyle="bold"
+            android:layout_weight="1"/>
+
+        <EditText
+            android:id="@+id/txt_AdminDetailAccountUsername"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/txt_Username"
+            android:importantForAutofill="no"
+            android:inputType="textPersonName"
+            android:layout_weight="1"/>
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/lbl_AdminDetailAccountEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/txt_AdminDetailAccountEmail"
+            android:textStyle="bold"
+            android:layout_weight="1"/>
+
+        <EditText
+            android:id="@+id/txt_AdminDetailAccountEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/txt_Email"
+            android:importantForAutofill="no"
+            android:inputType="textEmailAddress"
+            android:layout_weight="1"/>
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/lbl_AdminDetailAccountPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/txt_AdminDetailAccountPassword"
+            android:textStyle="bold"
+            android:layout_weight="1"/>
+
+        <EditText
+            android:id="@+id/txt_AdminDetailAccountPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/txt_Password"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:layout_weight="1"/>
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/lbl_AdminDetailAccountAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/txt_AdminDetailAccountAddress"
+            android:textStyle="bold"
+            android:layout_weight="1"/>
+
+        <EditText
+            android:id="@+id/txt_AdminDetailAccountAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/txt_Address"
+            android:inputType="textPersonName"
+            android:importantForAutofill="no"
+            android:layout_weight="1"/>
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/lbl_AdminDetailAccountPhone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/txt_AdminDetailAccountPhone"
+            android:textStyle="bold"
+            android:layout_weight="1"/>
+
+        <EditText
+            android:id="@+id/txt_AdminDetailAccountPhone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/txt_PhoneNumber"
+            android:importantForAutofill="no"
+            android:inputType="phone"
+            android:layout_weight="1"/>
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/row_AdminDetailAccountGender">
+
+        <TextView
+            android:id="@+id/lbl_AdminDetailAccountGender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/txt_AdminDetailAccountGender"
+            android:textStyle="bold"
+            android:layout_weight="1"/>
+
+        <Spinner
+            android:id="@+id/spn_AdminDetailAccountGender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/Genders"
+            android:layout_weight="1"/>
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/row_AdminDetailAccountAge" >
+
+        <TextView
+            android:id="@+id/lbl_AdminDetailAccountAge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/txt_AdminDetailAccountAge"
+            android:textStyle="bold"
+            android:layout_weight="1"/>
+
+        <EditText
+            android:id="@+id/txt_AdminDetailAccountAge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/txt_Age"
+            android:importantForAutofill="no"
+            android:inputType="numberSigned"
+            android:layout_weight="1"/>
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/row_AdminDetailAccountWeight">
+
+        <TextView
+            android:id="@+id/lbl_AdminDetailAccountWeight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/txt_AdminDetailAccountWeight"
+            android:textStyle="bold"
+            android:layout_weight="1"/>
+
+        <EditText
+            android:id="@+id/txt_AdminDetailAccountWeight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/txt_Weight"
+            android:importantForAutofill="no"
+            android:inputType="numberSigned"
+            android:layout_weight="1"/>
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/row_AdminDetailAccountQualifications"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/lbl_AdminDetailAccountQualifications"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/txt_AdminDetailAccountQualifications"
+            android:textStyle="bold"
+            android:layout_weight="1"/>
+
+        <TextView
+            android:id="@+id/txt_AdminDetailAccountQualifications"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/txt_Qualifications"
+            android:textStyle="bold"
+            android:layout_weight="1"/>
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/lbl_AdminDetailAccountGuide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:text="@string/txt_RegisterGuide"
+            android:textStyle="bold"
+            android:layout_weight="1"/>
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/btn_AdminDetailAccountRevert"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_AdminDetailAccountRevert"
+            android:layout_weight="1"/>
+
+        <Button
+            android:id="@+id/btn_AdminDetailAccountExit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_AdminDetailAccountExit"
+            android:layout_weight="1"/>
+
+
+        <Button
+            android:id="@+id/btn_AdminDetailAccountSave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_AdminDetailAccountSave"
+            android:layout_weight="1"/>
+
+    </TableRow>
+</TableLayout>

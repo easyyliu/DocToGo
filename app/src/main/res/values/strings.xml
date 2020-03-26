@@ -24,7 +24,7 @@
     <string name="btn_AdminToViewAll">View All Accounts</string>
     <string name="txt_AccountRoles">Account Type</string>
     <string name="btn_RegisterAccount">Create Account</string>
-    <string name="txt_FilterName">Filter Name</string>
+    <string name="txt_FilterName">Filter userame</string>
     <string name="btn_logout">Log Out</string>
     <string name="txt_FirstName">First Name</string>
     <string name="txt_Username">Username*</string>
@@ -37,8 +37,32 @@
     <string name="btn_CancelText">Cancel</string>
     <string name="txt_RegisterGuide">Fields marked with * are required.</string>
     <string name="txt_Weight">Weight:</string>
+    <string name="img_AdminAccountListItemImage">imagePlaceholder</string>
+    <string name="img_adminaccountdetailsimage">User Image</string>
+    <string name="txt_AdminDetailAccountFirstname">Firstname:</string>
+    <string name="txt_AdminDetailAccountLastname">Lastname:</string>
+    <string name="txt_AdminDetailAccountEmail">Email:</string>
+    <string name="btn_AdminDetailAccountSave">Save</string>
+    <string name="btn_AdminDetailAccountExit">Done</string>
+    <string name="btn_AdminDetailAccountRevert">Revert</string>
+    <string name="txt_AdminDetailAccountUsername">Username:</string>
+    <string name="txt_AdminDetailAccountPassword">Password:</string>
+    <string name="txt_AdminDetailAccountAddress">Address:</string>
+    <string name="txt_AdminDetailAccountPhone">Phone:</string>
+    <string name="txt_AdminDetailAccountGender">Gender:</string>
+    <string name="txt_AdminDetailAccountAge">Age:</string>
+    <string name="txt_AdminDetailAccountWeight">Weight:</string>
+    <string name="txt_AdminDetailAccountQualifications">Qualifications:</string>
+    <string name="txt_Qualifications">Qualifications</string>
 
     <string-array name="Roles">
+        <item>Admin</item>
+        <item>Patient</item>
+        <item>Doctor</item>
+        <item>Cashier</item>
+    </string-array>
+    <string-array name="FilterRoles">
+        <item>All</item>
         <item>Admin</item>
         <item>Patient</item>
         <item>Doctor</item>
@@ -49,6 +73,7 @@
         <item>Male</item>
         <item>Female</item>
         <item>Other</item>
+        <item>Undefined</item>
     </string-array>
 
     <string-array name="ScrollMenu">

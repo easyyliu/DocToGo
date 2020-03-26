@@ -11,7 +11,7 @@ import androidx.annotation.Nullable;
 
 public class DatabaseHelper extends SQLiteOpenHelper
 {
-    private static int DATABASE_VERSION = 4;
+    private static int DATABASE_VERSION = 6;
     //DATABASE TABLES & COLUMNS
     private static final String DATABASE_NAME = "DocToGoDatabase .db";
     /*
@@ -39,7 +39,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
     private final static String T1COL_9 = "Phone";           //TEXT
     private final static String T1COL_10 = "Qualifications"; //TEXT        //Doctors Only REQUIRED
     private final static String T1COL_11 = "Weight";         //INTEGER
-    private final static String T1COL_12 = "Gender";         //TEXT
+    private final static String T1COL_12 = "Gender";         //TEXT        //if Gender not selected, UNDEFINED
     private final static String T1COL_13 = "Age";            //INTEGER     //Age of 0 MUST become "N/A"
     private final static String T1COL_14 = "FirstLogin";     //INTEGER     //flag, turn to 1 if admin register->have to modify self.
 
@@ -184,6 +184,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
         ContentValues cv = new ContentValues();
         cv.put(T1COL_2,"root");
         cv.put(T1COL_3,"pass");
+        cv.put(T1COL_8,"localhost");
         cv.put(T1COL_4,1);
         db.insert(TABLE1_NAME,null,cv);
     }
@@ -260,11 +261,14 @@ public class DatabaseHelper extends SQLiteOpenHelper
         {return false;}
     }
 
-    //placeholder method to get all accounts (id, name, pass, role)
-    public Cursor viewAllAccounts()
+    //get all accounts (id, name, pass, role) WHERE Role & Username MATCH filter.
+    public Cursor viewAllAccounts(String usernameFilter, String roleFilter)
     {
         SQLiteDatabase db = this.getWritableDatabase();
-        String query = "SELECT "+T1COL_1+", "+T1COL_2+", "+T1COL_3+", "+T1COL_4+" FROM "+TABLE1_NAME;
+        String query = "SELECT "+T1COL_1+", "+T1COL_2+", "+T1COL_5+", "+T1COL_6+", "+T1COL_4+ " FROM "+TABLE1_NAME
+                +" WHERE " + T1COL_4 + roleFilter
+                +" AND " + T1COL_2 + usernameFilter;
+        Log.e("DbAdminViewAll ", query);
         return db.rawQuery(query,null);
     }
 
@@ -283,6 +287,34 @@ public class DatabaseHelper extends SQLiteOpenHelper
         }
     }
 
+    //update an account from admin perspective
+    public boolean adminUpdate(int accID, String accName, String accPass, String accEmail, String accFirstName, String accLastName, String accAddress, String accPhone, int accWeight, String accQualifications,  String accGender, int accAge) {
+        try {
+            SQLiteDatabase db = this.getWritableDatabase();
+            //insert into db
+            ContentValues cv = new ContentValues();
+            cv.put(T1COL_2,accName);
+            cv.put(T1COL_3,accPass);
+            cv.put(T1COL_5,accFirstName);
+            cv.put(T1COL_6,accLastName);
+            cv.put(T1COL_7,accAddress);
+            cv.put(T1COL_8,accEmail);
+            cv.put(T1COL_9,accPhone);
+            cv.put(T1COL_11,accWeight);
+            cv.put(T1COL_12,accGender);
+            cv.put(T1COL_13,accAge);
+            int reply = db.update(TABLE1_NAME,cv,T1COL_1+"="+accID,null);
+
+            //return results
+            if(reply > 0)
+            {return true;}
+            else
+            {return false;}
+        } catch (Exception msg) {
+            Log.e("DbAdminupdInfoUser ", msg.getMessage());
+            return false;
+        }
+    }
 //    private final static String T1COL_7 = "Address";         //TEXT
 //    private final static String T1COL_8 = "Email";           //TEXT
 //    private final static String T1COL_9 = "Phone";           //TEXT
