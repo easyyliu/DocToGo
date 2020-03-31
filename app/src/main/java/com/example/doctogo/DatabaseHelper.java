@@ -418,6 +418,26 @@ public class DatabaseHelper extends SQLiteOpenHelper
             return false;
         }
     }
+
+    //Update TransDate to Payment table
+    public boolean updatePaymentWithtransDate(int payID, String transDate){
+        try {
+            SQLiteDatabase db = this.getWritableDatabase();
+
+            ContentValues cv = new ContentValues();
+            cv.put(T3COL_4,transDate);
+            int reply = db.update(TABLE3_NAME,cv,T3COL_1+"="+payID,null);
+
+            //return results
+            if(reply > 0)
+            {return true;}
+            else
+            {return false;}
+        } catch (Exception msg) {
+            Log.e("updatePaymentWithtrans ", msg.getMessage());
+            return false;
+        }
+    }
     //Update amount to Payment table
     public boolean updatePaymentWithAmount(int payID, int amount){
         try {

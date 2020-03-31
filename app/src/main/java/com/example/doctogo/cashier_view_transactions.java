@@ -31,11 +31,13 @@ public class cashier_view_transactions extends AppCompatActivity implements Date
     private int transId;
     private int patientId;
     private String due_Date;
+    private String datePicker;
     private int amount;
     private String patientName;
     private int tempAmount;
     private Date tempDate;
     private Date currDate;
+    private int selectOptionNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,11 +82,16 @@ public class cashier_view_transactions extends AppCompatActivity implements Date
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {
-                    case R.id.pop_date:
+                    case R.id.pop_due_date:
+                        selectOptionNumber = 1;
                         pickDate();
                         break;
                     case R.id.pop_amount:
                         editAmount();
+                        break;
+                    case R.id.pop_trans_date:
+                        selectOptionNumber = 3;
+                        pickDate();
                         break;
                     default:
                         return false;
@@ -95,19 +102,32 @@ public class cashier_view_transactions extends AppCompatActivity implements Date
     }
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-        String due_Date = month+1 + "-" + dayOfMonth + "-" + year;
+        datePicker = month+1 + "-" + dayOfMonth + "-" + year;
         SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
         try {
-            tempDate =  dateFormat.parse(due_Date);
-            currDate =  Calendar.getInstance().getTime();
-            if(!(tempDate.compareTo(currDate)>0)){
-                Toast.makeText(getBaseContext(),"please select the a due date later than today",Toast.LENGTH_LONG).show();
+            if(selectOptionNumber == 1) {
+                tempDate = dateFormat.parse(datePicker);
+                currDate = Calendar.getInstance().getTime();
+                if (!(tempDate.compareTo(currDate) > 0)) {
+                    Toast.makeText(getBaseContext(), "please select the a due date later than today", Toast.LENGTH_LONG).show();
+                } else {
+                    dbh = new DatabaseHelper(this);
+                    dbh.updatePaymentWithdueDate(transId, datePicker);
+                    finish();
+                    startActivity(getIntent());
+                }
             }
-            else{
-                dbh = new DatabaseHelper(this);
-                dbh.updatePaymentWithdueDate(transId,due_Date);
-                finish();
-                startActivity(getIntent());
+            else if(selectOptionNumber == 3){
+                tempDate = dateFormat.parse(datePicker);
+                currDate = Calendar.getInstance().getTime();
+                if (tempDate.compareTo(currDate) > 0) {
+                    Toast.makeText(getBaseContext(), "please select the a due date not later than today", Toast.LENGTH_LONG).show();
+                } else {
+                    dbh = new DatabaseHelper(this);
+                    dbh.updatePaymentWithtransDate(transId, datePicker);
+                    finish();
+                    startActivity(getIntent());
+                }
             }
         } catch (ParseException e) {
             e.printStackTrace();

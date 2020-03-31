@@ -98,6 +98,8 @@
     <string name="cashier_view_Edit">Edit</string>
     <string name="pop_amount">Amount</string>
     <string name="pop_date">Due Date</string>
+    <string name="btn_cashier_historyTransaction">"Transaction Archive "</string>
+    <string name="pop_trans_date">Transaction Date</string>
 
     <!--PLACEHOLDERS. REMOVE AT FINAL-->
     <string-array name="Roles">
