@@ -99,7 +99,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
     private final static String TABLE5_NAME = "Reports";
     private final static String T5CONST_1 = "FK_patient";
     private final static String T5CONST_2 = "FK_doctor";
-    private final static String T5CONST_3 = "FK_payment";
+    //private final static String T5CONST_3 = "FK_payment";
     private final static String T5COL_1 = "Report_ID";     //INTEGER PRIMARY KEY
     private final static String T5COL_2 = "Patient_ID";    //INTEGER FOREIGN KEY
     private final static String T5COL_3 = "Doctor_ID";     //INTEGER FOREIGN KEY
@@ -176,8 +176,9 @@ public class DatabaseHelper extends SQLiteOpenHelper
                 T5COL_5+" TEXT, " +
                 T5COL_6+" INTEGER, " +
                 "CONSTRAINT "+ T5CONST_1 +" FOREIGN KEY ("+T5COL_2+") REFERENCES "+TABLE1_NAME+"("+T1COL_1+")," +
-                "CONSTRAINT "+ T5CONST_2 +" FOREIGN KEY ("+T5COL_3+") REFERENCES "+TABLE1_NAME+"("+T1COL_1+")," +
-                "CONSTRAINT "+ T5CONST_3 +" FOREIGN KEY ("+T5COL_6+") REFERENCES "+TABLE1_NAME+"("+T3COL_1+"))";
+                "CONSTRAINT "+ T5CONST_2 +" FOREIGN KEY ("+T5COL_3+") REFERENCES "+TABLE1_NAME+"("+T1COL_1+")" +
+                //"," + "CONSTRAINT "+ T5CONST_3 +" FOREIGN KEY ("+T5COL_6+") REFERENCES "+TABLE3_NAME+"("+T3COL_1+")" +
+                ")";
         db.execSQL(query);
 
         //insert a single admin account for access
@@ -278,7 +279,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
 
         try {
             SQLiteDatabase db = this.getReadableDatabase();
-            String query = "SELECT * FROM " + TABLE1_NAME + " WHERE " + T1COL_1 + "=" + userId;
+            String query = "SELECT * FROM " + TABLE1_NAME + " WHERE " + T1COL_1 + " = " + userId;
             Log.d("DbgetInformationUser ",query);
             return db.rawQuery(query, null);
         }catch (Exception msg){
@@ -337,4 +338,120 @@ public class DatabaseHelper extends SQLiteOpenHelper
             return null;
         }
     }
+
+    //Get all rows from the table Report with paymentID-filter
+    public Cursor viewReportWithoutPaymentId(int x)
+    {
+            SQLiteDatabase db = this.getReadableDatabase();
+            String query = "SELECT " + T5COL_1 + ", " + T5COL_2 + ", " + T5COL_3 + ", " + T5COL_4 + ", " + T5COL_5 + " FROM " + TABLE5_NAME
+                    + " WHERE " + T5COL_6 + "=" + x;
+            Log.e("DbviewReportWithoutP ", query);
+            return db.rawQuery(query, null);
+    }
+    //Get row from the table Report with reportID-filter
+    public Cursor viewReport(int x)
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT " + T5COL_2 + ", " + T5COL_3 + ", " + T5COL_4 + ", " + T5COL_5 + ", " + T5COL_6 + " FROM " + TABLE5_NAME
+                + " WHERE " + T5COL_1 + "=" + x;
+        Log.e("DbviewReport ", query);
+        return db.rawQuery(query, null);
+    }
+    //Get all unpayed rows from payment
+    public Cursor viewPaymentUnpayed()
+    {
+        String n = " IS NULL ";
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT " + T3COL_1 + ", " + T3COL_2 + ", " + T3COL_3 + ", " + T3COL_5 +  " FROM " + TABLE3_NAME
+                + " WHERE " + T3COL_4 + n;
+        Log.e("DbpaymentUpayed ", query);
+        return db.rawQuery(query, null);
+    }
+    //Find payment row with paymentID
+    public Cursor viewPayment(int x)
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT " + T3COL_2 + ", " + T3COL_3 + ", " + T3COL_4 + ", " + T3COL_5  + " FROM " + TABLE3_NAME
+                + " WHERE " + T3COL_1 + "=" + x;
+        Log.e("DbviewPayment ", query);
+        return db.rawQuery(query, null);
+    }
+
+    //Insert a new row to payment table
+    public long paymentInsert(int patiId, String dueDate, int amount_num){
+        SQLiteDatabase db = this.getWritableDatabase();
+        //insert into db
+        ContentValues cv = new ContentValues();
+        cv.put(T3COL_2,patiId);
+        cv.put(T3COL_3,dueDate);
+        cv.put(T3COL_5,amount_num);
+        Long reply = db.insert(TABLE3_NAME,null,cv);
+        //return results
+        if(reply > 0)
+        {return reply;}
+        else
+        {return 0;}
+
+    }
+
+    //Update dueDate to Payment table
+    public boolean updatePaymentWithdueDate(int payID, String duedate){
+        try {
+            SQLiteDatabase db = this.getWritableDatabase();
+
+            ContentValues cv = new ContentValues();
+            cv.put(T3COL_3,duedate);
+            int reply = db.update(TABLE3_NAME,cv,T3COL_1+"="+payID,null);
+
+            //return results
+            if(reply > 0)
+            {return true;}
+            else
+            {return false;}
+        } catch (Exception msg) {
+            Log.e("updatePaymentWithdue ", msg.getMessage());
+            return false;
+        }
+    }
+    //Update amount to Payment table
+    public boolean updatePaymentWithAmount(int payID, int amount){
+        try {
+            SQLiteDatabase db = this.getWritableDatabase();
+
+            ContentValues cv = new ContentValues();
+            cv.put(T3COL_5,amount);
+            int reply = db.update(TABLE3_NAME,cv,T3COL_1+"="+payID,null);
+
+            //return results
+            if(reply > 0)
+            {return true;}
+            else
+            {return false;}
+        } catch (Exception msg) {
+            Log.e("updatePaymentWithAmou ", msg.getMessage());
+            return false;
+        }
+    }
+
+    //Update paymentID to Report
+    public boolean updateReportWithPaymentID(int payID, int reportID){
+        try {
+            SQLiteDatabase db = this.getWritableDatabase();
+
+            ContentValues cv = new ContentValues();
+            cv.put(T5COL_6,payID);
+            int reply = db.update(TABLE5_NAME,cv,T5COL_1+"="+reportID,null);
+
+            //return results
+            if(reply > 0)
+            {return true;}
+            else
+            {return false;}
+        } catch (Exception msg) {
+            Log.e("updateReportWithP ", msg.getMessage());
+            return false;
+        }
+    }
+
+
 }

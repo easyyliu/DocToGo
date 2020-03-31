@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackgroundActivity"
+    android:orientation="vertical"
+    android:paddingLeft="50sp"
+    android:paddingTop="300sp"
+    android:paddingRight="50sp"
+    tools:context=".Cashier_main">
+
+    <TextView
+        android:id="@+id/cashierNameTxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/cashierNameTxt"
+        android:textSize="25sp"
+        android:textStyle="bold"/>
+
+    <Button
+        android:id="@+id/btn_cashier_addNewTransaction"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_cashier_addNewTransaction" />
+
+    <Button
+        android:id="@+id/btn_cashier_viewTransactions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_cashier_viewTransactions" />
+
+    <Button
+        android:id="@+id/btn_cashier_LogOut"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_logout" />
+</LinearLayout>

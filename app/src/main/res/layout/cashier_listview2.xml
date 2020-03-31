@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/cashier_listview2_patient"
+        android:layout_width="260dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_weight="1"
+        android:text="@string/cashier_listview2_patient"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/cashier_listview2_due"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="100dp"
+        android:layout_marginRight="100dp"
+        android:layout_weight="1"
+        android:gravity="end"
+        android:text="@string/cashier_listview2_due"
+        android:textSize="16sp" />
+</LinearLayout>

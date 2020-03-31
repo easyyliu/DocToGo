@@ -29,6 +29,9 @@
     <string name="btn_RegisterAccount">Create Account</string>
     <string name="txt_FilterName">Filter userame</string>
     <string name="btn_logout">Log Out</string>
+    <string name="btn_cashier_addNewTransaction">New Transaction</string>
+    <string name="btn_cashier_viewTransactions">View Transactions</string>
+    <string name="cashierNameTxt" />
     <string name="txt_FirstName">First Name</string>
     <string name="txt_Username">Username*</string>
     <string name="txt_Password">Password*</string>
@@ -57,8 +60,46 @@
     <string name="txt_AdminDetailAccountWeight">Weight:</string>
     <string name="txt_AdminDetailAccountQualifications">Qualifications:</string>
     <string name="txt_Qualifications">Qualifications</string>
+    <string name="cashier_new_patientTxt"></string>
+    <string name="cashier_newNameTxt">Patient Name</string>
+    <string name="add_image">An add image to show the list of patients</string>
+    <string name="cashier_patient_desc" />
+    <string name="cashier_new_select_date">Select Date</string>
+    <string name="cashier_new_due_date" />
+    <string name="cashier_new_patient_payment_amount" />
+    <string name="cashier_newReportTitle">Select A Report</string>
+    <string name="cashier_newReportTxt">Report#</string>
+    <string name="cashier_new_ReportnumTxt" />
+    <string name="cashier_newDoctor">Doctor Name</string>
+    <string name="cashier_new_doctorTxt" />
+    <string name="cashier_newAddress">Patient Address</string>
+    <string name="cashier_newDetail">Case detail</string>
+    <string name="cashier_new_amount">Amount</string>
+    <string name="cashier_new_dueDate">Due Date</string>
+    <string name="cashier_new_dueDateTxt" />
+    <string name="cashier_new_btn_done">Done</string>
+    <string name="cashier_new_btn_cancel">Cancel</string>
+    <string name="cashier_newDescription">Case Description</string>
+    <string name="cashier_patient_address" />
+    <string name="cashier_newCaseDate">Date</string>
+    <string name="cashier_new_CaseDateTxt" />
+    <string name="cashier_listview1_reportNum" />
+    <string name="cashier_listview1_patient" />
+    <string name="cashier_listview2_payId" />
+    <string name="cashier_listview2_patient" />
+    <string name="cashier_listview2_due" />
+    <string name="cashier_unpayedTitle">Select A Transaction</string>
+    <string name="cashier_view_TranscationNumber">Transaction#</string>
+    <string name="cashier_view_dueDate">Due Date</string>
+    <string name="cashier_view_TranscationNumberTxt" />
+    <string name="cashier_view_dueDateTxt" />
+    <string name="cashier_view_patientNameTxt" />
+    <string name="cashier_view_send_Reminder">Reminder</string>
+    <string name="cashier_view_Edit">Edit</string>
+    <string name="pop_amount">Amount</string>
+    <string name="pop_date">Due Date</string>
 
-
+    <!--PLACEHOLDERS. REMOVE AT FINAL-->
     <string-array name="Roles">
         <item>Admin</item>
         <item>Patient</item>
