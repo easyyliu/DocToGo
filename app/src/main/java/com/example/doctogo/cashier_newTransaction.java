@@ -126,7 +126,7 @@ public class cashier_newTransaction extends AppCompatActivity implements DatePic
                                 Toast.makeText(getBaseContext(),"please select the a due date later than today",Toast.LENGTH_LONG).show();
                             }
                             else{
-                                long pId = dbh.paymentInsert(patient_ID,due_Date,amount_due);
+                                long pId = dbh.paymentInsert(patient_ID,due_Date,amount_due,reportNum);
                                 int paymentID = (int)pId;
                                 dbh.updateReportWithPaymentID(paymentID,reportNum);
                                 onBackPressed();

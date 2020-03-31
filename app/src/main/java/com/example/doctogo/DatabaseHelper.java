@@ -68,12 +68,14 @@ public class DatabaseHelper extends SQLiteOpenHelper
      */
     //TABLE 3
     private final static String TABLE3_NAME = "Payments";
-    private final static String T3CONST_1 = "FK_patient";
+    private final static String T3CONST_1 = "FK_report";
+    private final static String T3CONST_2 = "FK_patient";
     private final static String T3COL_1 = "Payment_ID";   //INTEGER PRIMARY KEY
     private final static String T3COL_2 = "Patient_ID";   //INTEGER FOREIGN KEY
     private final static String T3COL_3 = "Due_Date";     //TEXT YYYY-MM-DD HH:MM:SS.SSS
     private final static String T3COL_4 = "Trans_Date";   //TEXT YYYY-MM-DD HH:MM:SS.SSS
     private final static String T3COL_5 = "Amount";       //REAL
+    private final static String T3COL_6 = "Report_ID";    ////INTEGER FOREIGN KEY
 
     /*
         Comments table: Contains all comments made by patients (role 2) to doctors (role 3).
@@ -153,7 +155,9 @@ public class DatabaseHelper extends SQLiteOpenHelper
                 T3COL_3+" TEXT, " +
                 T3COL_4+" TEXT, " +
                 T3COL_5+" REAL, " +
-                "CONSTRAINT "+ T3CONST_1 +" FOREIGN KEY ("+T3COL_2+") REFERENCES "+TABLE1_NAME+"("+T1COL_1+"))";
+                T3COL_6+" INTEGER, " +
+                "CONSTRAINT "+ T3CONST_1 +" FOREIGN KEY ("+T3COL_2+") REFERENCES "+TABLE1_NAME+"("+T1COL_1+")," +
+                "CONSTRAINT "+ T3CONST_2 +" FOREIGN KEY ("+T3COL_6+") REFERENCES "+TABLE5_NAME+"("+T5COL_1+"))";
         db.execSQL(query);
 
         //comments
@@ -378,13 +382,14 @@ public class DatabaseHelper extends SQLiteOpenHelper
     }
 
     //Insert a new row to payment table
-    public long paymentInsert(int patiId, String dueDate, int amount_num){
+    public long paymentInsert(int patiId, String dueDate, int amount_num, int reportID){
         SQLiteDatabase db = this.getWritableDatabase();
         //insert into db
         ContentValues cv = new ContentValues();
         cv.put(T3COL_2,patiId);
         cv.put(T3COL_3,dueDate);
         cv.put(T3COL_5,amount_num);
+        cv.put(T3COL_6,reportID);
         Long reply = db.insert(TABLE3_NAME,null,cv);
         //return results
         if(reply > 0)
