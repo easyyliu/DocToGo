@@ -100,6 +100,16 @@
     <string name="pop_date">Due Date</string>
     <string name="btn_cashier_historyTransaction">"Transaction Archive "</string>
     <string name="pop_trans_date">Transaction Date</string>
+    <string name="cashier_archiveTitle">Archive Transactions List</string>
+    <string name="cashier_archive_transID">Transaction#</string>
+    <string name="cashier_transDate">Transaction Date</string>
+    <string name="cashier_archive_descTxt" />
+    <string name="cashier_archive_addressTxt" />
+    <string name="cashier_archive_transIDTxt" />
+    <string name="cashier_archive_transDateTxt" />
+    <string name="cashier_archive_patientTxt" />
+    <string name="cashier_archive_doctorTxt" />
+    <string name="cashier_archive_amountTxt" />
 
     <!--PLACEHOLDERS. REMOVE AT FINAL-->
     <string-array name="Roles">

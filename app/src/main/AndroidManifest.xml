@@ -9,13 +9,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".cashier_list_unpayed"/>
+        <activity android:name=".cashier_archive_transactions"/>
+        <activity android:name=".cashier_list_archive" />
+        <activity android:name=".cashier_list_unpayed" />
         <activity android:name=".cashier_list_new_report" />
         <activity android:name=".Register" />
         <activity android:name=".cashier_view_transactions" />
         <activity android:name=".cashier_newTransaction" />
         <activity android:name=".Cashier_main" />
-        <activity android:name=".Register" />
         <activity android:name=".Admin_AccountDetails" />
         <activity android:name=".Admin_AccountsView" />
         <activity android:name=".Admin_Register" />

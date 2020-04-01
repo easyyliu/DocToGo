@@ -48,7 +48,7 @@ public class cashier_newTransaction extends AppCompatActivity implements DatePic
         final TextView doctorTxt = (TextView)findViewById(R.id.cashier_new_doctorTxt);
         final TextView caseDescTxt = (TextView)findViewById(R.id.cashier_patient_desc);
         final TextView addressTxt = (TextView)findViewById(R.id.cashier_patient_address);
-        final EditText Amount = (EditText)findViewById(R.id.cashier_new_patient_payment_amount);
+        final EditText AmountTxt = (EditText)findViewById(R.id.cashier_new_patient_payment_amount);
         Button btnselectDate = (Button)findViewById(R.id.cashier_btn_new_select_date);
         Button btndone = (Button)findViewById(R.id.cashier_new_btn_done);
         Button btncancel = (Button)findViewById(R.id.cashier_new_btn_cancel);
@@ -104,7 +104,7 @@ public class cashier_newTransaction extends AppCompatActivity implements DatePic
         btndone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                amount_dueString = Amount.getText().toString();
+                amount_dueString = AmountTxt.getText().toString();
                 due_Date = dueDate.getText().toString();
                 if(amount_dueString.matches("")){
                     Toast.makeText(getBaseContext(),"please fill amount input",Toast.LENGTH_LONG).show();

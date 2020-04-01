@@ -361,14 +361,13 @@ public class DatabaseHelper extends SQLiteOpenHelper
         Log.e("DbviewReport ", query);
         return db.rawQuery(query, null);
     }
-    //Get all unpayed rows from payment
-    public Cursor viewPaymentUnpayed()
+    //Get all rows from payment will transDate-fliter
+    public Cursor viewPaymentPayedOrNot(String n)
     {
-        String n = " IS NULL ";
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT " + T3COL_1 + ", " + T3COL_2 + ", " + T3COL_3 + ", " + T3COL_5 +  " FROM " + TABLE3_NAME
                 + " WHERE " + T3COL_4 + n;
-        Log.e("DbpaymentUpayed ", query);
+        Log.e("Dbpaymentpayed ", query);
         return db.rawQuery(query, null);
     }
     //Find payment row with paymentID
