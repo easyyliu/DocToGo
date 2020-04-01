@@ -5,23 +5,32 @@
 
     <TextView
         android:id="@+id/cashier_listview2_patient"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_weight="1"
+        android:gravity="center_vertical"
         android:text="@string/cashier_listview2_patient"
         android:textSize="16sp" />
 
     <TextView
         android:id="@+id/cashier_listview2_due"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginEnd="100dp"
-        android:layout_marginRight="100dp"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
         android:layout_weight="1"
-        android:gravity="end"
+        android:gravity="center_vertical"
         android:text="@string/cashier_listview2_due"
         android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/cashier_listview2_arrow"
+        android:layout_width="50dp"
+        android:layout_height="40dp"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:text="@string/cashier_listview2_arrow"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
 </LinearLayout>
