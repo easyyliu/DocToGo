@@ -22,7 +22,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class cashier_newTransaction extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
-    private TextView dueDate;
+    private EditText dueDateTxt;
     int reportNum;
     int patient_ID;
     int doctor_ID;
@@ -41,7 +41,6 @@ public class cashier_newTransaction extends AppCompatActivity implements DatePic
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cashier_new_transaction);
-        dueDate = (TextView)findViewById(R.id.cashier_new_dueDateTxt);
         final TextView reportIdTxt = (TextView)findViewById(R.id.cashier_new_ReportnumTxt);
         final TextView dateTxt = (TextView)findViewById(R.id.cashier_new_CaseDateTxt);
         final TextView patientTxt = (TextView)findViewById(R.id.cashier_new_patientTxt);
@@ -49,7 +48,7 @@ public class cashier_newTransaction extends AppCompatActivity implements DatePic
         final TextView caseDescTxt = (TextView)findViewById(R.id.cashier_patient_desc);
         final TextView addressTxt = (TextView)findViewById(R.id.cashier_patient_address);
         final EditText AmountTxt = (EditText)findViewById(R.id.cashier_new_patient_payment_amount);
-        Button btnselectDate = (Button)findViewById(R.id.cashier_btn_new_select_date);
+        dueDateTxt = (EditText)findViewById(R.id.cashier_new_trans_duedate);
         Button btndone = (Button)findViewById(R.id.cashier_new_btn_done);
         Button btncancel = (Button)findViewById(R.id.cashier_new_btn_cancel);
         Intent intent = getIntent();
@@ -86,7 +85,7 @@ public class cashier_newTransaction extends AppCompatActivity implements DatePic
             }
 
         }
-        btnselectDate.setOnClickListener(new View.OnClickListener() {
+        dueDateTxt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 pickDate();
@@ -105,17 +104,17 @@ public class cashier_newTransaction extends AppCompatActivity implements DatePic
             @Override
             public void onClick(View v) {
                 amount_dueString = AmountTxt.getText().toString();
-                due_Date = dueDate.getText().toString();
+                due_Date = dueDateTxt.getText().toString();
                 if(amount_dueString.matches("")){
-                    Toast.makeText(getBaseContext(),"please fill amount input",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getBaseContext(),"please fill amount input",Toast.LENGTH_SHORT).show();
                 }
                 else {
                     amount_due = Integer.parseInt(amount_dueString);
                     if(amount_due < 0) {
-                        Toast.makeText(getBaseContext(), "please fill a valid amount input", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getBaseContext(), "please fill a valid amount input", Toast.LENGTH_SHORT).show();
                     }
-                    else if(due_Date.matches("")){
-                        Toast.makeText(getBaseContext(),"please select the due date",Toast.LENGTH_LONG).show();
+                    else if((due_Date.matches(""))||(due_Date.matches("Double-click"))){
+                        Toast.makeText(getBaseContext(),"please select the due date",Toast.LENGTH_SHORT).show();
                     }
                     else{
                         SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
@@ -123,7 +122,7 @@ public class cashier_newTransaction extends AppCompatActivity implements DatePic
                             due_DateFormat =  dateFormat.parse(due_Date);
                             current_DateFormat =  Calendar.getInstance().getTime();
                             if(!(due_DateFormat.compareTo(current_DateFormat)>0)){
-                                Toast.makeText(getBaseContext(),"please select the a due date later than today",Toast.LENGTH_LONG).show();
+                                Toast.makeText(getBaseContext(),"please select the a due date later than today",Toast.LENGTH_SHORT).show();
                             }
                             else{
                                 long pId = dbh.paymentInsert(patient_ID,due_Date,amount_due,reportNum);
@@ -153,6 +152,6 @@ public class cashier_newTransaction extends AppCompatActivity implements DatePic
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
         String output = month+1 + "-" + dayOfMonth + "-" + year;
-        dueDate.setText(output);
+        dueDateTxt.setText(output);
     }
 }

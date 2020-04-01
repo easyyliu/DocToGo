@@ -109,7 +109,7 @@ public class cashier_view_transactions extends AppCompatActivity implements Date
                 tempDate = dateFormat.parse(datePicker);
                 currDate = Calendar.getInstance().getTime();
                 if (!(tempDate.compareTo(currDate) > 0)) {
-                    Toast.makeText(getBaseContext(), "please select the a due date later than today", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getBaseContext(), "please select the a due date later than today", Toast.LENGTH_SHORT).show();
                 } else {
                     dbh = new DatabaseHelper(this);
                     dbh.updatePaymentWithdueDate(transId, datePicker);
@@ -121,7 +121,7 @@ public class cashier_view_transactions extends AppCompatActivity implements Date
                 tempDate = dateFormat.parse(datePicker);
                 currDate = Calendar.getInstance().getTime();
                 if (tempDate.compareTo(currDate) > 0) {
-                    Toast.makeText(getBaseContext(), "please select the a due date not later than today", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getBaseContext(), "please select the a due date not later than today", Toast.LENGTH_SHORT).show();
                 } else {
                     dbh = new DatabaseHelper(this);
                     dbh.updatePaymentWithtransDate(transId, datePicker);
@@ -158,7 +158,7 @@ public class cashier_view_transactions extends AppCompatActivity implements Date
                     startActivity(getIntent());
                 }
                 else{
-                    Toast.makeText(cashier_view_transactions.this,"Enter valid amount", Toast.LENGTH_LONG).show();
+                    Toast.makeText(cashier_view_transactions.this,"Enter valid amount", Toast.LENGTH_SHORT).show();
                 }
             }
         });
