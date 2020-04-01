@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
-import android.media.Image;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -15,7 +14,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -52,13 +50,13 @@ public class PatientInformationFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_patient_information, container, false);
         try{
-        TextView patientName = view.findViewById(R.id.txt_AdminViewDetailsName);
-        TextView patientAge = view.findViewById(R.id.tltPatientAge);
-        TextView patientAddress = view.findViewById(R.id.tltPatientAddress);
-        TextView patientEmail = view.findViewById(R.id.tltEmail);
-        ImageButton exitButton = view.findViewById(R.id.btnExitApp);
-        ImageButton menuButton = view.findViewById(R.id.btnMainMenu);
-        scrollMenu = view.findViewById(R.id.spScrollMenu);
+        TextView patientName = view.findViewById(R.id.doctorName);
+        TextView patientAge = view.findViewById(R.id.doctorAge);
+        TextView patientAddress = view.findViewById(R.id.doctorAddress);
+        TextView patientEmail = view.findViewById(R.id.doctorEmail);
+        ImageButton exitButton = view.findViewById(R.id.btnExitAppDoctor);
+        ImageButton menuButton = view.findViewById(R.id.btnMainMenuDoctor);
+        scrollMenu = view.findViewById(R.id.spScrollMenuDoctor);
 
         //Create db(databaseHelper) to execute query to get user information
         db = new DatabaseHelper(getContext());

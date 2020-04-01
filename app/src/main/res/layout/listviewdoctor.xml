@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="150dp"
-    android:background="#FFC107">
+    android:background="@color/colorBackgroundActivity">
 
     <TextView
         android:id="@+id/layDoctorName"

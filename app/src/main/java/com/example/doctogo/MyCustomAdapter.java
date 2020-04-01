@@ -101,17 +101,29 @@ public class MyCustomAdapter extends BaseAdapter {
                                 picker = new TimePickerDialog(name.getContext(), android.R.style.Theme_Holo_Light_Dialog,new TimePickerDialog.OnTimeSetListener() {
                                             @Override
                                             public void onTimeSet(TimePicker tp, int sHour, int sMinute) {
-                                                time = sHour + ":" + sMinute + ":00";
-                                                int currentDoctorPosition =(int)getItemId(position);
-                                                String totalDate = dateSelected + " "+ time;
-                                                DatabaseHelper db = new DatabaseHelper(name.getContext());
-                                                //query to book an appointment
-                                                boolean bookAppointment = db.bookAppointment(userID,doctorID.get(currentDoctorPosition),totalDate);
-                                                if(bookAppointment) {
-                                                    Toast.makeText(name.getContext(), "Your appointment is scheduled on " + dateSelected +" at " + time, Toast.LENGTH_LONG).show();
+                                                if((sHour < 8) || (sHour >= 17)){
+                                                    Toast.makeText(name.getContext(), "Appointments are scheduled from 8:00 am to 4:59 pm ", Toast.LENGTH_LONG).show();
                                                 }
                                                 else {
-                                                    Toast.makeText(name.getContext(), "Error to book an appointment ", Toast.LENGTH_SHORT).show();
+                                                    String newHour = sHour+"";
+                                                    String newMin = sMinute+"";
+                                                    if((sHour >= 0) && (sHour <=9) ){
+                                                        newHour = "0" + sHour;
+                                                    }
+                                                    if((sMinute >= 0) && (sMinute <=9) ){
+                                                        newMin = "0" + sMinute;
+                                                    }
+                                                    time = newHour + ":" + newMin + ":00";
+                                                    int currentDoctorPosition = (int) getItemId(position);
+                                                    String totalDate = dateSelected + " " + time;
+                                                    DatabaseHelper db = new DatabaseHelper(name.getContext());
+                                                    //query to book an appointment
+                                                    boolean bookAppointment = db.bookAppointment(userID, doctorID.get(currentDoctorPosition), totalDate);
+                                                    if (bookAppointment) {
+                                                        Toast.makeText(name.getContext(), "Your appointment is scheduled on " + dateSelected + " at " + time, Toast.LENGTH_LONG).show();
+                                                    } else {
+                                                        Toast.makeText(name.getContext(), "Error to book an appointment ", Toast.LENGTH_SHORT).show();
+                                                    }
                                                 }
                                             }
                                         }, hour, minutes, true);

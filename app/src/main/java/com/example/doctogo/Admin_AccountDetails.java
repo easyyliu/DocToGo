@@ -106,7 +106,7 @@ public class Admin_AccountDetails extends AppCompatActivity
                 }
             }
         });
-        
+
     }
 
     private void getAccountData(int targetID)

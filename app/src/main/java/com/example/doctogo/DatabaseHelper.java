@@ -320,13 +320,6 @@ public class DatabaseHelper extends SQLiteOpenHelper
             return false;
         }
     }
-//    private final static String T1COL_7 = "Address";         //TEXT
-//    private final static String T1COL_8 = "Email";           //TEXT
-//    private final static String T1COL_9 = "Phone";           //TEXT
-//    private final static String T1COL_10 = "Qualifications"; //TEXT        //Doctors Only REQUIRED
-//    private final static String T1COL_11 = "Weight";         //INTEGER
-
-
 
     //Update Patient Information
 //    public Cursor updateInformationUser(int userId,String address,String email,String phone,int weight){
@@ -342,6 +335,53 @@ public class DatabaseHelper extends SQLiteOpenHelper
             return null;
         }
     }
+
+    //Search for Doctor
+    public Cursor searchDoctor(String address){
+        try {
+            SQLiteDatabase db = this.getReadableDatabase();
+            String query = "SELECT * FROM " + TABLE1_NAME + " WHERE " + T1COL_4 + "=3" + " AND " + T1COL_7 + " LIKE '%" + address + "%'";
+            Log.d("DbgetDocInfo ",query);
+            return db.rawQuery(query, null);
+        }catch (Exception msg){
+            Log.e("DbgetDocInfo ",msg.getMessage());
+            return null;
+        }
+    }
+
+    //Insert info into appointments table
+    public boolean bookAppointment(int patientID,int doctorID,String date){
+             SQLiteDatabase db = this.getWritableDatabase();
+            //Insert info into Appointments Table
+            ContentValues cv = new ContentValues();
+            cv.put(T2COL_2,patientID);
+            cv.put(T2COL_3,doctorID);
+            cv.put(T2COL_4,date);
+            cv.put(T2COL_5,30);
+            Long reply = db.insert(TABLE2_NAME,null,cv);
+
+            //return results
+            if(reply > 0)
+            {return true;}
+            else
+            {return false;}
+    }
+
+
+    //Get appointments by doctorID for Doctor
+    public Cursor getAppointments(int doctorID){
+        try {
+            SQLiteDatabase db = this.getReadableDatabase();
+            String query = "SELECT * FROM " + TABLE2_NAME + " WHERE " + T2COL_3 + "=" + doctorID;
+            Log.d("DbgetDocInfo ",query);
+            return db.rawQuery(query, null);
+        }catch (Exception msg){
+            Log.e("DbgetDocInfo ",msg.getMessage());
+            return null;
+        }
+    }
+
+
 
     //Get all rows from the table Report with paymentID-filter
     public Cursor viewReportWithoutPaymentId(int x)

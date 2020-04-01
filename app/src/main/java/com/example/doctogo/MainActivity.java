@@ -76,10 +76,10 @@ public class MainActivity extends AppCompatActivity {
                             startActivity(new Intent(MainActivity.this,Patient_main.class));
                             break;
                         case 3:
-                            //startActivity(new Intent(MainActivity.this,Doctor_main.class));
+                            startActivity(new Intent(MainActivity.this,doctorMain.class));
                             break;
                         case 4:
-                            //startActivity(new Intent(MainActivity.this,Cashier_main.class));
+                            startActivity(new Intent(MainActivity.this,Cashier_main.class));
                             break;
                         default:
                             break;

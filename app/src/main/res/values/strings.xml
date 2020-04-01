@@ -7,6 +7,12 @@
     <string name="title_patient_address">Address:</string>
     <string name="title_patient_email">Email:</string>
     <string name="title_patient_main_menu">MAIN MENU</string>
+    <string name="doctorName">Doctor Name: </string>
+    <string name="doctorAge">Age:</string>
+    <string name="doctorAddress">Address:</string>
+    <string name="doctorEmail">Email:</string>
+    <string name="doctorMainTitle">APPOINTMENTS</string>
+    <string name="doctorReportTitle">REPORTS</string>
     <string name="patientLocationDocName">Doctor Name: </string>
     <string name="patientLocationDocAddress">Address: </string>
     <string name="patientLocationBtnApp">Book an appointment</string>
@@ -130,4 +136,13 @@
         <item>Check History</item>
         <item>Update Personal Information</item>
     </string-array>
+
+    <string-array name="ScrollDoctor">
+        <item></item>
+        <item>View Appointments</item>
+        <item>Reports</item>
+    </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
