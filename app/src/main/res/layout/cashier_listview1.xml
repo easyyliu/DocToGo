@@ -5,8 +5,10 @@
 
     <TextView
         android:id="@+id/cashier_listview1_reportNum"
-        android:layout_width="40dp"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
         android:layout_weight="1"
         android:gravity="center"
         android:text="@string/cashier_listview1_reportNum"
@@ -16,6 +18,8 @@
         android:id="@+id/cashier_listview1_patient"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:layout_weight="1"
         android:text="@string/cashier_listview1_patient"
         android:textSize="16sp" />

@@ -5,7 +5,7 @@
 
     <TextView
         android:id="@+id/cashier_listview2_patient"
-        android:layout_width="260dp"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
@@ -17,6 +17,7 @@
         android:id="@+id/cashier_listview2_due"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
         android:layout_marginEnd="100dp"
         android:layout_marginRight="100dp"
         android:layout_weight="1"

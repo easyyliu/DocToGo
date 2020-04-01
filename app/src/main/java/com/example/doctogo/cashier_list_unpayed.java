@@ -37,7 +37,7 @@ public class cashier_list_unpayed extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cashier_list_unpayed);
         dbh = new DatabaseHelper(this);
-        Cursor c = dbh.viewPaymentUnpayed();
+        Cursor c = dbh.viewPaymentPayedOrNot(" IS NULL ");
         if(c.getCount()>0) {
             while (c.moveToNext()) {
                 paymentIdList.add(c.getInt(0));
@@ -55,7 +55,7 @@ public class cashier_list_unpayed extends AppCompatActivity {
                 Cursor u = dbh.getInformationUser(patientsIdArr[i]);
                 if(u.getCount()>0){
                     while (u.moveToNext()){
-                        patientNames = payIdArr[i]+ " " +u.getString(4) +" "+ u.getString(5);
+                        patientNames = payIdArr[i]+ "   " +u.getString(4) +" "+ u.getString(5);
                     }
                 }
                 hm.put("txt1", patientNames);
