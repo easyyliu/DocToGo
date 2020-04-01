@@ -125,8 +125,7 @@ public class cashier_view_transactions extends AppCompatActivity implements Date
                 } else {
                     dbh = new DatabaseHelper(this);
                     dbh.updatePaymentWithtransDate(transId, datePicker);
-                    finish();
-                    startActivity(getIntent());
+                    onBackPressed();
                 }
             }
         } catch (ParseException e) {

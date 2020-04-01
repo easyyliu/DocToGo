@@ -34,6 +34,6 @@
         android:layout_weight="1"
         android:gravity="center_vertical"
         android:text="@string/cashier_listview1_arrow"
-        android:textSize="16sp"
+        android:textSize="24sp"
         android:textStyle="bold" />
 </LinearLayout>
