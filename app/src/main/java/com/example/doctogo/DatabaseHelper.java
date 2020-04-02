@@ -228,10 +228,10 @@ public class DatabaseHelper extends SQLiteOpenHelper
         {
             //accRole acceptable, insert into db
             ContentValues cv = new ContentValues();
-            cv.put(T1COL_2,accName);
-            cv.put(T1COL_3,accPass);
+            cv.put(T1COL_2,accName.trim());
+            cv.put(T1COL_3,accPass.trim());
             cv.put(T1COL_4,accRole);
-            cv.put(T1COL_8,accEmail);
+            cv.put(T1COL_8,accEmail.trim());
             cv.put(T1COL_14,1); //First time login, user HAS to modify account.
             Long reply = db.insert(TABLE1_NAME,null,cv);
 
@@ -244,17 +244,18 @@ public class DatabaseHelper extends SQLiteOpenHelper
 
     public boolean normalRegister(String accName, String accPass, int accRole, String accEmail, String accFirstName, String accLastName, String accAddress, String accCity, String accPhone, int accWeight, String accGender, int accAge)
     {
+        accCity = (accCity.trim().toLowerCase()).substring(0,1).toUpperCase() + (accCity.trim().toLowerCase()).substring(1);
         SQLiteDatabase db = this.getWritableDatabase();
         //insert into db
         ContentValues cv = new ContentValues();
-        cv.put(T1COL_2,accName);
-        cv.put(T1COL_3,accPass);
+        cv.put(T1COL_2,accName.trim());
+        cv.put(T1COL_3,accPass.trim());
         cv.put(T1COL_4,accRole);
-        cv.put(T1COL_5,accFirstName);
-        cv.put(T1COL_6,accLastName);
-        cv.put(T1COL_7,accAddress);
+        cv.put(T1COL_5,accFirstName.trim());
+        cv.put(T1COL_6,accLastName.trim());
+        cv.put(T1COL_7,accAddress.trim());
         cv.put(T1COL_8,accEmail);
-        cv.put(T1COL_9,accPhone);
+        cv.put(T1COL_9,accPhone.trim());
         cv.put(T1COL_11,accWeight);
         cv.put(T1COL_12,accGender);
         cv.put(T1COL_13,accAge);
@@ -298,16 +299,17 @@ public class DatabaseHelper extends SQLiteOpenHelper
     //update an account from admin perspective
     public boolean adminUpdate(int accID, String accName, String accPass, String accEmail, String accFirstName, String accLastName, String accAddress, String accCity, String accPhone, int accWeight, String accQualifications,  String accGender, int accAge) {
         try {
+            accCity = (accCity.trim().toLowerCase()).substring(0,1).toUpperCase() + (accCity.trim().toLowerCase()).substring(1);
             SQLiteDatabase db = this.getWritableDatabase();
             //insert into db
             ContentValues cv = new ContentValues();
-            cv.put(T1COL_2,accName);
-            cv.put(T1COL_3,accPass);
-            cv.put(T1COL_5,accFirstName);
-            cv.put(T1COL_6,accLastName);
-            cv.put(T1COL_7,accAddress);
-            cv.put(T1COL_8,accEmail);
-            cv.put(T1COL_9,accPhone);
+            cv.put(T1COL_2,accName.trim());
+            cv.put(T1COL_3,accPass.trim());
+            cv.put(T1COL_5,accFirstName.trim());
+            cv.put(T1COL_6,accLastName.trim());
+            cv.put(T1COL_7,accAddress.trim());
+            cv.put(T1COL_8,accEmail.trim());
+            cv.put(T1COL_9,accPhone.trim());
             cv.put(T1COL_11,accWeight);
             cv.put(T1COL_12,accGender);
             cv.put(T1COL_13,accAge);
@@ -329,9 +331,10 @@ public class DatabaseHelper extends SQLiteOpenHelper
 //    public Cursor updateInformationUser(int userId,String address,String email,String phone,int weight){
         public Cursor updateInformationUser(int userId,String address,String city,String email,String phone,int weight){
         try {
+            city = (city.trim().toLowerCase()).substring(0,1).toUpperCase() + (city.trim().toLowerCase()).substring(1);
             SQLiteDatabase db = this.getWritableDatabase();
-            String query = "UPDATE " + TABLE1_NAME + " SET " + T1COL_7 + "=" + "'" + address + "'," + T1COL_8 + "=" + "'" + email + "',"
-                    + T1COL_9 + "=" + "'" + phone + "'," + T1COL_11 + "=" + "'" + weight + "'," + T1COL_15 + "=" + "'" + city + "'"+ " WHERE " + T1COL_1 + "=" + userId;
+            String query = "UPDATE " + TABLE1_NAME + " SET " + T1COL_7 + "=" + "'" + address.trim() + "'," + T1COL_8 + "=" + "'" + email.trim() + "',"
+                    + T1COL_9 + "=" + "'" + phone.trim() + "'," + T1COL_11 + "=" + "'" + weight + "'," + T1COL_15 + "=" + "'" + city + "'"+ " WHERE " + T1COL_1 + "=" + userId;
             Log.d("DbupdInfoUser ",query);
             return db.rawQuery(query, null);
         }catch (Exception msg){
@@ -343,6 +346,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
     //Search for Doctor
     public Cursor searchDoctor(String city){
         try {
+            city = (city.trim().toLowerCase()).substring(0,1).toUpperCase() + (city.trim().toLowerCase()).substring(1);
             SQLiteDatabase db = this.getReadableDatabase();
             String query = "SELECT * FROM " + TABLE1_NAME + " WHERE " + T1COL_4 + "=3" + " AND " + T1COL_15 + " LIKE '%" + city + "%'";
             Log.d("DbgetDocInfo ",query);
@@ -360,7 +364,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
             ContentValues cv = new ContentValues();
             cv.put(T2COL_2,patientID);
             cv.put(T2COL_3,doctorID);
-            cv.put(T2COL_4,date);
+            cv.put(T2COL_4,date.trim());
             cv.put(T2COL_5,30);
             Long reply = db.insert(TABLE2_NAME,null,cv);
 
