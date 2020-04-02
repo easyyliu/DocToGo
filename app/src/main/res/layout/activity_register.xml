@@ -82,6 +82,17 @@
         app:layout_constraintTop_toBottomOf="@+id/txt_RegisterLastname" />
 
     <EditText
+        android:id="@+id/txt_RegisterCity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/txt_City"
+        android:importantForAutofill="no"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_RegisterAddress" />
+
+    <EditText
         android:id="@+id/txt_RegisterEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -90,7 +101,7 @@
         android:importantForAutofill="no"
         android:inputType="textEmailAddress"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_RegisterAddress" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_RegisterCity" />
 
     <EditText
         android:id="@+id/txt_RegisterPhone"

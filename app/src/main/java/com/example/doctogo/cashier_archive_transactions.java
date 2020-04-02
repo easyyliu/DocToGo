@@ -43,7 +43,7 @@ public class cashier_archive_transactions extends AppCompatActivity {
                     while(u.moveToNext()){
                         patientName = u.getString(4) +" "+ u.getString(5);
                         patientTxt.setText(patientName);
-                        address = u.getString(6);
+                        address = u.getString(6)+", "+u.getString(14);
                         patientTxt.setText(patientName);
                         addressTxt.setText(address);
                     }

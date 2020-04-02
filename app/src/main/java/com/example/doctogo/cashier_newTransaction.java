@@ -6,6 +6,7 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.text.InputType;
 import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
 import android.view.View;
@@ -49,6 +50,7 @@ public class cashier_newTransaction extends AppCompatActivity implements DatePic
         final TextView addressTxt = (TextView)findViewById(R.id.cashier_patient_address);
         final EditText AmountTxt = (EditText)findViewById(R.id.cashier_new_patient_payment_amount);
         dueDateTxt = (EditText)findViewById(R.id.cashier_new_trans_duedate);
+        dueDateTxt.setInputType(InputType.TYPE_NULL);
         Button btndone = (Button)findViewById(R.id.cashier_new_btn_done);
         Button btncancel = (Button)findViewById(R.id.cashier_new_btn_cancel);
         Intent intent = getIntent();
@@ -71,7 +73,7 @@ public class cashier_newTransaction extends AppCompatActivity implements DatePic
             if(u.getCount()>0){
                 while(u.moveToNext()){
                     patientName = u.getString(4) +" "+ u.getString(5);
-                    address = u.getString(6);
+                    address = u.getString(6)+", "+u.getString(14);
                     patientTxt.setText(patientName);
                     addressTxt.setText(address);
                 }
@@ -85,6 +87,14 @@ public class cashier_newTransaction extends AppCompatActivity implements DatePic
             }
 
         }
+        dueDateTxt.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(hasFocus) {
+                    pickDate();
+                }
+            }
+        });
         dueDateTxt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -113,7 +123,7 @@ public class cashier_newTransaction extends AppCompatActivity implements DatePic
                     if(amount_due < 0) {
                         Toast.makeText(getBaseContext(), "please fill a valid amount input", Toast.LENGTH_SHORT).show();
                     }
-                    else if((due_Date.matches(""))||(due_Date.matches("Double-click"))){
+                    else if((due_Date.matches(""))||(due_Date.matches("Click to enter"))){
                         Toast.makeText(getBaseContext(),"please select the due date",Toast.LENGTH_SHORT).show();
                     }
                     else{

@@ -126,7 +126,7 @@ public class DoctorFragment extends Fragment {
                 getInformation.moveToNext();
                 doctorName.setText(doctorName.getText()+" "+getInformation.getString(4) +" " +getInformation.getString(5));
                 doctorAge.setText(doctorAge.getText()+" "+getInformation.getInt(12));
-                doctorAddress.setText((doctorAddress.getText()+" "+getInformation.getString(6)));
+                doctorAddress.setText(doctorAddress.getText()+" "+getInformation.getString(6) + ", "+getInformation.getString(14));
                 doctorEmail.setText(doctorEmail.getText()+" "+getInformation.getString(7));
             }
         }catch (Exception e){

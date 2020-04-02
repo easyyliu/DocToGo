@@ -129,7 +129,7 @@ public class PatientInformationFragment extends Fragment {
             getInformation.moveToNext();
             patientName.setText(patientName.getText()+" "+getInformation.getString(4) +" " +getInformation.getString(5));
             patientAge.setText(patientAge.getText()+" "+getInformation.getInt(12));
-            patientAddress.setText((patientAddress.getText()+" "+getInformation.getString(6)));
+            patientAddress.setText((patientAddress.getText()+" "+getInformation.getString(6)+", "+getInformation.getString(14)));
             patientEmail.setText(patientEmail.getText()+" "+getInformation.getString(7));
         }
         }catch (Exception e){

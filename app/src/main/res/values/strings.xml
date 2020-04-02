@@ -6,6 +6,7 @@
     <string name="title_patient_phone">Phone:</string>
     <string name="title_patient_address">Address:</string>
     <string name="title_patient_email">Email:</string>
+    <string name="title_patient_city">City:</string>
     <string name="title_patient_main_menu">MAIN MENU</string>
     <string name="doctorName">Doctor Name: </string>
     <string name="doctorAge">Age:</string>
@@ -15,6 +16,7 @@
     <string name="doctorReportTitle">REPORTS</string>
     <string name="patientLocationDocName">Doctor Name: </string>
     <string name="patientLocationDocAddress">Address: </string>
+    <string name="patientLocationDocCity">City:</string>
     <string name="patientLocationBtnApp">Book an appointment</string>
     <string name="button_patient_locate_doctor">LOCATE DOCTOR</string>
     <string name="button_patient_payments">PAYMENTS</string>
@@ -42,7 +44,8 @@
     <string name="txt_Username">Username*</string>
     <string name="txt_Password">Password*</string>
     <string name="txt_Lastname">Last Name</string>
-    <string name="txt_Address">Address</string>
+    <string name="txt_Address">Address*</string>
+    <string name="txt_City" >City*</string>
     <string name="txt_Email">Email*</string>
     <string name="txt_PhoneNumber">Phone Number</string>
     <string name="txt_Age">Age</string>
@@ -118,7 +121,7 @@
     <string name="cashier_archive_amountTxt" />
     <string name="cashier_listview1_arrow"><![CDATA[>]]></string>
     <string name="cashier_listview2_arrow"><![CDATA[>]]></string>
-    <string name="cashier_new_trans_dueDate">Double-click</string>
+    <string name="cashier_new_trans_dueDate">Click to enter</string>
 
     <!--PLACEHOLDERS. REMOVE AT FINAL-->
     <string-array name="Roles">
@@ -158,5 +161,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
 
 </resources>

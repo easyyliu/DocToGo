@@ -68,6 +68,7 @@ public class Admin_AccountDetails extends AppCompatActivity
                 TextView accFirstName = findViewById(R.id.txt_AdminDetailAccountFirstname);
                 TextView accLastName = findViewById(R.id.txt_AdminDetailAccountLastname);
                 TextView accAddress = findViewById(R.id.txt_AdminDetailAccountAddress);
+                TextView accCity = findViewById(R.id.txt_AdminDetailAccountCity);
                 TextView accPhone = findViewById(R.id.txt_AdminDetailAccountPhone);
                 Spinner accGender = findViewById(R.id.spn_AdminDetailAccountGender);
                 TextView accAge = findViewById(R.id.txt_AdminDetailAccountAge);
@@ -87,6 +88,7 @@ public class Admin_AccountDetails extends AppCompatActivity
                 String firstname = accFirstName.getText().toString();
                 String lastname = accLastName.getText().toString();
                 String address = accAddress.getText().toString();
+                String city = accCity.getText().toString();
                 String phone = accPhone.getText().toString();
                 String gender = accGender.getSelectedItem().toString();
                 String age = accAge.getText().toString();
@@ -94,7 +96,7 @@ public class Admin_AccountDetails extends AppCompatActivity
                 String qualifications = accQualifications.getText().toString();
 
                 //send info to db
-                boolean success = dbh.adminUpdate(targetID,username,password,email,firstname,lastname,address,phone,Integer.parseInt(weight),qualifications,gender,Integer.parseInt(age));
+                boolean success = dbh.adminUpdate(targetID,username,password,email,firstname,lastname,address,city,phone,Integer.parseInt(weight),qualifications,gender,Integer.parseInt(age));
 
                 //success/fail messages
                 if(success)
@@ -123,6 +125,7 @@ public class Admin_AccountDetails extends AppCompatActivity
         TextView accFirstName = findViewById(R.id.txt_AdminDetailAccountFirstname);
         TextView accLastName = findViewById(R.id.txt_AdminDetailAccountLastname);
         TextView accAddress = findViewById(R.id.txt_AdminDetailAccountAddress);
+        TextView accCity = findViewById(R.id.txt_AdminDetailAccountCity);
         TextView accPhone = findViewById(R.id.txt_AdminDetailAccountPhone);
         Spinner accGender = findViewById(R.id.spn_AdminDetailAccountGender);
         TextView accAge = findViewById(R.id.txt_AdminDetailAccountAge);
@@ -157,6 +160,7 @@ public class Admin_AccountDetails extends AppCompatActivity
             accFirstName.setText(data.getString(4));
             accLastName.setText(data.getString(5));
             accAddress.setText(data.getString(6));
+            accCity.setText(data.getString(14));
             accEmail.setText(data.getString(7));
             accPhone.setText(data.getString(8));
             accQualifications.setText(data.getString(9));

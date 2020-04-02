@@ -32,6 +32,7 @@ public class patientUpdateInformation extends AppCompatActivity {
         transaction.add(R.id.fragment, updateFragment).commit();
 
         final EditText updateAddress = findViewById(R.id.upInfInputAddress);
+        final EditText updateCity = findViewById(R.id.upInfInputCity);
         final EditText updateEmail = findViewById(R.id.upInfInputEmail);
         final EditText updatePhone = findViewById(R.id.upInfInputPhone);
         final EditText updateWeight = findViewById(R.id.upInfInputWeight);
@@ -47,6 +48,7 @@ public class patientUpdateInformation extends AppCompatActivity {
                 getInformation.moveToNext();
                 updateAddress.setText(getInformation.getString(6));
                 updateEmail.setText(getInformation.getString(7));
+                updateCity.setText(getInformation.getString(14));
                 updatePhone.setText(getInformation.getString(8));
                 updateWeight.setText(getInformation.getString(10));
             }
@@ -58,7 +60,7 @@ public class patientUpdateInformation extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Query to update information
-                Cursor updateInformation = db.updateInformationUser(userID,updateAddress.getText().toString(),updateEmail.getText().toString(),
+                Cursor updateInformation = db.updateInformationUser(userID,updateAddress.getText().toString(),updateCity.getText().toString(),updateEmail.getText().toString(),
                         updatePhone.getText().toString(),Integer.parseInt(updateWeight.getText().toString()));
 
                 try{
@@ -66,6 +68,7 @@ public class patientUpdateInformation extends AppCompatActivity {
                         updateInformation.moveToNext();
                         updateAddress.setText(updateInformation.getString(6));
                         updateEmail.setText(updateInformation.getString(7));
+                        updateCity.setText(updateInformation.getString(14));
                         updatePhone.setText(updateInformation.getString(8));
                         updateWeight.setText(updateInformation.getString(10));
 

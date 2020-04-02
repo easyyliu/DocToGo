@@ -27,6 +27,7 @@ public class MyCustomAdapter extends BaseAdapter {
     Context context;
     List<String> doctorName = new ArrayList<>();
     List<String> doctorAddress = new ArrayList<>();
+    List<String> doctorCity = new ArrayList<>();
     List<Integer> doctorID = new ArrayList<>();
     int userID;
     String dateSelected = "";
@@ -38,11 +39,12 @@ public class MyCustomAdapter extends BaseAdapter {
     Calendar today = Calendar.getInstance();
     Calendar chosenDate = Calendar.getInstance();
 
-    public MyCustomAdapter(Context context, List<String> doctorName, List<String> doctorAddress,List<Integer> doctorID,int userID) {
+    public MyCustomAdapter(Context context, List<String> doctorName, List<String> doctorAddress,List<String> doctorCity,List<Integer> doctorID,int userID) {
         this.context = context;
         this.doctorID = doctorID;
         this.doctorName = doctorName;
         this.doctorAddress = doctorAddress;
+        this.doctorCity = doctorCity;
         this.userID = userID;
     }
 
@@ -74,7 +76,7 @@ public class MyCustomAdapter extends BaseAdapter {
         final Button bookAppointment = convertView.findViewById(R.id.btnBookAppointment);
 
         name.setText("Doctor Name: " + doctorName.get(position));
-        address.setText("Address: " + doctorAddress.get(position));
+        address.setText("Address: " + doctorAddress.get(position) + ", " +doctorCity.get(position));
 
 
         bookAppointment.setOnClickListener(new View.OnClickListener() {

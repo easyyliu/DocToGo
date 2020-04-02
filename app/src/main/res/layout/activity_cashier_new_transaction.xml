@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     android:background="@color/colorBackgroundActivity"
     android:padding="20sp"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     tools:context=".cashier_newTransaction" >
 
     <EditText

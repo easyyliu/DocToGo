@@ -33,6 +33,7 @@ public class Register extends AppCompatActivity
         final EditText ETLastName = findViewById(R.id.txt_RegisterLastname);
         final EditText ETPhone = findViewById(R.id.txt_RegisterPhone);
         final EditText ETAddress = findViewById(R.id.txt_RegisterAddress);
+        final EditText ETCity = findViewById(R.id.txt_RegisterCity);
         final EditText ETAge = findViewById(R.id.txt_RegisterAge);
         final EditText ETWeight = findViewById(R.id.txt_RegisterWeight);
         final Spinner SPRole = findViewById(R.id.spn_RegisterRole);
@@ -72,6 +73,7 @@ public class Register extends AppCompatActivity
                 String lastname = ETLastName.getText().toString();
                 String phone = ETPhone.getText().toString();
                 String address = ETAddress.getText().toString();
+                String city = ETCity.getText().toString();
                 String strWeight = (ETWeight.getText().toString());
                 int weight = 0;
                 if(!strWeight.isEmpty())
@@ -102,7 +104,7 @@ public class Register extends AppCompatActivity
                 String gender = SPGender.getSelectedItem().toString();
 
                 //make database insert operation
-                boolean success = dbh.normalRegister(username,password,role,email,firstname,lastname,address,phone,weight,gender,age);
+                boolean success = dbh.normalRegister(username,password,role,email,firstname,lastname,address,city,phone,weight,gender,age);
 
                 //return to main login
                 if(success)

@@ -18,6 +18,7 @@ public class locate_doctor extends AppCompatActivity {
 
     List<String> doctorName = new ArrayList<>();
     List<String> doctorAddress = new ArrayList<>();
+    List<String> doctorCity = new ArrayList<>();
     List<Integer> doctorID = new ArrayList<>();
 
     DatabaseHelper db = new DatabaseHelper(this);
@@ -37,20 +38,23 @@ public class locate_doctor extends AppCompatActivity {
             try{
                 getInformationUser.moveToNext();
                 if(getInformationUser.getCount()== 1) {
-                    Cursor getDoctors = db.searchDoctor(getInformationUser.getString(6));
+                    Cursor getDoctors = db.searchDoctor(getInformationUser.getString(14));
                     if (getDoctors.getCount() >= 1) {
                         for(int count =0; count < getDoctors.getCount(); count++ ) {
                             getDoctors.moveToNext();
                             doctorID.add(getDoctors.getInt(0));
                             doctorName.add(getDoctors.getString(4) + " " + getDoctors.getString(5));
                             doctorAddress.add(getDoctors.getString(6));
+                            doctorCity.add(getDoctors.getString(14));
                         }
                     } else {
                         Toast.makeText(this, "There are not doctors in your area", Toast.LENGTH_LONG).show();
                     }
+
+
                 }
 
-                MyCustomAdapter adapter = new MyCustomAdapter(this,doctorName,doctorAddress,doctorID,userID);
+                MyCustomAdapter adapter = new MyCustomAdapter(this,doctorName,doctorAddress,doctorCity,doctorID,userID);
                 listViewShowDoctor.setAdapter(adapter);
 
             }catch (Exception e){

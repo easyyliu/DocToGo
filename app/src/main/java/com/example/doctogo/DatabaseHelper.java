@@ -42,6 +42,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
     private final static String T1COL_12 = "Gender";         //TEXT        //if Gender not selected, UNDEFINED
     private final static String T1COL_13 = "Age";            //INTEGER     //Age of 0 MUST become "N/A"
     private final static String T1COL_14 = "FirstLogin";     //INTEGER     //flag, turn to 1 if admin register->have to modify self.
+    private final static String T1COL_15 = "City";           //TEXT
 
     /*
         Appointment table: Defines a patient (role 2) having a schedule with a doctor (role 3).
@@ -134,7 +135,8 @@ public class DatabaseHelper extends SQLiteOpenHelper
                 T1COL_11+" INTEGER, " +
                 T1COL_12+" TEXT, " +
                 T1COL_13+" INTEGER, " +
-                T1COL_14+" INTEGER)";
+                T1COL_14+" INTEGER, " +
+                T1COL_15+" INTEGER)";
         db.execSQL(query);
 
         //appointments
@@ -240,7 +242,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
         return false;
     }
 
-    public boolean normalRegister(String accName, String accPass, int accRole, String accEmail, String accFirstName, String accLastName, String accAddress, String accPhone, int accWeight, String accGender, int accAge)
+    public boolean normalRegister(String accName, String accPass, int accRole, String accEmail, String accFirstName, String accLastName, String accAddress, String accCity, String accPhone, int accWeight, String accGender, int accAge)
     {
         SQLiteDatabase db = this.getWritableDatabase();
         //insert into db
@@ -256,6 +258,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
         cv.put(T1COL_11,accWeight);
         cv.put(T1COL_12,accGender);
         cv.put(T1COL_13,accAge);
+        cv.put(T1COL_15,accCity);
         cv.put(T1COL_14,0);
         Long reply = db.insert(TABLE1_NAME,null,cv);
 
@@ -293,7 +296,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
     }
 
     //update an account from admin perspective
-    public boolean adminUpdate(int accID, String accName, String accPass, String accEmail, String accFirstName, String accLastName, String accAddress, String accPhone, int accWeight, String accQualifications,  String accGender, int accAge) {
+    public boolean adminUpdate(int accID, String accName, String accPass, String accEmail, String accFirstName, String accLastName, String accAddress, String accCity, String accPhone, int accWeight, String accQualifications,  String accGender, int accAge) {
         try {
             SQLiteDatabase db = this.getWritableDatabase();
             //insert into db
@@ -308,6 +311,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
             cv.put(T1COL_11,accWeight);
             cv.put(T1COL_12,accGender);
             cv.put(T1COL_13,accAge);
+            cv.put(T1COL_15,accCity);
             int reply = db.update(TABLE1_NAME,cv,T1COL_1+"="+accID,null);
 
             //return results
@@ -323,11 +327,11 @@ public class DatabaseHelper extends SQLiteOpenHelper
 
     //Update Patient Information
 //    public Cursor updateInformationUser(int userId,String address,String email,String phone,int weight){
-        public Cursor updateInformationUser(int userId,String address,String email,String phone,int weight){
+        public Cursor updateInformationUser(int userId,String address,String city,String email,String phone,int weight){
         try {
             SQLiteDatabase db = this.getWritableDatabase();
             String query = "UPDATE " + TABLE1_NAME + " SET " + T1COL_7 + "=" + "'" + address + "'," + T1COL_8 + "=" + "'" + email + "',"
-                    + T1COL_9 + "=" + "'" + phone + "'," + T1COL_11 + "=" + "'" + weight + "'"+ " WHERE " + T1COL_1 + "=" + userId;
+                    + T1COL_9 + "=" + "'" + phone + "'," + T1COL_11 + "=" + "'" + weight + "'," + T1COL_15 + "=" + "'" + city + "'"+ " WHERE " + T1COL_1 + "=" + userId;
             Log.d("DbupdInfoUser ",query);
             return db.rawQuery(query, null);
         }catch (Exception msg){
@@ -337,10 +341,10 @@ public class DatabaseHelper extends SQLiteOpenHelper
     }
 
     //Search for Doctor
-    public Cursor searchDoctor(String address){
+    public Cursor searchDoctor(String city){
         try {
             SQLiteDatabase db = this.getReadableDatabase();
-            String query = "SELECT * FROM " + TABLE1_NAME + " WHERE " + T1COL_4 + "=3" + " AND " + T1COL_7 + " LIKE '%" + address + "%'";
+            String query = "SELECT * FROM " + TABLE1_NAME + " WHERE " + T1COL_4 + "=3" + " AND " + T1COL_15 + " LIKE '%" + city + "%'";
             Log.d("DbgetDocInfo ",query);
             return db.rawQuery(query, null);
         }catch (Exception msg){
