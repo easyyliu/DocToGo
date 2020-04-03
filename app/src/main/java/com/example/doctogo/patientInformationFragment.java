@@ -22,16 +22,16 @@ import android.widget.Toast;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PatientInformationFragment extends Fragment {
+public class patientInformationFragment extends Fragment {
 
     DatabaseHelper db;
 
-    public PatientInformationFragment() {
+    public patientInformationFragment() {
         // Required empty public constructor
     }
 
-    public static PatientInformationFragment newInstance(){
-        return new PatientInformationFragment();
+    public static patientInformationFragment newInstance(){
+        return new patientInformationFragment();
     }
 
     Spinner scrollMenu;
@@ -50,10 +50,10 @@ public class PatientInformationFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_patient_information, container, false);
         try{
-        TextView patientName = view.findViewById(R.id.doctorName);
-        TextView patientAge = view.findViewById(R.id.doctorAge);
-        TextView patientAddress = view.findViewById(R.id.doctorAddress);
-        TextView patientEmail = view.findViewById(R.id.doctorEmail);
+        TextView patientName = view.findViewById(R.id.patientName);
+        TextView patientAge = view.findViewById(R.id.patientAge);
+        TextView patientAddress = view.findViewById(R.id.patientAddress);
+        TextView patientEmail = view.findViewById(R.id.patientEmail);
         ImageButton exitButton = view.findViewById(R.id.btnExitAppDoctor);
         ImageButton menuButton = view.findViewById(R.id.btnMainMenuDoctor);
         scrollMenu = view.findViewById(R.id.spScrollMenuDoctor);

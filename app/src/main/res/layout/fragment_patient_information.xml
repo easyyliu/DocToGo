@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".PatientInformationFragment">
+    tools:context=".patientInformationFragment">
 
 
     <TextView
@@ -21,7 +21,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <View
-        android:id="@+id/line1"
+        android:id="@+id/line3"
         android:layout_width="match_parent"
         android:layout_height="10dp"
         android:layout_marginTop="16dp"
@@ -31,17 +31,17 @@
         app:layout_constraintTop_toBottomOf="@+id/tltPatientMain" />
 
     <View
-        android:id="@+id/line2"
+        android:id="@+id/line4"
         android:layout_width="match_parent"
         android:layout_height="5dp"
         android:layout_marginTop="16dp"
         android:background="@color/colorLine"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/doctorEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/patientEmail" />
 
     <TextView
-        android:id="@+id/doctorName"
+        android:id="@+id/patientName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -51,10 +51,10 @@
         android:textColor="@color/colorText"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/line1" />
+        app:layout_constraintTop_toBottomOf="@+id/line3" />
 
     <TextView
-        android:id="@+id/doctorAge"
+        android:id="@+id/patientAge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -64,10 +64,10 @@
         android:textColor="@color/colorText"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/doctorName" />
+        app:layout_constraintTop_toBottomOf="@+id/patientName" />
 
     <TextView
-        android:id="@+id/doctorAddress"
+        android:id="@+id/patientAddress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -77,10 +77,10 @@
         android:textColor="@color/colorText"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/doctorAge" />
+        app:layout_constraintTop_toBottomOf="@+id/patientAge" />
 
     <TextView
-        android:id="@+id/doctorEmail"
+        android:id="@+id/patientEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -90,7 +90,7 @@
         android:textColor="@color/colorText"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/doctorAddress" />
+        app:layout_constraintTop_toBottomOf="@+id/patientAddress" />
 
     <ImageButton
         android:id="@+id/btnExitAppDoctor"

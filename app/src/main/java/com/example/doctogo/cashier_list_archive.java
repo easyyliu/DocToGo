@@ -11,10 +11,7 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 
@@ -60,11 +57,10 @@ public class cashier_list_archive extends AppCompatActivity {
             SimpleAdapter adapter = new SimpleAdapter(getBaseContext(), newList, R.layout.cashier_listview1, from, to);
             ListView listView = (ListView) findViewById(R.id.cashier_archive_list);
             listView.setAdapter(adapter);
-            listView.setAdapter(adapter);
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    Intent i = new Intent(cashier_list_archive.this, cashier_archive_transactions.class);
+                    Intent i = new Intent(cashier_list_archive.this, cashier_transactions_archive.class);
                     int p = payIdArr[position];
                     i.putExtra("payment", p);
                     startActivity(i);

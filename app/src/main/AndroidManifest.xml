@@ -9,16 +9,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".cashier_archive_transactions"/>
+        <activity android:name=".Main2Activity"></activity>
+        <activity android:name=".message" />
+        <activity android:name=".DoctorAppointmentFragment" />
+        <activity android:name=".cashier_transactions_archive" />
         <activity android:name=".cashier_list_archive" />
-        <activity android:name=".cashier_list_unpayed" />
-        <activity android:name=".DoctorReport"></activity>
-        <activity android:name=".doctorMain" />
-        <activity android:name=".cashier_list_new_report" />
+        <activity android:name=".cashier_list_view" />
+        <activity android:name=".doctor_report" />
+        <activity android:name=".doctor_main" />
+        <activity android:name=".cashier_list_new" />
         <activity android:name=".Register" />
-        <activity android:name=".cashier_view_transactions" />
-        <activity android:name=".cashier_newTransaction" />
-        <activity android:name=".Cashier_main" />
+        <activity android:name=".cashier_transactions_view" />
+        <activity android:name=".cashier_transaction_new" />
+        <activity android:name=".cashier_main" />
         <activity android:name=".Admin_AccountDetails" />
         <activity android:name=".Admin_AccountsView" />
         <activity android:name=".Admin_Register" />
@@ -34,7 +37,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Patient_main" />
+        <activity android:name=".patient_main" />
     </application>
 
 </manifest>

@@ -45,7 +45,7 @@
     <string name="txt_Password">Password*</string>
     <string name="txt_Lastname">Last Name</string>
     <string name="txt_Address">Address*</string>
-    <string name="txt_City" >City*</string>
+    <string name="txt_City">City*</string>
     <string name="txt_Email">Email*</string>
     <string name="txt_PhoneNumber">Phone Number</string>
     <string name="txt_Age">Age</string>
@@ -161,7 +161,18 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-
+    <string name="appointment_listview1" />
+    <string name="appointment_listview2" />
+    <string name="title_doctor_comments">COMMENTS</string>
+    <string name="pop_message">Message</string>
+    <string name="pop_report">Report</string>
+    <string name="title_message_activity">WELCOME</string>
+    <string name="title_message_name">Patient Name:</string>
+    <string name="title_message_age">Age:</string>
+    <string name="title_message_docName">Doctor Name:</string>
+    <string name="singleMessage" />
+    <string name="message_sendImg">image of Sending icon</string>
+    <string name="message_inputText" />
 
 
 </resources>

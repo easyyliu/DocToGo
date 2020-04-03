@@ -11,6 +11,7 @@
         android:layout_marginLeft="16dp"
         android:layout_weight="1"
         android:gravity="center_vertical"
+        android:textColor="@android:color/primary_text_light"
         android:text="@string/cashier_listview2_patient"
         android:textSize="16sp" />
 
@@ -20,6 +21,7 @@
         android:layout_height="40dp"
         android:layout_weight="1"
         android:gravity="center_vertical"
+        android:textColor="@android:color/primary_text_light"
         android:text="@string/cashier_listview2_due"
         android:textSize="16sp" />
 
@@ -29,6 +31,7 @@
         android:layout_height="40dp"
         android:layout_weight="1"
         android:gravity="center_vertical"
+        android:textColor="@android:color/primary_text_light"
         android:text="@string/cashier_listview2_arrow"
         android:textSize="24sp"
         android:textStyle="bold" />

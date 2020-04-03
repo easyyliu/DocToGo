@@ -7,7 +7,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.widget.TextView;
 
-public class cashier_archive_transactions extends AppCompatActivity {
+public class cashier_transactions_archive extends AppCompatActivity {
     DatabaseHelper dbh;
     private int transactionId;
     private String transactionDate;
@@ -18,7 +18,7 @@ public class cashier_archive_transactions extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cashier_archive_transactions);
+        setContentView(R.layout.activity_cashier_transactions_archive);
         final TextView transactionTxt = (TextView)findViewById(R.id.cashier_archive_transIDTxt);
         final TextView transDateTxt = (TextView)findViewById(R.id.cashier_archive_transDateTxt);
         final TextView patientTxt = (TextView)findViewById(R.id.cashier_archive_patientTxt);

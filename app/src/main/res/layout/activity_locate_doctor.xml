@@ -9,7 +9,7 @@
 
     <fragment
         android:id="@+id/fragLocateDoctor"
-        android:name="com.example.doctogo.PatientInformationFragment"
+        android:name="com.example.doctogo.patientInformationFragment"
         android:layout_width="414dp"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"

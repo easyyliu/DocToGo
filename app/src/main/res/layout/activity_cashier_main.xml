@@ -9,7 +9,7 @@
     android:paddingLeft="50sp"
     android:paddingTop="300sp"
     android:paddingRight="50sp"
-    tools:context=".Cashier_main">
+    tools:context=".cashier_main">
 
     <TextView
         android:id="@+id/cashierNameTxt"

@@ -61,6 +61,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
     private final static String T2COL_3 = "Doctor_ID";        //INTEGER FOREIGN KEY
     private final static String T2COL_4 = "Schedule_Date";    //TEXT YYYY-MM-DD HH:MM:SS.SSS
     private final static String T2COL_5 = "Duration";         //INTEGER (duration in minutes)
+    private final static String T2COL_6 = "Report_ID";        //INTEGER FOREIGN KEY
 
     /*
         Payments table: Defines payments made by patiens (role 2).
@@ -76,7 +77,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
     private final static String T3COL_3 = "Due_Date";     //TEXT YYYY-MM-DD HH:MM:SS.SSS
     private final static String T3COL_4 = "Trans_Date";   //TEXT YYYY-MM-DD HH:MM:SS.SSS
     private final static String T3COL_5 = "Amount";       //REAL
-    private final static String T3COL_6 = "Report_ID";    ////INTEGER FOREIGN KEY
+    private final static String T3COL_6 = "Report_ID";    //INTEGER FOREIGN KEY
 
     /*
         Comments table: Contains all comments made by patients (role 2) to doctors (role 3).
@@ -85,13 +86,14 @@ public class DatabaseHelper extends SQLiteOpenHelper
      */
     //TABLE 4
     private final static String TABLE4_NAME = "Comments";
-    private final static String T4CONST_1 = "FK_patient";
-    private final static String T4CONST_2 = "FK_doctor";
+    private final static String T4CONST_1 = "FK_appointment";
+    private final static String T4CONST_2 = "FK_Sender_ID";
     private final static String T4COL_1 = "Comment_ID";   //INTEGER PRIMARY KEY
-    private final static String T4COL_2 = "Patient_ID";   //INTEGER FOREIGN KEY
-    private final static String T4COL_3 = "Doctor_ID";    //INTEGER FOREIGN KEY
-    private final static String T4COL_4 = "Patient_Post"; //TEXT
-    private final static String T4COL_5 = "Doctor_Post";  //TEXT
+    private final static String T4COL_2 = "Sender_ID";   //INTEGER FOREIGN KEY
+    private final static String T4COL_3 = "Context"; //TEXT
+    private final static String T4COL_4 = "Post_time"; //TEXT
+    private final static String T4COL_5 = "Appointment_ID"; //INTEGER FOREIGN KEY
+
 
     /*
         Reports table: Made after a successful diagnosis, a report is made from the doctor (role 3)
@@ -102,14 +104,14 @@ public class DatabaseHelper extends SQLiteOpenHelper
     private final static String TABLE5_NAME = "Reports";
     private final static String T5CONST_1 = "FK_patient";
     private final static String T5CONST_2 = "FK_doctor";
-    //private final static String T5CONST_3 = "FK_payment";
+    private final static String T5CONST_3 = "FK_Appointments";
     private final static String T5COL_1 = "Report_ID";     //INTEGER PRIMARY KEY
     private final static String T5COL_2 = "Patient_ID";    //INTEGER FOREIGN KEY
     private final static String T5COL_3 = "Doctor_ID";     //INTEGER FOREIGN KEY
     private final static String T5COL_4 = "Date";          //TEXT YYYY-MM-DD HH:MM:SS.SSS
     private final static String T5COL_5 = "Description";   //TEXT
     private final static String T5COL_6 = "Payment_ID";    //INTEGER FOREIGN KEY
-
+    private final static String T5COL_7 = "Appointments_ID"; //INTEGER FOREIGN KEY
 
     public DatabaseHelper(@Nullable Context context)
     {
@@ -146,6 +148,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
                 T2COL_3+" INTEGER, " +
                 T2COL_4+" TEXT, " +
                 T2COL_5+" INTEGER, " +
+                T2COL_6+" INTEGER, " +
                 "CONSTRAINT "+ T2CONST_1 +" FOREIGN KEY ("+T2COL_2+") REFERENCES "+TABLE1_NAME+"("+T1COL_1+")," +
                 "CONSTRAINT "+ T2CONST_2 +" FOREIGN KEY ("+T2COL_3+") REFERENCES "+TABLE1_NAME+"("+T1COL_1+"))";
         db.execSQL(query);
@@ -166,11 +169,11 @@ public class DatabaseHelper extends SQLiteOpenHelper
         query = "CREATE TABLE " + TABLE4_NAME +
                 "("+T4COL_1+" INTEGER PRIMARY KEY, " +
                 T4COL_2+" INTEGER, " +
-                T4COL_3+" INTEGER, " +
-                T4COL_4+" TEXT, " +
-                T4COL_5+" TEXT, " +
-                "CONSTRAINT "+ T4CONST_1 +" FOREIGN KEY ("+T4COL_2+") REFERENCES "+TABLE1_NAME+"("+T1COL_1+")," +
-                "CONSTRAINT "+ T4CONST_2 +" FOREIGN KEY ("+T4COL_3+") REFERENCES "+TABLE1_NAME+"("+T1COL_1+"))";
+                T4COL_3+" TEXT, " +
+                T4COL_4+" INTEGER, "+
+                T4COL_5+" INTEGER, " +
+                "CONSTRAINT "+ T4CONST_1 +" FOREIGN KEY ("+T4COL_5+") REFERENCES "+TABLE2_NAME+"("+T2COL_1+")," +
+                "CONSTRAINT "+ T4CONST_2 +" FOREIGN KEY ("+T4COL_2+") REFERENCES "+TABLE1_NAME+"("+T1COL_1+"))";
         db.execSQL(query);
 
         //reports
@@ -181,9 +184,10 @@ public class DatabaseHelper extends SQLiteOpenHelper
                 T5COL_4+" TEXT, " +
                 T5COL_5+" TEXT, " +
                 T5COL_6+" INTEGER, " +
+                T5COL_7+" INTEGER, " +
                 "CONSTRAINT "+ T5CONST_1 +" FOREIGN KEY ("+T5COL_2+") REFERENCES "+TABLE1_NAME+"("+T1COL_1+")," +
                 "CONSTRAINT "+ T5CONST_2 +" FOREIGN KEY ("+T5COL_3+") REFERENCES "+TABLE1_NAME+"("+T1COL_1+")" +
-                //"," + "CONSTRAINT "+ T5CONST_3 +" FOREIGN KEY ("+T5COL_6+") REFERENCES "+TABLE3_NAME+"("+T3COL_1+")" +
+                "," + "CONSTRAINT "+ T5CONST_3 +" FOREIGN KEY ("+T5COL_7+") REFERENCES "+TABLE2_NAME+"("+T2COL_1+")" +
                 ")";
         db.execSQL(query);
 
@@ -214,8 +218,8 @@ public class DatabaseHelper extends SQLiteOpenHelper
     {
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "SELECT "+T1COL_1+", "+T1COL_4+" FROM "+TABLE1_NAME+
-                " WHERE "+T1COL_2+"='"+user+"' AND "+T1COL_3+"='"+pass+"'";
-        return db.rawQuery(query,null);
+                " WHERE "+T1COL_2+"=?  AND "+T1COL_3+"= ? ";
+        return db.rawQuery(query,new String[]{user,pass});
     }
 
 
@@ -380,7 +384,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
     public Cursor getAppointments(int doctorID){
         try {
             SQLiteDatabase db = this.getReadableDatabase();
-            String query = "SELECT * FROM " + TABLE2_NAME + " WHERE " + T2COL_3 + "=" + doctorID;
+            String query = "SELECT * FROM " + TABLE2_NAME + " WHERE " + T2COL_3 + "=" + doctorID + " AND " + T2COL_6 + " IS NULL";
             Log.d("DbgetDocInfo ",query);
             return db.rawQuery(query, null);
         }catch (Exception msg){
@@ -389,7 +393,49 @@ public class DatabaseHelper extends SQLiteOpenHelper
         }
     }
 
+    //Get appointments by appointment_ID
+    public Cursor getAppointmentByID(int appointID){
+        try {
+            SQLiteDatabase db = this.getReadableDatabase();
+            String query = "SELECT * FROM " + TABLE2_NAME + " WHERE " + T2COL_1 + "=" + appointID;
+            Log.d("DbgetAppInfo ",query);
+            return db.rawQuery(query, null);
+        }catch (Exception msg){
+            Log.e("DbgetAppInfo ",msg.getMessage());
+            return null;
+        }
+    }
 
+    //Create comment row
+    public boolean newComments(int sender_ID, String context, int appointID){
+        SQLiteDatabase db = this.getWritableDatabase();
+        //insert into db
+        ContentValues cv = new ContentValues();
+        cv.put(T4COL_2,sender_ID);
+        cv.put(T4COL_3,context);
+        cv.put(T4COL_4,"strftime('%s','now')");
+        cv.put(T4COL_5,appointID);
+        long reply = db.insert(TABLE4_NAME,null,cv);
+        //return results
+        if(reply > 0)
+        {return true;}
+        else
+        {return false;}
+
+    }
+    //Get comments by appointment_ID
+    public Cursor viewCommentsByAppointID(int appointID){
+        try {
+            SQLiteDatabase db = this.getReadableDatabase();
+            String query = "SELECT * FROM " + TABLE4_NAME + " WHERE " + T4COL_5 + "=" + appointID + " ORDER BY " + T4COL_4 + " ASC " ;
+            Log.d("DbgetCommentInfo ",query);
+            return db.rawQuery(query, null);
+        }catch (Exception msg){
+            Log.e("DbgetCommentInfo ",msg.getMessage());
+            return null;
+        }
+    }
+    //Comment burnout
 
     //Get all rows from the table Report with paymentID-filter
     public Cursor viewReportWithoutPaymentId(int x)

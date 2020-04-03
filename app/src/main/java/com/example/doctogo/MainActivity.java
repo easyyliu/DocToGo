@@ -16,7 +16,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -73,13 +72,13 @@ public class MainActivity extends AppCompatActivity {
                             startActivity(new Intent(MainActivity.this,Admin_main.class));
                             break;
                         case 2:
-                            startActivity(new Intent(MainActivity.this,Patient_main.class));
+                            startActivity(new Intent(MainActivity.this, patient_main.class));
                             break;
                         case 3:
-                            startActivity(new Intent(MainActivity.this,doctorMain.class));
+                            startActivity(new Intent(MainActivity.this, doctor_main.class));
                             break;
                         case 4:
-                            startActivity(new Intent(MainActivity.this,Cashier_main.class));
+                            startActivity(new Intent(MainActivity.this, cashier_main.class));
                             break;
                         default:
                             break;

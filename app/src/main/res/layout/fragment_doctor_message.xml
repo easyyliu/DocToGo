@@ -4,15 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DoctorFragment">
+    tools:context=".DoctorMessageFragment" >
 
     <TextView
-        android:id="@+id/tltDoctorMain"
+        android:id="@+id/tltMessageMain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:gravity="center"
-        android:text="@string/title_patient_activity"
+        android:text="@string/title_message_activity"
         android:textColor="@color/colorTitle"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -20,76 +20,64 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <View
-        android:id="@+id/line1"
+        android:id="@+id/line5"
         android:layout_width="match_parent"
         android:layout_height="10dp"
         android:layout_marginTop="16dp"
         android:background="@color/colorLine"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tltDoctorMain" />
+        app:layout_constraintTop_toBottomOf="@+id/tltMessageMain" />
 
     <View
-        android:id="@+id/line2"
+        android:id="@+id/line6"
         android:layout_width="match_parent"
         android:layout_height="5dp"
         android:layout_marginTop="16dp"
         android:background="@color/colorLine"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/doctorEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/messageDocName" />
 
     <TextView
-        android:id="@+id/doctorName"
+        android:id="@+id/messageName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
-        android:text="@string/doctorName"
+        android:text="@string/title_message_name"
         android:textColor="@color/colorText"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/line1" />
+        app:layout_constraintTop_toBottomOf="@+id/line5" />
 
     <TextView
-        android:id="@+id/doctorAge"
+        android:id="@+id/messageAge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="8dp"
-        android:text="@string/doctorAge"
+        android:text="@string/title_message_age"
         android:textColor="@color/colorText"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/doctorName" />
+        app:layout_constraintTop_toBottomOf="@+id/messageName" />
 
     <TextView
-        android:id="@+id/doctorAddress"
+        android:id="@+id/messageDocName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="8dp"
-        android:text="@string/doctorAddress"
+        android:text="@string/title_message_docName"
         android:textColor="@color/colorText"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/doctorAge" />
+        app:layout_constraintTop_toBottomOf="@+id/messageAge" />
 
-    <TextView
-        android:id="@+id/doctorEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/doctorEmail"
-        android:textColor="@color/colorText"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/doctorAddress" />
 
     <ImageButton
         android:id="@+id/btnExitAppDoctor"
@@ -121,7 +109,7 @@
         android:layout_height="22dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:entries="@array/ScrollDoctor"
+        android:entries="@array/ScrollMenu"
         android:spinnerMode="dropdown"
         android:visibility="invisible"
         app:layout_constraintStart_toStartOf="parent"

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorBackgroundActivity"
     android:padding="20sp"
-    tools:context=".cashier_archive_transactions">
+    tools:context=".cashier_transactions_archive">
 
     <TextView
         android:id="@+id/cashier_archive_amountTxt"

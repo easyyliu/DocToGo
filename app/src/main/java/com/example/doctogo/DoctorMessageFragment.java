@@ -1,10 +1,8 @@
 package com.example.doctogo;
 
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.Cursor;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -23,34 +21,35 @@ import android.widget.Toast;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class DoctorFragment extends Fragment {
+public class DoctorMessageFragment extends Fragment {
 
     DatabaseHelper db;
 
-    public DoctorFragment() {
+    public DoctorMessageFragment() {
         // Required empty public constructor
     }
 
-    public static DoctorFragment newInstance(){
-        return new DoctorFragment();
+    /**
+     * @return A new instance of fragment DoctorMessageFragment.
+     */
+
+    public static DoctorMessageFragment newInstance() {
+        DoctorMessageFragment fragment = new DoctorMessageFragment();
+        return fragment;
     }
-
     Spinner scrollMenu;
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-//        return inflater.inflate(R.layout.fragment_doctor, container, false);
+        //return inflater.inflate(R.layout.fragment_doctor_message, container, false);
 
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_doctor, container, false);
+        View view = inflater.inflate(R.layout.fragment_doctor_message, container, false);
         try{
+            TextView patientName = view.findViewById(R.id.messageName);
+            TextView patientAge = view.findViewById(R.id.messageAge);
             TextView doctorName = view.findViewById(R.id.doctorName);
-            TextView doctorAge = view.findViewById(R.id.doctorAge);
-            TextView doctorAddress = view.findViewById(R.id.doctorAddress);
-            TextView doctorEmail = view.findViewById(R.id.doctorEmail);
             ImageButton exitButton = view.findViewById(R.id.btnExitAppDoctor);
             ImageButton menuButton = view.findViewById(R.id.btnMainMenuDoctor);
             scrollMenu = view.findViewById(R.id.spScrollMenuDoctor);
@@ -117,26 +116,15 @@ public class DoctorFragment extends Fragment {
                 }
             });
 
-            //Query get doctor information
-            Cursor getInformation = db.getInformationUser(userID);
+            //Query get doctor-patient information
 
+            patientName.setText(patientName.getText()+" "+getArguments().getString("patientName"));
+            patientAge.setText(patientAge.getText()+" "+getArguments().getInt("patientAge"));
+            doctorName.setText(doctorName.getText()+" "+getArguments().getString("doctorName"));
 
-            if(getInformation.getCount() == 1){
-                //Information is added to text views in the fragment
-                getInformation.moveToNext();
-                doctorName.setText(doctorName.getText()+" "+getInformation.getString(4) +" " +getInformation.getString(5));
-                doctorAge.setText(doctorAge.getText()+" "+getInformation.getInt(12));
-                doctorAddress.setText(doctorAddress.getText()+" "+getInformation.getString(6) + ", "+getInformation.getString(14));
-                doctorEmail.setText(doctorEmail.getText()+" "+getInformation.getString(7));
-            }
         }catch (Exception e){
-            Log.e("Query Doctor",e.getMessage());
+            Log.e("Query Doctor message",e.getMessage());
         }
         return view;
-
     }
-
-
-
-
 }

@@ -7,8 +7,6 @@ import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.MenuItem;
@@ -20,13 +18,12 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-public class cashier_view_transactions extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
+public class cashier_transactions_view extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
     DatabaseHelper dbh;
     private int transId;
     private int patientId;
@@ -42,7 +39,7 @@ public class cashier_view_transactions extends AppCompatActivity implements Date
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cashier_view_transactions);
+        setContentView(R.layout.activity_cashier_transactions_view);
         DatabaseHelper dbh = new DatabaseHelper(this);
         final TextView transNumberTxt = (TextView)findViewById(R.id.cashier_view_TranscationNumberTxt);
         final TextView dueTxt = (TextView)findViewById(R.id.cashier_view_dueDateTxt);
@@ -76,7 +73,7 @@ public class cashier_view_transactions extends AppCompatActivity implements Date
     }
     public void Popup(View v) {
         PopupMenu popup = new PopupMenu(this, v);
-        popup.inflate(R.menu.popup_menu);
+        popup.inflate(R.menu.popup_menu_cashier);
         popup.show();
         popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
@@ -143,9 +140,9 @@ public class cashier_view_transactions extends AppCompatActivity implements Date
     }
     private void editAmount(){
         dbh = new DatabaseHelper(this);
-        AlertDialog.Builder editlog = new AlertDialog.Builder(cashier_view_transactions.this);
+        AlertDialog.Builder editlog = new AlertDialog.Builder(cashier_transactions_view.this);
         editlog.setTitle("Enter new Amount");
-        final EditText amountInput = new EditText(cashier_view_transactions.this);
+        final EditText amountInput = new EditText(cashier_transactions_view.this);
         amountInput.setInputType(InputType.TYPE_CLASS_NUMBER);
         editlog.setView(amountInput);
         editlog.setPositiveButton("Done", new DialogInterface.OnClickListener() {
@@ -158,7 +155,7 @@ public class cashier_view_transactions extends AppCompatActivity implements Date
                     startActivity(getIntent());
                 }
                 else{
-                    Toast.makeText(cashier_view_transactions.this,"Enter valid amount", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(cashier_transactions_view.this,"Enter valid amount", Toast.LENGTH_SHORT).show();
                 }
             }
         });

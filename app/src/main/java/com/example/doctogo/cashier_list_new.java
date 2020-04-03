@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class cashier_list_new_report extends AppCompatActivity {
+public class cashier_list_new extends AppCompatActivity {
     DatabaseHelper dbh;
     private ArrayList<Integer> ReportList = new ArrayList<Integer>();
     private ArrayList<Integer> patiIDList = new ArrayList<Integer>();
@@ -26,7 +26,7 @@ public class cashier_list_new_report extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cashier_list_new_report);
+        setContentView(R.layout.activity_cashier_list_new);
         dbh = new DatabaseHelper(this);
         Cursor c = dbh.viewReportWithoutPaymentId(-1);
         if(c.getCount()>0) {
@@ -59,7 +59,7 @@ public class cashier_list_new_report extends AppCompatActivity {
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    Intent i = new Intent(cashier_list_new_report.this, cashier_newTransaction.class);
+                    Intent i = new Intent(cashier_list_new.this, cashier_transaction_new.class);
                     int r = reportID[position];
                     i.putExtra("report", r);
                     startActivity(i);

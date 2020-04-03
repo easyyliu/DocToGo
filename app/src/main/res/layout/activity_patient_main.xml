@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorBackgroundActivity"
     android:tag="jkvjczkv"
-    tools:context=".Patient_main">
+    tools:context=".patient_main">
 
     <Button
         android:id="@+id/btncheckhistory"
@@ -30,10 +30,10 @@
         android:background="@color/colorLine"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tltMainMenuDoctor" />
+        app:layout_constraintTop_toBottomOf="@+id/title_doctor_comments" />
 
     <TextView
-        android:id="@+id/tltMainMenuDoctor"
+        android:id="@+id/title_doctor_comments"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"

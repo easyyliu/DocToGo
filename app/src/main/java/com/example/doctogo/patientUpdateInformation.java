@@ -1,7 +1,6 @@
 package com.example.doctogo;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -13,12 +12,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 public class patientUpdateInformation extends AppCompatActivity {
 
     DatabaseHelper db = new DatabaseHelper(this);
-    PatientInformationFragment updateFragment;
+    patientInformationFragment updateFragment;
     FragmentManager manager;
 
     @Override
@@ -26,7 +24,7 @@ public class patientUpdateInformation extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patient_update_information);
 
-        updateFragment = PatientInformationFragment.newInstance();
+        updateFragment = patientInformationFragment.newInstance();
         manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.add(R.id.fragment, updateFragment).commit();
@@ -74,13 +72,13 @@ public class patientUpdateInformation extends AppCompatActivity {
 
                     }
 
-                    PatientInformationFragment oldFragment = (PatientInformationFragment) manager.findFragmentById(R.id.fragment);
+                    patientInformationFragment oldFragment = (patientInformationFragment) manager.findFragmentById(R.id.fragment);
                         if(oldFragment != null){
                             FragmentTransaction trans = manager.beginTransaction();
                             trans.remove(updateFragment).commit();
                         }
 
-                        updateFragment = PatientInformationFragment.newInstance();
+                        updateFragment = patientInformationFragment.newInstance();
                         FragmentTransaction trans1 = manager.beginTransaction();
                         trans1.add(R.id.fragment,updateFragment).commit();
 

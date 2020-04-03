@@ -17,10 +17,12 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class doctorMain extends AppCompatActivity {
+public class doctor_main extends AppCompatActivity {
 
     DoctorFragment updateFragmentDoctor = DoctorFragment.newInstance();
+    DoctorAppointFragment updateFragmentAppoint = DoctorAppointFragment.newInstance();
     FragmentManager manager = getSupportFragmentManager();
+    FragmentManager manager2 = getSupportFragmentManager();
     TextView column1, column2, column3;
     TableLayout mainTable;
     TableRow row;
@@ -32,8 +34,10 @@ public class doctorMain extends AppCompatActivity {
         setContentView(R.layout.activity_doctor_main);
 
         FragmentTransaction transaction = manager.beginTransaction();
+        FragmentTransaction transaction2 = manager2.beginTransaction();
         transaction.add(R.id.fragDoctor, updateFragmentDoctor).commit();
-
+        transaction2.add(R.id.fragAppoint,updateFragmentAppoint).commit();
+/*
         mainTable = findViewById(R.id.tableAppointment);
         mainTable.setColumnStretchable(0,true);
         mainTable.setColumnStretchable(1,true);
@@ -80,15 +84,22 @@ public class doctorMain extends AppCompatActivity {
         }catch (Exception e){
             Log.e("QueryGetDoctor",e.getMessage());
         }
+     */
+
     }
 
     @Override
     protected void onStart() {
         super.onStart();
         FragmentTransaction trans = manager.beginTransaction();
+        FragmentTransaction trans1 = manager2.beginTransaction();
         trans.remove(updateFragmentDoctor).commit();
+        trans1.remove(updateFragmentAppoint).commit();
             updateFragmentDoctor = DoctorFragment.newInstance();
-            FragmentTransaction trans1 = manager.beginTransaction();
-            trans1.add(R.id.fragDoctor,updateFragmentDoctor).commit();
+            updateFragmentAppoint = DoctorAppointFragment.newInstance();
+            FragmentTransaction trans2 = manager.beginTransaction();
+            FragmentTransaction trans3 = manager.beginTransaction();
+            trans2.add(R.id.fragDoctor,updateFragmentDoctor).commit();
+            trans3.add(R.id.fragAppoint,updateFragmentAppoint).commit();
     }
 }

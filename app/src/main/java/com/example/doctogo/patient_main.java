@@ -6,14 +6,12 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.strictmode.WebViewMethodCalledOnWrongThreadViolation;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
-public class Patient_main extends AppCompatActivity {
+public class patient_main extends AppCompatActivity {
 
-    PatientInformationFragment updateFragment = PatientInformationFragment.newInstance();
+    patientInformationFragment updateFragment = patientInformationFragment.newInstance();
     FragmentManager manager = getSupportFragmentManager();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +29,7 @@ public class Patient_main extends AppCompatActivity {
         btnPatientUpdateInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent goToPatientUpdateInfo = new Intent(Patient_main.this,patientUpdateInformation.class);
+                Intent goToPatientUpdateInfo = new Intent(patient_main.this,patientUpdateInformation.class);
                 startActivity(goToPatientUpdateInfo);
             }
         });
@@ -39,7 +37,7 @@ public class Patient_main extends AppCompatActivity {
         btnPatientHistory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent goToPatientHistory = new Intent(Patient_main.this,checkHistory.class);
+                Intent goToPatientHistory = new Intent(patient_main.this,checkHistory.class);
                 startActivity(goToPatientHistory);
             }
         });
@@ -47,7 +45,7 @@ public class Patient_main extends AppCompatActivity {
         btnPatientPayment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent goToPatientPayment = new Intent(Patient_main.this,patient_payment.class);
+                Intent goToPatientPayment = new Intent(patient_main.this,patient_payment.class);
                 startActivity(goToPatientPayment);
             }
         });
@@ -55,7 +53,7 @@ public class Patient_main extends AppCompatActivity {
         btnLocateDoctor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent goToLocateDoctor = new Intent(Patient_main.this,locate_doctor.class);
+                Intent goToLocateDoctor = new Intent(patient_main.this,locate_doctor.class);
                 startActivity(goToLocateDoctor);
             }
         });
@@ -66,7 +64,7 @@ public class Patient_main extends AppCompatActivity {
         super.onStart();
         FragmentTransaction trans = manager.beginTransaction();
         trans.remove(updateFragment).commit();
-            updateFragment = PatientInformationFragment.newInstance();
+            updateFragment = patientInformationFragment.newInstance();
             FragmentTransaction trans1 = manager.beginTransaction();
             trans1.add(R.id.fragMainMenu,updateFragment).commit();
     }

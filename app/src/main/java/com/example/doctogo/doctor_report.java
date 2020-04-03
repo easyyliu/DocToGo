@@ -6,7 +6,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 
-public class DoctorReport extends AppCompatActivity {
+public class doctor_report extends AppCompatActivity {
     DoctorFragment updateFragmentDoctor = DoctorFragment.newInstance();
     FragmentManager manager = getSupportFragmentManager();
 

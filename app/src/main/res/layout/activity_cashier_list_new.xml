@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorBackgroundActivity"
     android:orientation="vertical"
-    tools:context=".cashier_list_new_report">
+    tools:context=".cashier_list_new">
 
 
     <TextView

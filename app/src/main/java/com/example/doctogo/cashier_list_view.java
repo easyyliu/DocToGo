@@ -19,7 +19,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
-public class cashier_list_unpayed extends AppCompatActivity {
+public class cashier_list_view extends AppCompatActivity {
     DatabaseHelper dbh;
     private ArrayList<Integer> paymentIdList = new ArrayList<Integer>();
     private ArrayList<Integer> patiIdList = new ArrayList<Integer>();
@@ -35,7 +35,7 @@ public class cashier_list_unpayed extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cashier_list_unpayed);
+        setContentView(R.layout.activity_cashier_list_view);
         dbh = new DatabaseHelper(this);
         Cursor c = dbh.viewPaymentPayedOrNot(" IS NULL ");
         if(c.getCount()>0) {
@@ -89,7 +89,7 @@ public class cashier_list_unpayed extends AppCompatActivity {
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    Intent i = new Intent(cashier_list_unpayed.this, cashier_view_transactions.class);
+                    Intent i = new Intent(cashier_list_view.this, cashier_transactions_view.class);
                     int p = payIdArr[position];
                     i.putExtra("payment", p);
                     startActivity(i);

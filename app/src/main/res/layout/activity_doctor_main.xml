@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackgroundActivity"
-    tools:context=".doctorMain">
+    tools:context=".doctor_main">
 
     <FrameLayout
         android:id="@+id/fragDoctor"
@@ -17,7 +17,7 @@
     </FrameLayout>
 
     <TextView
-        android:id="@+id/tltMainMenuDoctor"
+        android:id="@+id/title_doctor_comments"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -38,61 +38,73 @@
         android:background="@color/colorLine"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tltMainMenuDoctor" />
+        app:layout_constraintTop_toBottomOf="@+id/title_doctor_comments" />
 
-    <TableLayout
-        android:id="@+id/tableAppointment"
-        android:layout_width="413dp"
-        android:layout_height="281dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginLeft="1dp"
-        android:layout_marginTop="1dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginRight="1dp"
+    <FrameLayout
+        android:id="@+id/fragAppoint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/line3">
 
-        <TableRow
-            android:id="@+id/itemTable"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:weightSum="100">
+    </FrameLayout>
+    <!--
+        <TableLayout
+            android:id="@+id/tableAppointment"
+            android:layout_width="413dp"
+            android:layout_height="281dp"
+            android:layout_marginStart="1dp"
+            android:layout_marginLeft="1dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginEnd="1dp"
+            android:layout_marginRight="1dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/line3">
 
-            <TextView
-                android:id="@+id/firstColumn"
-                android:layout_width="wrap_content"
+            <TableRow
+                android:id="@+id/itemTable"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:gravity="center"
-                android:text="Item"
-                android:textColor="@color/colorTitle"
-                android:textSize="26sp" />
+                android:gravity="center_horizontal"
+                android:weightSum="100">
 
-            <TextView
-                android:id="@+id/secondColumn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:gravity="center"
-                android:text="Patient Name"
-                android:textColor="@color/colorTitle"
-                android:textSize="26sp" />
+                <TextView
+                    android:id="@+id/firstColumn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:gravity="center"
+                    android:text="Item"
+                    android:textColor="@color/colorTitle"
+                    android:textSize="26sp" />
 
-            <TextView
-                android:id="@+id/thirdColumn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:gravity="center"
-                android:text="Date and Time"
-                android:textColor="@color/colorTitle"
-                android:textSize="26sp" />
-        </TableRow>
-        />
+                <TextView
+                    android:id="@+id/secondColumn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:gravity="center"
+                    android:text="Patient Name"
+                    android:textColor="@color/colorTitle"
+                    android:textSize="26sp" />
 
-    </TableLayout>
+                <TextView
+                    android:id="@+id/thirdColumn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:gravity="center"
+                    android:text="Date and Time"
+                    android:textColor="@color/colorTitle"
+                    android:textSize="26sp" />
+            </TableRow>
+            />
 
+        </TableLayout>
+    -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

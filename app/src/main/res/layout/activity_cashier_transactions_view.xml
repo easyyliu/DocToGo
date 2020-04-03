@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorBackgroundActivity"
     android:padding="20sp"
-    tools:context=".cashier_view_transactions">
+    tools:context=".cashier_transactions_view">
 
     <Button
         android:id="@+id/cashier_view_send_Reminder"
