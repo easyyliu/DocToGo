@@ -125,6 +125,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_RegisterWeight" />
 
+    <EditText
+        android:id="@+id/txt_RegisterMSP"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/txt_MSP"
+        android:importantForAutofill="no"
+        android:inputType="numberSigned"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_RegisterAge" />
+
     <Button
         android:id="@+id/btn_Register"
         android:layout_width="wrap_content"
@@ -151,7 +162,7 @@
         android:text="@string/txt_RegisterGuide"
         android:textColor="#000000"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_RegisterAge" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_RegisterMSP" />
 
     <EditText
         android:id="@+id/txt_RegisterWeight"

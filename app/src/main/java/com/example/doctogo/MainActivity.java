@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view)
             {
-                startActivity(new Intent(MainActivity.this,Register.class));
+                startActivity(new Intent(MainActivity.this, register.class));
             }
         });
 
@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
                     switch(targetRole)
                     {
                         case 1:
-                            startActivity(new Intent(MainActivity.this,Admin_main.class));
+                            startActivity(new Intent(MainActivity.this, admin_main.class));
                             break;
                         case 2:
                             startActivity(new Intent(MainActivity.this, patient_main.class));

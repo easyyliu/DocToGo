@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Admin_Register"
+    tools:context=".admin_register"
     android:background="@color/colorBackgroundActivity">
 
     <Spinner

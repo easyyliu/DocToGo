@@ -15,7 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class Admin_main extends AppCompatActivity
+public class admin_main extends AppCompatActivity
 {
 
     @Override
@@ -36,13 +36,13 @@ public class Admin_main extends AppCompatActivity
         {
             @Override
             public void onClick(View view)
-            { startActivity(new Intent(Admin_main.this, Admin_Register.class)); }
+            { startActivity(new Intent(admin_main.this, admin_register.class)); }
         });
         toViewAccs.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
-            { startActivity(new Intent(Admin_main.this, Admin_AccountsView.class)); }
+            { startActivity(new Intent(admin_main.this, admin_accounts_view.class)); }
         });
 
         logout.setOnClickListener(new View.OnClickListener()

@@ -31,6 +31,7 @@ public class cashier_transaction_new extends AppCompatActivity implements DatePi
     String patientName;
     String doctorName;
     String address;
+    int MSP;
     DatabaseHelper dbh;
     java.util.Date due_DateFormat;
     java.util.Date current_DateFormat;
@@ -42,6 +43,7 @@ public class cashier_transaction_new extends AppCompatActivity implements DatePi
         final TextView dateTxt = (TextView)findViewById(R.id.cashier_new_CaseDateTxt);
         final TextView patientTxt = (TextView)findViewById(R.id.cashier_new_patientTxt);
         final TextView doctorTxt = (TextView)findViewById(R.id.cashier_new_doctorTxt);
+        final TextView MSPTxt = (TextView)findViewById(R.id.cashier_new_MSPTxt);
         final TextView caseDescTxt = (TextView)findViewById(R.id.cashier_patient_desc);
         final TextView addressTxt = (TextView)findViewById(R.id.cashier_patient_address);
         final EditText AmountTxt = (EditText)findViewById(R.id.cashier_new_patient_payment_amount);
@@ -70,8 +72,15 @@ public class cashier_transaction_new extends AppCompatActivity implements DatePi
                 while(u.moveToNext()){
                     patientName = u.getString(4) +" "+ u.getString(5);
                     address = u.getString(6)+", "+u.getString(14);
+                    MSP = u.getInt(15);
                     patientTxt.setText(patientName);
                     addressTxt.setText(address);
+                    if(MSP == 0) {
+                        MSPTxt.setText("n/a");
+                    }
+                    else{
+                        MSPTxt.setText(MSP);
+                    }
                 }
             }
             Cursor v = dbh.getInformationUser(doctor_ID);

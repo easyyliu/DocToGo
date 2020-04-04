@@ -43,6 +43,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
     private final static String T1COL_13 = "Age";            //INTEGER     //Age of 0 MUST become "N/A"
     private final static String T1COL_14 = "FirstLogin";     //INTEGER     //flag, turn to 1 if admin register->have to modify self.
     private final static String T1COL_15 = "City";           //TEXT
+    private final static String T1COL_16 = "MSP";            //INTEGER
 
     /*
         Appointment table: Defines a patient (role 2) having a schedule with a doctor (role 3).
@@ -138,7 +139,8 @@ public class DatabaseHelper extends SQLiteOpenHelper
                 T1COL_12+" TEXT, " +
                 T1COL_13+" INTEGER, " +
                 T1COL_14+" INTEGER, " +
-                T1COL_15+" INTEGER)";
+                T1COL_15+" TEXT, " +
+                T1COL_16+" INTEGER)";
         db.execSQL(query);
 
         //appointments
@@ -247,7 +249,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
         return false;
     }
 
-    public boolean normalRegister(String accName, String accPass, int accRole, String accEmail, String accFirstName, String accLastName, String accAddress, String accCity, String accPhone, int accWeight, String accGender, int accAge)
+    public boolean normalRegister(String accName, String accPass, int accRole, String accEmail, String accFirstName, String accLastName, String accAddress, String accCity, String accPhone, int accWeight, String accGender, int accAge, int accMSP)
     {
         accCity = (accCity.trim().toLowerCase()).substring(0,1).toUpperCase() + (accCity.trim().toLowerCase()).substring(1);
         SQLiteDatabase db = this.getWritableDatabase();
@@ -265,6 +267,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
         cv.put(T1COL_12,accGender);
         cv.put(T1COL_13,accAge);
         cv.put(T1COL_15,accCity);
+        cv.put(T1COL_16,accMSP);
         cv.put(T1COL_14,0);
         Long reply = db.insert(TABLE1_NAME,null,cv);
 
@@ -302,7 +305,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
     }
 
     //update an account from admin perspective
-    public boolean adminUpdate(int accID, String accName, String accPass, String accEmail, String accFirstName, String accLastName, String accAddress, String accCity, String accPhone, int accWeight, String accQualifications,  String accGender, int accAge) {
+    public boolean adminUpdate(int accID, String accName, String accPass, String accEmail, String accFirstName, String accLastName, String accAddress, String accCity, String accPhone, int accWeight, String accQualifications,  String accGender, int accAge, int accMSP) {
         try {
             accCity = (accCity.trim().toLowerCase()).substring(0,1).toUpperCase() + (accCity.trim().toLowerCase()).substring(1);
             SQLiteDatabase db = this.getWritableDatabase();
@@ -319,6 +322,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
             cv.put(T1COL_12,accGender);
             cv.put(T1COL_13,accAge);
             cv.put(T1COL_15,accCity);
+            cv.put(T1COL_16,accMSP);
             int reply = db.update(TABLE1_NAME,cv,T1COL_1+"="+accID,null);
 
             //return results
@@ -334,12 +338,12 @@ public class DatabaseHelper extends SQLiteOpenHelper
 
     //Update Patient Information
 //    public Cursor updateInformationUser(int userId,String address,String email,String phone,int weight){
-        public Cursor updateInformationUser(int userId,String address,String city,String email,String phone,int weight){
+        public Cursor updateInformationUser(int userId,String address,String city,String email,String phone,int weight, int msp){
         try {
             city = (city.trim().toLowerCase()).substring(0,1).toUpperCase() + (city.trim().toLowerCase()).substring(1);
             SQLiteDatabase db = this.getWritableDatabase();
             String query = "UPDATE " + TABLE1_NAME + " SET " + T1COL_7 + "=" + "'" + address.trim() + "'," + T1COL_8 + "=" + "'" + email.trim() + "',"
-                    + T1COL_9 + "=" + "'" + phone.trim() + "'," + T1COL_11 + "=" + "'" + weight + "'," + T1COL_15 + "=" + "'" + city + "'"+ " WHERE " + T1COL_1 + "=" + userId;
+                    + T1COL_9 + "=" + "'" + phone.trim() + "'," + T1COL_11 + "=" + "'" + weight + "'," + T1COL_16 + "=" + "'" + msp + "'," + T1COL_15 + "=" + "'" + city + "'"+ " WHERE " + T1COL_1 + "=" + userId;
             Log.d("DbupdInfoUser ",query);
             return db.rawQuery(query, null);
         }catch (Exception msg){

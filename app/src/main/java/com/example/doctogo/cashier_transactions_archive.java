@@ -15,6 +15,7 @@ public class cashier_transactions_archive extends AppCompatActivity {
     private String patientName;
     private String address;
     private int amount;
+    private int msp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +25,7 @@ public class cashier_transactions_archive extends AppCompatActivity {
         final TextView patientTxt = (TextView)findViewById(R.id.cashier_archive_patientTxt);
         final TextView addressTxt = (TextView)findViewById(R.id.cashier_archive_addressTxt);
         final TextView amountTxt = (TextView)findViewById(R.id.cashier_archive_amountTxt);
+        final TextView mspTxt = (TextView)findViewById(R.id.cashier_new_MSPTxt);
         Intent intent = getIntent();
         if(intent!=null) {
             transactionId = intent.getIntExtra("payment", 0);
@@ -46,6 +48,13 @@ public class cashier_transactions_archive extends AppCompatActivity {
                         address = u.getString(6)+", "+u.getString(14);
                         patientTxt.setText(patientName);
                         addressTxt.setText(address);
+                        msp = u.getInt(15);
+                        if(msp == 0 ){
+                            mspTxt.setText("n/a");
+                        }
+                        else {
+                            mspTxt.setText(msp);
+                        }
                     }
                 }
             }

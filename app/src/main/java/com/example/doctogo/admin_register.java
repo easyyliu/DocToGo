@@ -10,7 +10,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-public class Admin_Register extends AppCompatActivity
+public class admin_register extends AppCompatActivity
 {
     DatabaseHelper dbh = new DatabaseHelper(this);
 

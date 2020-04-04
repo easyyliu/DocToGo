@@ -15,7 +15,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-public class Register extends AppCompatActivity
+public class register extends AppCompatActivity
 {
     DatabaseHelper dbh = new DatabaseHelper(this);
 
@@ -36,6 +36,7 @@ public class Register extends AppCompatActivity
         final EditText ETCity = findViewById(R.id.txt_RegisterCity);
         final EditText ETAge = findViewById(R.id.txt_RegisterAge);
         final EditText ETWeight = findViewById(R.id.txt_RegisterWeight);
+        final EditText ETMSP = findViewById(R.id.txt_RegisterMSP);
         final Spinner SPRole = findViewById(R.id.spn_RegisterRole);
         final Spinner SPGender = findViewById(R.id.spn_RegisterGender);
 
@@ -74,14 +75,18 @@ public class Register extends AppCompatActivity
                 String phone = ETPhone.getText().toString();
                 String address = ETAddress.getText().toString();
                 String city = ETCity.getText().toString();
+                String strAge = (ETAge.getText().toString());
                 String strWeight = (ETWeight.getText().toString());
+                String strMSP = (ETMSP.getText().toString());
                 int weight = 0;
                 if(!strWeight.isEmpty())
                 {weight = Integer.parseInt(strWeight);}
                 int age = 0;
-                String strAge = (ETAge.getText().toString());
                 if(!strAge.isEmpty())
                 {age = Integer.parseInt(strAge);}
+                int msp = 0;
+                if(!strMSP.isEmpty())
+                {msp = Integer.parseInt(strMSP);}
                 int role;
                 switch (SPRole.getSelectedItem().toString())
                 {
@@ -104,7 +109,7 @@ public class Register extends AppCompatActivity
                 String gender = SPGender.getSelectedItem().toString();
 
                 //make database insert operation
-                boolean success = dbh.normalRegister(username,password,role,email,firstname,lastname,address,city,phone,weight,gender,age);
+                boolean success = dbh.normalRegister(username,password,role,email,firstname,lastname,address,city,phone,weight,gender,age,msp);
 
                 //return to main login
                 if(success)

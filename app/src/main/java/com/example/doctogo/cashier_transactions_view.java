@@ -35,6 +35,7 @@ public class cashier_transactions_view extends AppCompatActivity implements Date
     private Date tempDate;
     private Date currDate;
     private int selectOptionNumber;
+    private int msp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +46,7 @@ public class cashier_transactions_view extends AppCompatActivity implements Date
         final TextView dueTxt = (TextView)findViewById(R.id.cashier_view_dueDateTxt);
         final TextView patientTxt = (TextView)findViewById(R.id.cashier_view_patientNameTxt);
         final TextView amountTxt = (TextView)findViewById(R.id.cashier_view_amountTxt);
+        final TextView mspTxt = (TextView)findViewById(R.id.cashier_new_MSPTxt);
         Button btn_Edit = (Button)findViewById(R.id.cashier_view_Edit);
         Button btn_reminder = (Button)findViewById(R.id.cashier_view_send_Reminder);
         Intent intent = getIntent();
@@ -66,6 +68,13 @@ public class cashier_transactions_view extends AppCompatActivity implements Date
                     while(u.moveToNext()){
                         patientName = u.getString(4) +" "+ u.getString(5);
                         patientTxt.setText(patientName);
+                        msp = u.getInt(15);
+                        if(msp == 0 ){
+                            mspTxt.setText("n/a");
+                        }
+                        else {
+                            mspTxt.setText(msp);
+                        }
                     }
                 }
             }

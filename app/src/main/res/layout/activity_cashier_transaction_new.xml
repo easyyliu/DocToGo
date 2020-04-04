@@ -33,7 +33,7 @@
         android:id="@+id/cashier_new_CaseDateTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="36dp"
         android:layout_marginRight="36dp"
         android:gravity="end"
@@ -41,7 +41,7 @@
         android:textColor="?android:attr/textColorPrimary"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/cashier_new_ReportnumTxt" />
 
     <TextView
         android:id="@+id/cashier_newCaseDate"
@@ -49,12 +49,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="12dp"
         android:text="@string/cashier_newCaseDate"
         android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/cashier_newReport" />
 
     <Button
         android:id="@+id/cashier_new_btn_cancel"
@@ -135,18 +135,18 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="160dp"
+        android:layout_marginTop="12dp"
         android:text="@string/cashier_newDescription"
         android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/cashier_newMSP" />
 
     <TextView
         android:id="@+id/cashier_new_doctorTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="124dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="36dp"
         android:layout_marginRight="36dp"
         android:gravity="end"
@@ -154,7 +154,7 @@
         android:textColor="?android:attr/textColorPrimary"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/cashier_new_patientTxt" />
 
     <TextView
         android:id="@+id/cashier_newDoctor"
@@ -162,12 +162,39 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="124dp"
+        android:layout_marginTop="12dp"
         android:text="@string/cashier_newDoctor"
         android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/cashier_newName" />
+
+    <TextView
+        android:id="@+id/cashier_new_MSPTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="36dp"
+        android:layout_marginRight="36dp"
+        android:gravity="end"
+        android:text="@string/cashier_new_MSPTxt"
+        android:textColor="?android:attr/textColorPrimary"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cashier_new_doctorTxt" />
+
+    <TextView
+        android:id="@+id/cashier_newMSP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="12dp"
+        android:text="@string/cashier_newMSP"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cashier_newDoctor" />
 
     <TextView
         android:id="@+id/cashier_new_ReportnumTxt"
@@ -200,7 +227,7 @@
         android:id="@+id/cashier_new_patientTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="88dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="36dp"
         android:layout_marginRight="36dp"
         android:gravity="end"
@@ -208,7 +235,7 @@
         android:textColor="?android:attr/textColorPrimary"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/cashier_new_CaseDateTxt" />
 
     <TextView
         android:id="@+id/cashier_newName"
@@ -216,12 +243,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="88dp"
+        android:layout_marginTop="12dp"
         android:text="@string/cashier_newNameTxt"
         android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/cashier_newCaseDate" />
 
     <TextView
         android:id="@+id/cashier_patient_address"

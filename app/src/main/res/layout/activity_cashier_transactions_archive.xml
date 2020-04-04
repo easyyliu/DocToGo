@@ -28,7 +28,7 @@
         android:id="@+id/cashier_archive_transDateTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="36dp"
         android:layout_marginRight="36dp"
         android:gravity="end"
@@ -36,7 +36,7 @@
         android:textColor="?android:attr/textColorPrimary"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/cashier_archive_transIDTxt" />
 
     <TextView
         android:id="@+id/cashier_transDate"
@@ -44,12 +44,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="12dp"
         android:text="@string/cashier_transDate"
         android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/cashier_archive_transID" />
 
     <TextView
         android:id="@+id/cashier_archive_amount"
@@ -75,7 +75,7 @@
         android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cashier_archive_patient" />
+        app:layout_constraintTop_toBottomOf="@+id/cashier_archive_msp" />
 
     <TextView
         android:id="@+id/cashier_archive_transIDTxt"
@@ -109,16 +109,16 @@
         android:id="@+id/cashier_archive_patientTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="88dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="36dp"
         android:layout_marginRight="36dp"
-        android:gravity="end"
 
+        android:gravity="end"
         android:text="@string/cashier_archive_patientTxt"
         android:textColor="?android:attr/textColorPrimary"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/cashier_archive_transDateTxt" />
 
     <TextView
         android:id="@+id/cashier_archive_patient"
@@ -126,12 +126,40 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="88dp"
+        android:layout_marginTop="12dp"
         android:text="@string/cashier_newNameTxt"
         android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/cashier_transDate" />
+
+    <TextView
+        android:id="@+id/cashier_archive_msp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="12dp"
+        android:text="@string/cashier_archive_msp"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cashier_archive_patient" />
+
+    <TextView
+        android:id="@+id/cashier_archive_mspTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="36dp"
+        android:layout_marginRight="36dp"
+
+        android:gravity="end"
+        android:text="@string/cashier_archive_mspTxt"
+        android:textColor="?android:attr/textColorPrimary"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cashier_archive_patientTxt" />
 
     <TextView
         android:id="@+id/cashier_archive_addressTxt"

@@ -1,6 +1,5 @@
 package com.example.doctogo;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -20,9 +19,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class Admin_AccountsView extends AppCompatActivity
+public class admin_accounts_view extends AppCompatActivity
 {
     DatabaseHelper dbh = new DatabaseHelper(this);
 
@@ -134,7 +132,7 @@ public class Admin_AccountsView extends AppCompatActivity
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id)
             {
                 int ID = adapter.getItem(position).id;
-                Intent detailActivity = new Intent(Admin_AccountsView.this,Admin_AccountDetails.class);
+                Intent detailActivity = new Intent(admin_accounts_view.this, admin_account_details.class);
                 detailActivity.putExtra("targetID",ID);
                 //need to refresh upon finishing detail activity
                 startActivityForResult(detailActivity, 1);

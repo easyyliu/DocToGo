@@ -8,7 +8,7 @@
     android:paddingLeft="50sp"
     android:paddingTop="300sp"
     android:paddingRight="50sp"
-    tools:context=".Admin_main">
+    tools:context=".admin_main">
 
     <TextView
         android:id="@+id/lbl_AdminUserName"

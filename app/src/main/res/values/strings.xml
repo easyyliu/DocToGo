@@ -186,6 +186,21 @@
     <string name="btn_doctor_report_submit">SUBMIT</string>
     <string name="title_message">MESSAGE</string>
     <string name="doctor_report_descEdit" />
+    <string name="txt_AdminDetailAccountMSP">MSP:</string>
+    <string name="txt_MSP" >MSP</string>
+    <string name="title_patient_msp">MSP:</string>
+    <string name="upInfInputAddress" />
+    <string name="upInfInputCity" />
+    <string name="upInfInputEmail" />
+    <string name="upInfInputPhone" />
+    <string name="upInfInputWeight" />
+    <string name="upInfInputMSP" />
+    <string name="cashier_newMSP">MSP</string>
+    <string name="cashier_new_MSPTxt" />
+    <string name="cashier_view_msp">MSP</string>
+    <string name="cashier_view_mspTxt" />
+    <string name="cashier_archive_msp">MSP</string>
+    <string name="cashier_archive_mspTxt" />
 
 
 </resources>

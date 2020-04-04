@@ -37,7 +37,7 @@ public class patient_main extends AppCompatActivity {
         btnPatientHistory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent goToPatientHistory = new Intent(patient_main.this,checkHistory.class);
+                Intent goToPatientHistory = new Intent(patient_main.this, check_history.class);
                 startActivity(goToPatientHistory);
             }
         });

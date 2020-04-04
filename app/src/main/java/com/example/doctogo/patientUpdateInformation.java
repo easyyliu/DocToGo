@@ -34,6 +34,7 @@ public class patientUpdateInformation extends AppCompatActivity {
         final EditText updateEmail = findViewById(R.id.upInfInputEmail);
         final EditText updatePhone = findViewById(R.id.upInfInputPhone);
         final EditText updateWeight = findViewById(R.id.upInfInputWeight);
+        final EditText updateMSP = findViewById(R.id.upInfInputMSP);
         Button btnUpdateInfo = findViewById(R.id.btnClickUpdateInfo);
 
         SharedPreferences storage = getApplicationContext().getSharedPreferences("DOCTOGOSESSION", Context.MODE_PRIVATE);
@@ -49,6 +50,7 @@ public class patientUpdateInformation extends AppCompatActivity {
                 updateCity.setText(getInformation.getString(14));
                 updatePhone.setText(getInformation.getString(8));
                 updateWeight.setText(getInformation.getString(10));
+                updateMSP.setText(getInformation.getString(15));
             }
         }catch (Exception e){
             Log.e("Query Get Info",e.getMessage());
@@ -59,7 +61,7 @@ public class patientUpdateInformation extends AppCompatActivity {
             public void onClick(View v) {
                 //Query to update information
                 Cursor updateInformation = db.updateInformationUser(userID,updateAddress.getText().toString(),updateCity.getText().toString(),updateEmail.getText().toString(),
-                        updatePhone.getText().toString(),Integer.parseInt(updateWeight.getText().toString()));
+                        updatePhone.getText().toString(),Integer.parseInt(updateWeight.getText().toString()),Integer.parseInt(updateMSP.getText().toString()));
 
                 try{
                     if(updateInformation.getCount() == 1){
@@ -69,6 +71,7 @@ public class patientUpdateInformation extends AppCompatActivity {
                         updateCity.setText(updateInformation.getString(14));
                         updatePhone.setText(updateInformation.getString(8));
                         updateWeight.setText(updateInformation.getString(10));
+                        updateMSP.setText(updateInformation.getString(15));
 
                     }
 

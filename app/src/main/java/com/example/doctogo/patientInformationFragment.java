@@ -101,7 +101,7 @@ public class patientInformationFragment extends Fragment {
                                 startActivity(new Intent(getContext(),patient_payment.class));
                             break;
                             case 3:
-                                startActivity(new Intent(getContext(),checkHistory.class));
+                                startActivity(new Intent(getContext(), check_history.class));
                             break;
                             case 4:
                                 startActivity(new Intent(getContext(),patientUpdateInformation.class));

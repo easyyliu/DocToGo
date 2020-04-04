@@ -12,7 +12,7 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class Admin_AccountDetails extends AppCompatActivity
+public class admin_account_details extends AppCompatActivity
 {
     DatabaseHelper dbh = new DatabaseHelper(this);
 
@@ -73,6 +73,7 @@ public class Admin_AccountDetails extends AppCompatActivity
                 Spinner accGender = findViewById(R.id.spn_AdminDetailAccountGender);
                 TextView accAge = findViewById(R.id.txt_AdminDetailAccountAge);
                 TextView accWeight = findViewById(R.id.txt_AdminDetailAccountWeight);
+                TextView accMSP = findViewById(R.id.txt_AdminDetailAccountMSP);
                 TextView accQualifications = findViewById(R.id.txt_AdminDetailAccountQualifications);
 
                 //validation on required entries
@@ -93,10 +94,11 @@ public class Admin_AccountDetails extends AppCompatActivity
                 String gender = accGender.getSelectedItem().toString();
                 String age = accAge.getText().toString();
                 String weight = accWeight.getText().toString();
+                String MSP = accMSP.getText().toString();
                 String qualifications = accQualifications.getText().toString();
 
                 //send info to db
-                boolean success = dbh.adminUpdate(targetID,username,password,email,firstname,lastname,address,city,phone,Integer.parseInt(weight),qualifications,gender,Integer.parseInt(age));
+                boolean success = dbh.adminUpdate(targetID,username,password,email,firstname,lastname,address,city,phone,Integer.parseInt(weight),qualifications,gender,Integer.parseInt(age),Integer.parseInt(MSP));
 
                 //success/fail messages
                 if(success)
@@ -130,6 +132,7 @@ public class Admin_AccountDetails extends AppCompatActivity
         Spinner accGender = findViewById(R.id.spn_AdminDetailAccountGender);
         TextView accAge = findViewById(R.id.txt_AdminDetailAccountAge);
         TextView accWeight = findViewById(R.id.txt_AdminDetailAccountWeight);
+        TextView accMSP = findViewById(R.id.txt_AdminDetailAccountMSP);
         TableRow rowQualifications = findViewById(R.id.row_AdminDetailAccountQualifications);
         TextView accQualifications = findViewById(R.id.txt_AdminDetailAccountQualifications);
 
@@ -165,6 +168,7 @@ public class Admin_AccountDetails extends AppCompatActivity
             accPhone.setText(data.getString(8));
             accQualifications.setText(data.getString(9));
             accWeight.setText( String.valueOf(data.getInt(10)));
+            accMSP.setText(data.getString(15));
             if(data.getString(11) != null)
             {
                 switch (data.getString(11)) {
