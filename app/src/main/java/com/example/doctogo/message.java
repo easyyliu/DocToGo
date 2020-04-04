@@ -25,10 +25,6 @@ public class message extends AppCompatActivity {
     private MessageAdapter adapter;
     private EditText messageEditText;
     private int appointment_ID;
-    private ArrayList<Integer> senderIdList = new ArrayList<Integer>();
-    private ArrayList<String> contextList = new ArrayList<String>();
-    private int[] senderIdArr;
-    private String[] contextArr;
     private int sender_id;
     private String context;
     private int userID;
@@ -69,7 +65,7 @@ public class message extends AppCompatActivity {
         if (intent != null) {
             appointment_ID = intent.getIntExtra("appointment", 0);
             dbh = new DatabaseHelper(this);
-            Cursor c = dbh.viewCommentsByAppointID(appointment_ID);
+            Cursor c = dbh.viewMessagesByAppointID(appointment_ID);
             if (c.getCount() > 0) {
                 while (c.moveToNext()) {
                     sender_id = c.getInt(1);
@@ -101,9 +97,11 @@ public class message extends AppCompatActivity {
         },5000);
     }
     private boolean sendChatMessage(){
-        String cont = messageEditText.getText().toString();
-        dbh = new DatabaseHelper(this);
-        dbh.newComments(userID,cont,appointment_ID);
+        String cont = messageEditText.getText().toString().trim();
+        if(!cont.isEmpty()) {
+            dbh = new DatabaseHelper(this);
+            dbh.newMessages(userID, cont, appointment_ID);
+        }
         messageEditText.setText("");
         refreshMessageList();
         return true;

@@ -173,6 +173,19 @@
     <string name="singleMessage" />
     <string name="message_sendImg">image of Sending icon</string>
     <string name="message_inputText" />
+    <string name="button_patient_Message">MESSAGE</string>
+    <string name="doctor_report_patientName">Patient Name:</string>
+    <string name="doctor_report_age">Age:</string>
+    <string name="doctor_report_date">Date:</string>
+    <string name="doctor_report_dateTxt" />
+    <string name="doctor_report_patientNameTxt" />
+    <string name="doctor_report_ageTxt" />
+    <string name="doctor_report_doctorName">Doctor Name:</string>
+    <string name="doctor_report_doctorNameTxt" />
+    <string name="doctor_report_desc">Case Description/Comment:</string>
+    <string name="btn_doctor_report_submit">SUBMIT</string>
+    <string name="title_message">MESSAGE</string>
+    <string name="doctor_report_descEdit" />
 
 
 </resources>

@@ -1,59 +1,55 @@
 package com.example.doctogo;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.List;
+
 
 public class MessageAdapter extends ArrayAdapter {
 
-    private TextView chatText;
-    private ArrayList<SingleMessage> chatMessageList = new ArrayList();
-    private LinearLayout singleMessageContainer;
+    private TextView text;
+    private ArrayList<SingleMessage> messageList = new ArrayList();
+    private LinearLayout singleMessageLayout;
 
-    public void add(SingleMessage object) {
-        chatMessageList.add(object);
-        super.add(object);
-    }
 
-    public MessageAdapter(Context context, int textViewResourceId) {
-        super(context, textViewResourceId);
+
+    public MessageAdapter(Context context, int id) {
+        super(context, id);
     }
 
     public int getCount() {
-        return this.chatMessageList.size();
+        return this.messageList.size();
     }
 
     public SingleMessage getItem(int index) {
-        return this.chatMessageList.get(index);
+        return this.messageList.get(index);
     }
 
-    public View getView(int position, View convertView, ViewGroup parent) {
-        View row = convertView;
+    public void add(SingleMessage singleMessage) {
+        messageList.add(singleMessage);
+        super.add(singleMessage);
+    }
+
+    public View getView(int position, View view, ViewGroup viewGroup) {
+        View row = view;
+        SingleMessage singleMessage = getItem(position);
         if (row == null) {
             LayoutInflater inflater = (LayoutInflater) this.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            row = inflater.inflate(R.layout.single_message, parent, false);
+            row = inflater.inflate(R.layout.single_message, viewGroup, false);
         }
-        singleMessageContainer = (LinearLayout) row.findViewById(R.id.singleMessageContainer);
-        SingleMessage chatMessageObj = getItem(position);
-        chatText = (TextView) row.findViewById(R.id.singleMessage);
-        chatText.setText(chatMessageObj.message);
-        singleMessageContainer.setGravity(chatMessageObj.position ? Gravity.LEFT : Gravity.RIGHT);
+        text = (TextView) row.findViewById(R.id.singleMessage);
+        singleMessageLayout = (LinearLayout) row.findViewById(R.id.singleMessageContainer);
+        text.setText(singleMessage.message);
+        singleMessageLayout.setGravity(singleMessage.position ? Gravity.LEFT : Gravity.RIGHT);
         return row;
     }
 
-    public Bitmap decodeToBitmap(byte[] decodedByte) {
-        return BitmapFactory.decodeByteArray(decodedByte, 0, decodedByte.length);
-    }
 
 }

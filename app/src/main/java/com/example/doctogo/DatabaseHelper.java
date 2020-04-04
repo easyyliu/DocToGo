@@ -80,15 +80,15 @@ public class DatabaseHelper extends SQLiteOpenHelper
     private final static String T3COL_6 = "Report_ID";    //INTEGER FOREIGN KEY
 
     /*
-        Comments table: Contains all comments made by patients (role 2) to doctors (role 3).
+        Messages table: Contains all Messages between patients (role 2) and doctors (role 3).
         The same two FK to same table method applies here (see Appointments table).
-        Patient-Doctor_Posts are structured in a comment/reply form, but doesn't have to be.
+        Patient-Doctor_Posts are structured in a message chat, but doesn't have to be.
      */
     //TABLE 4
-    private final static String TABLE4_NAME = "Comments";
+    private final static String TABLE4_NAME = "Messages";
     private final static String T4CONST_1 = "FK_appointment";
     private final static String T4CONST_2 = "FK_Sender_ID";
-    private final static String T4COL_1 = "Comment_ID";   //INTEGER PRIMARY KEY
+    private final static String T4COL_1 = "Message_ID";   //INTEGER PRIMARY KEY
     private final static String T4COL_2 = "Sender_ID";   //INTEGER FOREIGN KEY
     private final static String T4COL_3 = "Context"; //TEXT
     private final static String T4COL_4 = "Post_time"; //TEXT
@@ -165,7 +165,8 @@ public class DatabaseHelper extends SQLiteOpenHelper
                 "CONSTRAINT "+ T3CONST_2 +" FOREIGN KEY ("+T3COL_6+") REFERENCES "+TABLE5_NAME+"("+T5COL_1+"))";
         db.execSQL(query);
 
-        //comments
+        //
+        // Messages
         query = "CREATE TABLE " + TABLE4_NAME +
                 "("+T4COL_1+" INTEGER PRIMARY KEY, " +
                 T4COL_2+" INTEGER, " +
@@ -406,8 +407,8 @@ public class DatabaseHelper extends SQLiteOpenHelper
         }
     }
 
-    //Create comment row
-    public boolean newComments(int sender_ID, String context, int appointID){
+    //Create message row
+    public boolean newMessages(int sender_ID, String context, int appointID){
         SQLiteDatabase db = this.getWritableDatabase();
         //insert into db
         ContentValues cv = new ContentValues();
@@ -423,26 +424,65 @@ public class DatabaseHelper extends SQLiteOpenHelper
         {return false;}
 
     }
-    //Get comments by appointment_ID
-    public Cursor viewCommentsByAppointID(int appointID){
+    //Get messages by appointment_ID
+    public Cursor viewMessagesByAppointID(int appointID){
         try {
             SQLiteDatabase db = this.getReadableDatabase();
             String query = "SELECT * FROM " + TABLE4_NAME + " WHERE " + T4COL_5 + "=" + appointID + " ORDER BY " + T4COL_4 + " ASC " ;
-            Log.d("DbgetCommentInfo ",query);
+            Log.d("DbgetMessageInfo ",query);
             return db.rawQuery(query, null);
         }catch (Exception msg){
-            Log.e("DbgetCommentInfo ",msg.getMessage());
+            Log.e("DbgetMessageInfo ",msg.getMessage());
             return null;
         }
     }
-    //Comment burnout
 
+    //set ReportID to appointment
+    public boolean setReportIDtoAppointment(int appointID,int reportID){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues cv = new ContentValues();
+        cv.put(T2COL_6,reportID);
+        int reply = db.update(TABLE2_NAME,cv,T2COL_1+"="+appointID,null);
+
+        //return results
+        if(reply > 0)
+        {return true;}
+        else
+        {return false;}
+    }
+
+    //delete row from Messages
+    public boolean messagesDel(int appointId){
+        SQLiteDatabase db = this.getWritableDatabase();
+         return db.delete(TABLE4_NAME, T4COL_5 + " = "+appointId,null) >0;
+    }
+
+    //insert row to report
+    public long reportInsert(int patiId, int docId, String date, String desc, int appointId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        //insert into db
+        ContentValues cv = new ContentValues();
+        cv.put(T5COL_2, patiId);
+        cv.put(T5COL_3, docId);
+        cv.put(T5COL_4, date);
+        cv.put(T5COL_5, desc);
+        cv.put(T5COL_7, appointId);
+        Long reply = db.insert(TABLE5_NAME, null, cv);
+        //return results
+        if (reply > 0) {
+            return reply;
+        } else {
+            return 0;
+        }
+
+    }
     //Get all rows from the table Report with paymentID-filter
     public Cursor viewReportWithoutPaymentId(int x)
     {
             SQLiteDatabase db = this.getReadableDatabase();
             String query = "SELECT " + T5COL_1 + ", " + T5COL_2 + ", " + T5COL_3 + ", " + T5COL_4 + ", " + T5COL_5 + " FROM " + TABLE5_NAME
-                    + " WHERE " + T5COL_6 + "=" + x;
+                    + " WHERE " + T5COL_6 + " IS NULL ";
             Log.e("DbviewReportWithoutP ", query);
             return db.rawQuery(query, null);
     }

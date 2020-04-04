@@ -102,4 +102,9 @@ public class doctor_main extends AppCompatActivity {
             trans2.add(R.id.fragDoctor,updateFragmentDoctor).commit();
             trans3.add(R.id.fragAppoint,updateFragmentAppoint).commit();
     }
+
+    protected void onRestart() {
+        super.onRestart();
+        this.recreate();
+    }
 }
