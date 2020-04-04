@@ -18,6 +18,7 @@ public class patientUpdateInformation extends AppCompatActivity {
     DatabaseHelper db = new DatabaseHelper(this);
     patientInformationFragment updateFragment;
     FragmentManager manager;
+    private int msp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +51,11 @@ public class patientUpdateInformation extends AppCompatActivity {
                 updateCity.setText(getInformation.getString(14));
                 updatePhone.setText(getInformation.getString(8));
                 updateWeight.setText(getInformation.getString(10));
-                updateMSP.setText(getInformation.getString(15));
+                if(getInformation.getInt(15) == 0){
+                    updateMSP.setText("");
+                }else {
+                    updateMSP.setText(getInformation.getString(15));
+                }
             }
         }catch (Exception e){
             Log.e("Query Get Info",e.getMessage());
@@ -60,8 +65,15 @@ public class patientUpdateInformation extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Query to update information
+
+                if((updateMSP.getText().toString()).isEmpty()){
+                    msp = 0;
+                }
+                else{
+                    msp = Integer.parseInt(updateMSP.getText().toString());
+                }
                 Cursor updateInformation = db.updateInformationUser(userID,updateAddress.getText().toString(),updateCity.getText().toString(),updateEmail.getText().toString(),
-                        updatePhone.getText().toString(),Integer.parseInt(updateWeight.getText().toString()),Integer.parseInt(updateMSP.getText().toString()));
+                        updatePhone.getText().toString(),Integer.parseInt(updateWeight.getText().toString()),msp);
 
                 try{
                     if(updateInformation.getCount() == 1){
