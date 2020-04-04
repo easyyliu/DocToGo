@@ -25,7 +25,7 @@ public class cashier_transactions_archive extends AppCompatActivity {
         final TextView patientTxt = (TextView)findViewById(R.id.cashier_archive_patientTxt);
         final TextView addressTxt = (TextView)findViewById(R.id.cashier_archive_addressTxt);
         final TextView amountTxt = (TextView)findViewById(R.id.cashier_archive_amountTxt);
-        final TextView mspTxt = (TextView)findViewById(R.id.cashier_new_MSPTxt);
+        final TextView mspTxt = (TextView)findViewById(R.id.cashier_archive_mspTxt);
         Intent intent = getIntent();
         if(intent!=null) {
             transactionId = intent.getIntExtra("payment", 0);

@@ -46,7 +46,7 @@ public class cashier_transactions_view extends AppCompatActivity implements Date
         final TextView dueTxt = (TextView)findViewById(R.id.cashier_view_dueDateTxt);
         final TextView patientTxt = (TextView)findViewById(R.id.cashier_view_patientNameTxt);
         final TextView amountTxt = (TextView)findViewById(R.id.cashier_view_amountTxt);
-        final TextView mspTxt = (TextView)findViewById(R.id.cashier_new_MSPTxt);
+        final TextView mspTxt = (TextView)findViewById(R.id.cashier_view_mspTxt);
         Button btn_Edit = (Button)findViewById(R.id.cashier_view_Edit);
         Button btn_reminder = (Button)findViewById(R.id.cashier_view_send_Reminder);
         Intent intent = getIntent();
