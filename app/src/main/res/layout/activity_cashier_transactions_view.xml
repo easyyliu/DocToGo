@@ -12,12 +12,12 @@
         android:id="@+id/cashier_view_send_Reminder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="50dp"
         android:layout_marginEnd="36dp"
         android:layout_marginRight="36dp"
         android:text="@string/cashier_view_send_Reminder"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cashier_view_amount" />
+        app:layout_constraintTop_toBottomOf="@+id/cashier_view_expiry" />
 
     <Button
         android:id="@+id/cashier_view_Edit"
@@ -25,11 +25,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
         android:layout_marginLeft="36dp"
-        android:layout_marginTop="200dp"
-        android:text="@string/cashier_view_Edit"
+        android:layout_marginTop="50dp"
         android:onClick="Popup"
+        android:text="@string/cashier_view_Edit"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cashier_view_amount" />
+        app:layout_constraintTop_toBottomOf="@+id/cashier_view_expiry" />
 
     <TextView
         android:id="@+id/cashier_view_TranscationNumber"
@@ -165,6 +165,60 @@
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cashier_view_patientName" />
+
+    <TextView
+        android:id="@+id/cashier_view_creditTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="36dp"
+        android:layout_marginRight="36dp"
+        android:gravity="end"
+        android:text="@string/cashier_view_creditTxt"
+        android:textColor="?android:attr/textColorPrimary"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cashier_view_amountTxt" />
+
+    <TextView
+        android:id="@+id/cashier_view_credit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/cashier_view_credit"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cashier_view_amount" />
+
+    <TextView
+        android:id="@+id/cashier_view_expiryTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="36dp"
+        android:layout_marginRight="36dp"
+        android:gravity="end"
+        android:text="@string/cashier_view_expiryTxt"
+        android:textColor="?android:attr/textColorPrimary"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cashier_view_creditTxt" />
+
+    <TextView
+        android:id="@+id/cashier_view_expiry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/cashier_view_expiry"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cashier_view_credit" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

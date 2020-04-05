@@ -7,6 +7,9 @@
         android:id="@+id/pop_amount"
         android:title="@string/pop_amount" />
     <item
-        android:id="@+id/pop_trans_date"
-        android:title="@string/pop_trans_date" />
+        android:id="@+id/pop_closing_transaction"
+        android:title="@string/pop_closing_transaction" />
+    <item
+        android:id="@+id/pop_decline"
+        android:title="@string/pop_decline" />
 </menu>

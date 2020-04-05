@@ -24,7 +24,7 @@
     <string name="button_patient_update_information">UPDATE PERSONAL INFORMATION</string>
     <string name="button_update_information">UPDATE INFORMATION</string>
     <string name="title_locate_doctor">LOCATE DOCTOR</string>
-    <string name="title_patient_payment">PAYMENT DUE</string>
+    <string name="title_patient_payment">PAYMENT</string>
     <string name="title_patient_history">MEDICAL HISTORY</string>
     <string name="title_patient_update_information">PERSONAL INFORMATION</string>
     <string name="txt_LoginPasswordText">Password</string>
@@ -208,6 +208,25 @@
     <string name="listview_patient_appointment_docInfo"></string>
     <string name="listview_patient_appointment_date"></string>
     <string name="pop_cancel">Cancel Appointment</string>
+    <string name="listview_patient_payment_due_amount" />
+    <string name="listview_patient_patient_appointInformation" />
+    <string name="listview_patient_payment_pending" />
+    <string name="patient_payment_credit">Credit Card#:</string>
+    <string name="patient_payment_credit_amount">Amount:</string>
+    <string name="patient_payment_credit_dueDate">Due Date:</string>
+    <string name="patient_payment_credit_number">Credit Card#:</string>
+    <string name="patient_payment_credit_expiryDate">Expiry Date:</string>
+    <string name="patient_payment_credit_amountTXT" />
+    <string name="patient_payment_credit_dueDateTXT" />
+    <string name="patient_payment_credit_numberTXT">xxxxxxxxxxxxxxxx</string>
+    <string name="patient_payment_credit_expiryDateTXT">mmyy</string>
+    <string name="btn_credit">SUBMIT</string>
+    <string name="cashier_view_credit">Credit Card#:</string>
+    <string name="cashier_view_creditTxt" />
+    <string name="cashier_view_expiryTxt" />
+    <string name="cashier_view_expiry">Expiry Date:</string>
+    <string name="pop_closing_transaction">Closing Transaction</string>
+    <string name="pop_decline">Decline Credit</string>
 
 
 </resources>

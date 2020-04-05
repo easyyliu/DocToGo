@@ -79,6 +79,9 @@ public class DatabaseHelper extends SQLiteOpenHelper
     private final static String T3COL_4 = "Trans_Date";   //TEXT YYYY-MM-DD HH:MM:SS.SSS
     private final static String T3COL_5 = "Amount";       //REAL
     private final static String T3COL_6 = "Report_ID";    //INTEGER FOREIGN KEY
+    private final static String T3COL_7 = "Credit_Card_num"; //TEXT
+    private final static String T3COL_8 = "CVV"; //TEXT
+    private final static String T3COL_9 = "Pending"; //INTEGER
 
     /*
         Messages table: Contains all Messages between patients (role 2) and doctors (role 3).
@@ -163,6 +166,9 @@ public class DatabaseHelper extends SQLiteOpenHelper
                 T3COL_4+" TEXT, " +
                 T3COL_5+" REAL, " +
                 T3COL_6+" INTEGER, " +
+                T3COL_7+" TEXT, " +
+                T3COL_8+" TEXT, " +
+                T3COL_9+" INTEGER, " +
                 "CONSTRAINT "+ T3CONST_1 +" FOREIGN KEY ("+T3COL_2+") REFERENCES "+TABLE1_NAME+"("+T1COL_1+")," +
                 "CONSTRAINT "+ T3CONST_2 +" FOREIGN KEY ("+T3COL_6+") REFERENCES "+TABLE5_NAME+"("+T5COL_1+"))";
         db.execSQL(query);
@@ -536,9 +542,18 @@ public class DatabaseHelper extends SQLiteOpenHelper
     public Cursor viewPayment(int x)
     {
         SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT " + T3COL_2 + ", " + T3COL_3 + ", " + T3COL_4 + ", " + T3COL_5  + " FROM " + TABLE3_NAME
+        String query = "SELECT " + T3COL_2 + ", " + T3COL_3 + ", " + T3COL_4 + ", " + T3COL_5  + ", " + T3COL_6  + ", " + T3COL_7  + ", " + T3COL_8 + ", " + T3COL_9  + " FROM " + TABLE3_NAME
                 + " WHERE " + T3COL_1 + "=" + x;
         Log.e("DbviewPayment ", query);
+        return db.rawQuery(query, null);
+    }
+    //get unpayed payment with patient id
+    public Cursor viewPaymentByPatient(int x)
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * FROM " + TABLE3_NAME
+                + " WHERE " + T3COL_2 + "=" + x + " AND " + T3COL_4 + " IS NULL";
+        Log.e("DbviewPaymentPati ", query);
         return db.rawQuery(query, null);
     }
 
@@ -551,6 +566,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
         cv.put(T3COL_3,dueDate);
         cv.put(T3COL_5,amount_num);
         cv.put(T3COL_6,reportID);
+        cv.put(T3COL_9,0);
         Long reply = db.insert(TABLE3_NAME,null,cv);
         //return results
         if(reply > 0)
@@ -599,6 +615,26 @@ public class DatabaseHelper extends SQLiteOpenHelper
             return false;
         }
     }
+
+    //Update pendingStatus to Payment table
+    public boolean updatePaymentWithPending(int payID, int pending){
+        try {
+            SQLiteDatabase db = this.getWritableDatabase();
+
+            ContentValues cv = new ContentValues();
+            cv.put(T3COL_9,pending);
+            int reply = db.update(TABLE3_NAME,cv,T3COL_1+"="+payID,null);
+
+            //return results
+            if(reply > 0)
+            {return true;}
+            else
+            {return false;}
+        } catch (Exception msg) {
+            Log.e("updatePaymentWithPend ", msg.getMessage());
+            return false;
+        }
+    }
     //Update amount to Payment table
     public boolean updatePaymentWithAmount(int payID, int amount){
         try {
@@ -615,6 +651,27 @@ public class DatabaseHelper extends SQLiteOpenHelper
             {return false;}
         } catch (Exception msg) {
             Log.e("updatePaymentWithAmou ", msg.getMessage());
+            return false;
+        }
+    }
+
+    //Update expiry and credit number to Payment table
+    public boolean updatePaymentWithCredit(int payID, String credit, String expiry){
+        try {
+            SQLiteDatabase db = this.getWritableDatabase();
+
+            ContentValues cv = new ContentValues();
+            cv.put(T3COL_7,credit);
+            cv.put(T3COL_8,expiry);
+            cv.put(T3COL_9,1);
+            int reply = db.update(TABLE3_NAME,cv,T3COL_1+"="+payID,null);
+            //return results
+            if(reply > 0)
+            {return true;}
+            else
+            {return false;}
+        } catch (Exception msg) {
+            Log.e("updatePaymentWithCred ", msg.getMessage());
             return false;
         }
     }

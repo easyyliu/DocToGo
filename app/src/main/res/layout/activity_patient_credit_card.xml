@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackgroundActivity"
+    tools:context=".patient_creditCard">
+
+    <fragment
+        android:id="@+id/fragPatientCredit"
+        android:name="com.example.doctogo.patientInformationFragment"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/line7"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/colorLine"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tltPatient_creaditCard" />
+
+    <TextView
+        android:id="@+id/tltPatient_creaditCard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="@string/title_patient_payment"
+        android:textColor="@color/colorTitle"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fragPatientCredit" />
+
+    <TextView
+        android:id="@+id/patient_payment_credit_amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginLeft="48dp"
+        android:layout_marginTop="18dp"
+        android:text="@string/patient_payment_credit_amount"
+        android:textColor="@color/colorText"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/line7" />
+
+    <TextView
+        android:id="@+id/patient_payment_credit_dueDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginLeft="48dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/patient_payment_credit_dueDate"
+        android:textColor="@color/colorText"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/patient_payment_credit_amount" />
+
+    <TextView
+        android:id="@+id/patient_payment_credit_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginLeft="48dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/patient_payment_credit_number"
+        android:textColor="@color/colorText"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/patient_payment_credit_dueDate" />
+
+    <TextView
+        android:id="@+id/patient_payment_credit_expiryDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginLeft="48dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/patient_payment_credit_expiryDate"
+        android:textColor="@color/colorText"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/patient_payment_credit_number" />
+
+    <TextView
+        android:id="@+id/patient_payment_credit_amountTXT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="33dp"
+        android:layout_marginLeft="33dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginRight="50dp"
+        android:background="@color/colorBackgroundActivity"
+        android:ems="6"
+        android:gravity="end"
+        android:text="@string/patient_payment_credit_amountTXT"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@id/patient_payment_credit_amount"
+        app:layout_constraintTop_toBottomOf="@id/line7" />
+
+    <TextView
+        android:id="@+id/patient_payment_credit_dueDateTXT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="68dp"
+        android:layout_marginLeft="68dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginRight="50dp"
+        android:background="@color/colorBackgroundActivity"
+        android:ems="6"
+        android:gravity="end"
+        android:text="@string/patient_payment_credit_dueDateTXT"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@id/patient_payment_credit_dueDate"
+        app:layout_constraintTop_toBottomOf="@id/patient_payment_credit_amountTXT" />
+
+    <EditText
+        android:id="@+id/patient_payment_credit_numberTXT"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="68dp"
+        android:layout_marginLeft="68dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginRight="50dp"
+        android:background="#FFFFFF"
+        android:gravity="end"
+        android:hint="@string/patient_payment_credit_numberTXT"
+        android:inputType="numberSigned|text"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@id/patient_payment_credit_number"
+        app:layout_constraintTop_toBottomOf="@id/patient_payment_credit_dueDateTXT"
+        tools:ignore="Autofill" />
+
+    <EditText
+        android:id="@+id/patient_payment_credit_expiryTXT"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="33dp"
+        android:layout_marginLeft="33dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginRight="50dp"
+        android:background="#FFFFFF"
+        android:gravity="end"
+        android:hint="@string/patient_payment_credit_expiryDateTXT"
+        android:inputType="numberSigned"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@id/patient_payment_credit_expiryDate"
+        app:layout_constraintTop_toBottomOf="@id/patient_payment_credit_numberTXT"
+        tools:ignore="Autofill" />
+
+    <Button
+        android:id="@+id/btn_credit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="161dp"
+        android:layout_marginLeft="161dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="162dp"
+        android:layout_marginRight="162dp"
+        android:text="@string/btn_credit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/patient_payment_credit_expiryDate" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
