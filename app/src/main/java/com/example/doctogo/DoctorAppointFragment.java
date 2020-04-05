@@ -61,7 +61,7 @@ public class DoctorAppointFragment extends Fragment {
             final SharedPreferences storage = getContext().getSharedPreferences("DOCTOGOSESSION", Context.MODE_PRIVATE);
             int userID = storage.getInt("USERID",0);
             dbh = new DatabaseHelper(getContext());
-            Cursor c = dbh.getAppointments(userID);
+            Cursor c = dbh.getAppointmentDoctor(userID);
             if (c.getCount() > 0) {
                 while (c.moveToNext()) {
                     appIdList.add(c.getInt(0));
@@ -88,7 +88,7 @@ public class DoctorAppointFragment extends Fragment {
                 }
                 String[] from = {"txt1", "txt2"};
                 int[] to = {R.id.appointment_listview1, R.id.appointment_listview2};
-                SimpleAdapter adapter = new SimpleAdapter(getActivity(), newList, R.layout.doctor_appointment_listview, from, to);
+                SimpleAdapter adapter = new SimpleAdapter(getActivity(), newList, R.layout.listview_doctor_appointment, from, to);
                 final ListView listView = (ListView) view.findViewById(R.id.AppointmentList);
                 listView.setAdapter(adapter);
                 listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

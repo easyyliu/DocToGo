@@ -14,7 +14,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-public class locate_doctor extends AppCompatActivity {
+public class patient_locate_doctor extends AppCompatActivity {
 
     List<String> doctorName = new ArrayList<>();
     List<String> doctorAddress = new ArrayList<>();
@@ -26,7 +26,7 @@ public class locate_doctor extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_locate_doctor);
+        setContentView(R.layout.activity_patient_locate_doctor);
 
         ListView listViewShowDoctor = findViewById(R.id.listViewShowDoctor);
 

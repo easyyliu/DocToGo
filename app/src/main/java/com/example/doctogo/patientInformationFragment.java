@@ -95,13 +95,13 @@ public class patientInformationFragment extends Fragment {
                                 Toast.makeText(getContext(),"Choose an option",Toast.LENGTH_LONG).show();
                             break;
                             case 1:
-                                startActivity(new Intent(getContext(),locate_doctor.class));
+                                startActivity(new Intent(getContext(),patient_locate_doctor.class));
                             break;
                             case 2:
                                 startActivity(new Intent(getContext(),patient_payment.class));
                             break;
                             case 3:
-                                startActivity(new Intent(getContext(), check_history.class));
+                                startActivity(new Intent(getContext(), patient_check_history.class));
                             break;
                             case 4:
                                 startActivity(new Intent(getContext(),patientUpdateInformation.class));

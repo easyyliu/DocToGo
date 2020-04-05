@@ -54,7 +54,7 @@ public class cashier_list_archive extends AppCompatActivity {
             }
             String[] from = {"txt1", "txt2"};
             int[] to = {R.id.cashier_listview1_reportNum, R.id.cashier_listview1_patient};
-            SimpleAdapter adapter = new SimpleAdapter(getBaseContext(), newList, R.layout.cashier_listview1, from, to);
+            SimpleAdapter adapter = new SimpleAdapter(getBaseContext(), newList, R.layout.listview_cashier1, from, to);
             ListView listView = (ListView) findViewById(R.id.cashier_archive_list);
             listView.setAdapter(adapter);
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

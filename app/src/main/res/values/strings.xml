@@ -148,7 +148,7 @@
     <string name="title_message">MESSAGE</string>
     <string name="doctor_report_descEdit" />
     <string name="txt_AdminDetailAccountMSP">MSP:</string>
-    <string name="txt_MSP" >MSP</string>
+    <string name="txt_MSP">MSP</string>
     <string name="title_patient_msp">MSP:</string>
     <string name="upInfInputAddress" />
     <string name="upInfInputCity" />
@@ -203,7 +203,11 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-
+    <string name="btncheckAppointment">CHECK APPOINTMENT</string>
+    <string name="title_patient_appointment">CHECK APPOINTMENT</string>
+    <string name="listview_patient_appointment_docInfo"></string>
+    <string name="listview_patient_appointment_date"></string>
+    <string name="pop_cancel">Cancel Appointment</string>
 
 
 </resources>

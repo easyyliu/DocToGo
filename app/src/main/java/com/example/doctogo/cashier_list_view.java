@@ -82,7 +82,7 @@ public class cashier_list_view extends AppCompatActivity {
             }
             String[] from = {"txt1", "txt2"};
             int[] to = {R.id.cashier_listview2_patient, R.id.cashier_listview2_due};
-            SimpleAdapter adapter = new SimpleAdapter(getBaseContext(), newList, R.layout.cashier_listview2, from, to);
+            SimpleAdapter adapter = new SimpleAdapter(getBaseContext(), newList, R.layout.listview_cashier2, from, to);
             ListView listView = (ListView) findViewById(R.id.cashier_unpayed_list);
             listView.setAdapter(adapter);
             listView.setAdapter(adapter);

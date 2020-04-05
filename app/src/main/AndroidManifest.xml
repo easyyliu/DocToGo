@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Main2Activity"></activity>
+        <activity android:name=".patient_check_appointment"></activity>
+        <activity android:name=".Main2Activity" />
         <activity android:name=".message" />
         <activity android:name=".DoctorAppointmentFragment" />
         <activity android:name=".cashier_transactions_archive" />
@@ -27,9 +28,9 @@
         <activity android:name=".admin_register" />
         <activity android:name=".admin_main" />
         <activity android:name=".patientUpdateInformation" />
-        <activity android:name=".check_history" />
+        <activity android:name=".patient_check_history" />
         <activity android:name=".patient_payment" />
-        <activity android:name=".locate_doctor" />
+        <activity android:name=".patient_locate_doctor" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

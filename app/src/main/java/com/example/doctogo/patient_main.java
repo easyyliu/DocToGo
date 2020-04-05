@@ -24,6 +24,7 @@ public class patient_main extends AppCompatActivity {
         Button btnLocateDoctor = findViewById(R.id.btnLocateDoctor);
         Button btnPatientPayment = findViewById(R.id.btnPayments);
         Button btnPatientHistory = findViewById(R.id.btncheckhistory);
+        Button btnPatientAppointment = findViewById(R.id.btncheckAppointment);
         Button btnPatientUpdateInfo = findViewById(R.id.btnUpdateInformation);
 
         btnPatientUpdateInfo.setOnClickListener(new View.OnClickListener() {
@@ -37,7 +38,7 @@ public class patient_main extends AppCompatActivity {
         btnPatientHistory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent goToPatientHistory = new Intent(patient_main.this, check_history.class);
+                Intent goToPatientHistory = new Intent(patient_main.this, patient_check_history.class);
                 startActivity(goToPatientHistory);
             }
         });
@@ -50,10 +51,20 @@ public class patient_main extends AppCompatActivity {
             }
         });
 
+        btnPatientAppointment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent goToPatientAppointment = new Intent(patient_main.this,patient_check_appointment.class);
+                startActivity(goToPatientAppointment);
+            }
+        });
+
+
+
         btnLocateDoctor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent goToLocateDoctor = new Intent(patient_main.this,locate_doctor.class);
+                Intent goToLocateDoctor = new Intent(patient_main.this, patient_locate_doctor.class);
                 startActivity(goToLocateDoctor);
             }
         });

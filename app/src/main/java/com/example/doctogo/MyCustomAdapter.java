@@ -67,7 +67,7 @@ public class MyCustomAdapter extends BaseAdapter {
     public View getView(final int position, View convertView, ViewGroup parent) {
         if(convertView == null){
             LayoutInflater layoutInflater = LayoutInflater.from(context);
-            convertView = layoutInflater.inflate(R.layout.listviewdoctor,parent,false);
+            convertView = layoutInflater.inflate(R.layout.listview_doctor,parent,false);
         }
 
 

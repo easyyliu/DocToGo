@@ -52,8 +52,8 @@ public class DoctorFragment extends Fragment {
             TextView doctorAddress = view.findViewById(R.id.doctorAddress);
             TextView doctorEmail = view.findViewById(R.id.doctorEmail);
             ImageButton exitButton = view.findViewById(R.id.btnExitAppDoctor);
-            ImageButton menuButton = view.findViewById(R.id.btnMainMenuDoctor);
-            scrollMenu = view.findViewById(R.id.spScrollMenuDoctor);
+            //ImageButton menuButton = view.findViewById(R.id.btnMainMenuDoctor);
+            //scrollMenu = view.findViewById(R.id.spScrollMenuDoctor);
 
             //Create db(databaseHelper) to execute query to get user information
             db = new DatabaseHelper(getContext());
@@ -78,6 +78,7 @@ public class DoctorFragment extends Fragment {
             });
 
             //Button to display main menu to navigate into patient activities
+            /*
             menuButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -116,7 +117,7 @@ public class DoctorFragment extends Fragment {
                     });
                 }
             });
-
+            */
             //Query get doctor information
             Cursor getInformation = db.getInformationUser(userID);
 

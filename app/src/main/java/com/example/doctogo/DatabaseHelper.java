@@ -386,18 +386,30 @@ public class DatabaseHelper extends SQLiteOpenHelper
 
 
     //Get appointments by doctorID for Doctor
-    public Cursor getAppointments(int doctorID){
+    public Cursor getAppointmentDoctor(int doctorID){
         try {
             SQLiteDatabase db = this.getReadableDatabase();
             String query = "SELECT * FROM " + TABLE2_NAME + " WHERE " + T2COL_3 + "=" + doctorID + " AND " + T2COL_6 + " IS NULL";
-            Log.d("DbgetDocInfo ",query);
+            Log.d("DbgetAppDoctorIDInfo ",query);
             return db.rawQuery(query, null);
         }catch (Exception msg){
-            Log.e("DbgetDocInfo ",msg.getMessage());
+            Log.e("DbgetAppDoctorIDInfo ",msg.getMessage());
             return null;
         }
     }
 
+    //Get appointments by doctorID for Doctor
+    public Cursor getAppointmentPatient(int patiID){
+        try {
+            SQLiteDatabase db = this.getReadableDatabase();
+            String query = "SELECT * FROM " + TABLE2_NAME + " WHERE " + T2COL_2 + "=" + patiID + " AND " + T2COL_6 + " IS NULL";
+            Log.d("DbgetAppPatiIDInfo ",query);
+            return db.rawQuery(query, null);
+        }catch (Exception msg){
+            Log.e("DbgetAppPatiIDInfo ",msg.getMessage());
+            return null;
+        }
+    }
     //Get appointments by appointment_ID
     public Cursor getAppointmentByID(int appointID){
         try {
@@ -409,6 +421,18 @@ public class DatabaseHelper extends SQLiteOpenHelper
             Log.e("DbgetAppInfo ",msg.getMessage());
             return null;
         }
+    }
+
+    //Delete appointment
+    public boolean cancelAppointment(int appointID){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        long reply = db.insert(TABLE2_NAME, T2COL_1 + " = " + appointID,null);
+        //return results
+        if(reply > 0)
+        {return true;}
+        else
+        {return false;}
     }
 
     //Create message row
