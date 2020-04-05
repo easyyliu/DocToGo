@@ -94,6 +94,7 @@ public class patient_check_appointment extends AppCompatActivity {
                                     break;
                                 case R.id.pop_cancel:
                                     dbh.cancelAppointment(a);
+                                    dbh.messagesDel(a);
                                     finish();
                                     startActivity(getIntent());
                                     break;

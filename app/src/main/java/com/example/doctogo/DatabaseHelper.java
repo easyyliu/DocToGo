@@ -427,7 +427,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
     public boolean cancelAppointment(int appointID){
         SQLiteDatabase db = this.getWritableDatabase();
 
-        long reply = db.insert(TABLE2_NAME, T2COL_1 + " = " + appointID,null);
+        long reply = db.delete(TABLE2_NAME, T2COL_1 + " = " + appointID,null);
         //return results
         if(reply > 0)
         {return true;}
