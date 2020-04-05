@@ -33,9 +33,6 @@ public class patient_check_appointment extends AppCompatActivity {
     private int[] doctorIdArr;
     private String[] dateArr;
     private int a;
-    TextView doctorNameTXT;
-
-    TextView dateTXT;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
