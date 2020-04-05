@@ -68,6 +68,7 @@ public class patient_check_appointment extends AppCompatActivity {
                 hm.put("txt2", dateArr[i]);
 
                 newList.add(hm);
+
             }
             String[] from = {"txt1", "txt2"};
             int[] to = {R.id.listview_patient_appointment_docinfo,  R.id.listview_patient_appointment_date};
