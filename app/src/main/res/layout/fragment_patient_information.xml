@@ -114,6 +114,7 @@
         android:background="@color/colorBackgroundActivity"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:visibility="invisible"
         app:srcCompat="@drawable/ic_action_menu" />
 
     <Spinner
