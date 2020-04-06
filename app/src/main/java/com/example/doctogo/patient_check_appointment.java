@@ -25,7 +25,6 @@ public class patient_check_appointment extends AppCompatActivity {
     private String doctorName;
     private String doctorAddress;
     private String doctor;
-    private ArrayList<String> doctorAddressList = new ArrayList<String>();
     private ArrayList<Integer> doctorIdList = new ArrayList<Integer>();
     private ArrayList<String> dateList = new ArrayList<String>();
     private ArrayList<Integer> appIdList = new ArrayList<Integer>();

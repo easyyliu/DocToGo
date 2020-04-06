@@ -97,7 +97,7 @@
     <string name="cashier_listview2_payId" />
     <string name="cashier_listview2_patient" />
     <string name="cashier_listview2_due" />
-    <string name="cashier_unpayedTitle">Select A Transaction</string>
+    <string name="cashier_viewTitle">Select A Transaction</string>
     <string name="cashier_view_TranscationNumber">Transaction#</string>
     <string name="cashier_view_dueDate">Due Date</string>
     <string name="cashier_view_TranscationNumberTxt" />
@@ -227,6 +227,17 @@
     <string name="cashier_view_expiry">Expiry Date:</string>
     <string name="pop_closing_transaction">Closing Transaction</string>
     <string name="pop_decline">Decline Credit</string>
+    <string name="listview_patient_history_date" />
+    <string name="listview_patient_history_docName" />
+    <string name="patient_payment_history_date">Date:</string>
+    <string name="patient_payment_history_dateTXT" />
+    <string name="patient_payment_history_address">Address:</string>
+    <string name="patient_payment_history_addressTXT" />
+    <string name="patient_payment_history_doctorName">Doctor Name:</string>
+    <string name="patient_payment_history_doctorNameTXT" />
+    <string name="patient_payment_history_descTXT" />
+    <string name="patient_payment_history_finalAmount">Amount:</string>
+    <string name="patient_payment_history_finalAmountTXT" />
 
 
 </resources>

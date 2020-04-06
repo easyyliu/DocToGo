@@ -529,6 +529,16 @@ public class DatabaseHelper extends SQLiteOpenHelper
         Log.e("DbviewReport ", query);
         return db.rawQuery(query, null);
     }
+
+    //Get row from the table Report with patientID-filter
+    public Cursor viewReportwithPatient(int x)
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * FROM " + TABLE5_NAME
+                + " WHERE " + T5COL_2 + "=" + x;
+        Log.e("DbviewReportPati ", query);
+        return db.rawQuery(query, null);
+    }
     //Get all rows from payment will transDate-fliter
     public Cursor viewPaymentPayedOrNot(String n)
     {
