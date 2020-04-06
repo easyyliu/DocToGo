@@ -9,8 +9,8 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 
-public class DatabaseHelper extends SQLiteOpenHelper {
-    private static int DATABASE_VERSION = 6;
+class DatabaseHelper extends SQLiteOpenHelper {
+    private static final int DATABASE_VERSION = 6;
     //DATABASE TABLES & COLUMNS
     private static final String DATABASE_NAME = "DocToGoDatabase .db";
     /*
@@ -241,12 +241,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             cv.put(T1COL_4, accRole);
             cv.put(T1COL_8, accEmail.trim());
             cv.put(T1COL_14, 1); //First time login, user HAS to modify account.
-            Long reply = db.insert(TABLE1_NAME, null, cv);
+            long reply = db.insert(TABLE1_NAME, null, cv);
 
             //return results
-            if (reply > 0) {
-                return true;
-            }
+            return reply > 0;
         }
         return false;
     }
@@ -272,14 +270,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cv.put(T1COL_15, accCity);
         cv.put(T1COL_16, accMSP);
         cv.put(T1COL_14, 0);
-        Long reply = db.insert(TABLE1_NAME, null, cv);
+        long reply = db.insert(TABLE1_NAME, null, cv);
 
         //return results
-        if (reply > 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return reply > 0;
     }
 
     //get all accounts (id, name, pass, role) WHERE Role & Username MATCH filter.
@@ -328,11 +322,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             int reply = db.update(TABLE1_NAME, cv, T1COL_1 + "=" + accID, null);
 
             //return results
-            if (reply > 0) {
-                return true;
-            } else {
-                return false;
-            }
+            return reply > 0;
         } catch (Exception msg) {
             Log.e("DbAdminupdInfoUser ", msg.getMessage());
             return false;
@@ -378,14 +368,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cv.put(T2COL_3, doctorID);
         cv.put(T2COL_4, date.trim());
         cv.put(T2COL_5, 30);
-        Long reply = db.insert(TABLE2_NAME, null, cv);
+        long reply = db.insert(TABLE2_NAME, null, cv);
 
         //return results
-        if (reply > 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return reply > 0;
     }
 
 
@@ -429,20 +415,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     //Delete appointment
-    public boolean cancelAppointment(int appointID) {
+    public void cancelAppointment(int appointID) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         long reply = db.delete(TABLE2_NAME, T2COL_1 + " = " + appointID, null);
         //return results
-        if (reply > 0) {
-            return true;
-        } else {
-            return false;
-        }
     }
 
     //Create message row
-    public boolean newMessages(int sender_ID, String context, int appointID) {
+    public void newMessages(int sender_ID, String context, int appointID) {
         SQLiteDatabase db = this.getWritableDatabase();
         //insert into db
         ContentValues cv = new ContentValues();
@@ -452,11 +433,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cv.put(T4COL_5, appointID);
         long reply = db.insert(TABLE4_NAME, null, cv);
         //return results
-        if (reply > 0) {
-            return true;
-        } else {
-            return false;
-        }
 
     }
 
@@ -474,7 +450,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     //set ReportID to appointment
-    public boolean setReportIDtoAppointment(int appointID, int reportID) {
+    public void setReportIDtoAppointment(int appointID, int reportID) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues cv = new ContentValues();
@@ -482,17 +458,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         int reply = db.update(TABLE2_NAME, cv, T2COL_1 + "=" + appointID, null);
 
         //return results
-        if (reply > 0) {
-            return true;
-        } else {
-            return false;
-        }
     }
 
     //delete row from Messages
-    public boolean messagesDel(int appointId) {
+    public void messagesDel(int appointId) {
         SQLiteDatabase db = this.getWritableDatabase();
-        return db.delete(TABLE4_NAME, T4COL_5 + " = " + appointId, null) > 0;
+        db.delete(TABLE4_NAME, T4COL_5 + " = " + appointId, null);
     }
 
     //insert row to report
@@ -505,7 +476,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cv.put(T5COL_4, date);
         cv.put(T5COL_5, desc);
         cv.put(T5COL_7, appointId);
-        Long reply = db.insert(TABLE5_NAME, null, cv);
+        long reply = db.insert(TABLE5_NAME, null, cv);
         //return results
         if (reply > 0) {
             return reply;
@@ -580,7 +551,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cv.put(T3COL_6, reportID);
         cv.put(T3COL_9, 0);
         cv.put(T3COL_10, 0);
-        Long reply = db.insert(TABLE3_NAME, null, cv);
+        long reply = db.insert(TABLE3_NAME, null, cv);
         //return results
         if (reply > 0) {
             return reply;
@@ -591,7 +562,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     //Update dueDate to Payment table
-    public boolean updatePaymentWithdueDate(int payID, String duedate) {
+    public void updatePaymentWithdueDate(int payID, String duedate) {
         try {
             SQLiteDatabase db = this.getWritableDatabase();
 
@@ -600,19 +571,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             int reply = db.update(TABLE3_NAME, cv, T3COL_1 + "=" + payID, null);
 
             //return results
-            if (reply > 0) {
-                return true;
-            } else {
-                return false;
-            }
         } catch (Exception msg) {
             Log.e("updatePaymentWithdue ", msg.getMessage());
-            return false;
         }
     }
 
     //Update TransDate to Payment table
-    public boolean updatePaymentWithtransDate(int payID, String transDate) {
+    public void updatePaymentWithtransDate(int payID, String transDate) {
         try {
             SQLiteDatabase db = this.getWritableDatabase();
 
@@ -621,19 +586,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             int reply = db.update(TABLE3_NAME, cv, T3COL_1 + "=" + payID, null);
 
             //return results
-            if (reply > 0) {
-                return true;
-            } else {
-                return false;
-            }
         } catch (Exception msg) {
             Log.e("updatePaymentWithtrans ", msg.getMessage());
-            return false;
         }
     }
 
     //Update pendingStatus to Payment table
-    public boolean updatePaymentWithPending(int payID, int pending) {
+    public void updatePaymentWithPending(int payID, int pending) {
         try {
             SQLiteDatabase db = this.getWritableDatabase();
 
@@ -642,19 +601,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             int reply = db.update(TABLE3_NAME, cv, T3COL_1 + "=" + payID, null);
 
             //return results
-            if (reply > 0) {
-                return true;
-            } else {
-                return false;
-            }
         } catch (Exception msg) {
             Log.e("updatePaymentWithPend ", msg.getMessage());
-            return false;
         }
     }
 
     //Update amount to Payment table
-    public boolean updatePaymentWithAmount(int payID, int amount) {
+    public void updatePaymentWithAmount(int payID, int amount) {
         try {
             SQLiteDatabase db = this.getWritableDatabase();
 
@@ -663,19 +616,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             int reply = db.update(TABLE3_NAME, cv, T3COL_1 + "=" + payID, null);
 
             //return results
-            if (reply > 0) {
-                return true;
-            } else {
-                return false;
-            }
         } catch (Exception msg) {
             Log.e("updatePaymentWithAmou ", msg.getMessage());
-            return false;
         }
     }
 
     //Update expiry and credit number to Payment table
-    public boolean updatePaymentWithCredit(int payID, String credit, String expiry) {
+    public void updatePaymentWithCredit(int payID, String credit, String expiry) {
         try {
             SQLiteDatabase db = this.getWritableDatabase();
 
@@ -685,19 +632,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             cv.put(T3COL_9, 1);
             int reply = db.update(TABLE3_NAME, cv, T3COL_1 + "=" + payID, null);
             //return results
-            if (reply > 0) {
-                return true;
-            } else {
-                return false;
-            }
         } catch (Exception msg) {
             Log.e("updatePaymentWithCred ", msg.getMessage());
-            return false;
         }
     }
 
     //Update paymentID to Report
-    public boolean updateReportWithPaymentID(int payID, int reportID) {
+    public void updateReportWithPaymentID(int payID, int reportID) {
         try {
             SQLiteDatabase db = this.getWritableDatabase();
 
@@ -706,19 +647,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             int reply = db.update(TABLE5_NAME, cv, T5COL_1 + "=" + reportID, null);
 
             //return results
-            if (reply > 0) {
-                return true;
-            } else {
-                return false;
-            }
         } catch (Exception msg) {
             Log.e("updateReportWithP ", msg.getMessage());
-            return false;
         }
     }
 
     //set reminder
-    public boolean setReminder(int paymentId,int x) {
+    public void setReminder(int paymentId, int x) {
         try {
             SQLiteDatabase db = this.getWritableDatabase();
 
@@ -727,14 +662,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             int reply = db.update(TABLE3_NAME, cv, T3COL_1 + "=" + paymentId, null);
 
             //return results
-            if (reply > 0) {
-                return true;
-            } else {
-                return false;
-            }
         } catch (Exception msg) {
             Log.e("setReminder ", msg.getMessage());
-            return false;
         }
     }
 

@@ -17,7 +17,7 @@ import android.widget.Toast;
 
 public class register extends AppCompatActivity
 {
-    DatabaseHelper dbh = new DatabaseHelper(this);
+    private final DatabaseHelper dbh = new DatabaseHelper(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -87,7 +87,7 @@ public class register extends AppCompatActivity
                 int msp = 0;
                 if(!strMSP.isEmpty())
                 {msp = Integer.parseInt(strMSP);}
-                int role;
+                //int role;
                 /*
                 switch (SPRole.getSelectedItem().toString())
                 {

@@ -18,15 +18,11 @@ import java.util.List;
 
 public class patient_check_history extends AppCompatActivity {
 
-    DatabaseHelper dbh;
-    private ArrayList<String> dateList = new ArrayList<String>();
-    private ArrayList<Integer> doctorIdList = new ArrayList<Integer>();
-    private ArrayList<Integer> reportIdList = new ArrayList<Integer>();
-    private int[] doctorIdArr;
-    private String[] dateArr;
+    private final ArrayList<String> dateList = new ArrayList<>();
+    private final ArrayList<Integer> doctorIdList = new ArrayList<>();
+    private final ArrayList<Integer> reportIdList = new ArrayList<>();
     private int[] reportIdArr;
     private String doctorName;
-    private String date;
     private int r;
 
     @Override
@@ -36,7 +32,7 @@ public class patient_check_history extends AppCompatActivity {
 
         final SharedPreferences storage = getSharedPreferences("DOCTOGOSESSION", Context.MODE_PRIVATE);
         final int userID = storage.getInt("USERID", 0);
-        dbh = new DatabaseHelper(this);
+        DatabaseHelper dbh = new DatabaseHelper(this);
         Cursor c = dbh.viewReportwithPatient(userID);
         if (c.getCount() > 0) {
             while (c.moveToNext()) {
@@ -45,11 +41,11 @@ public class patient_check_history extends AppCompatActivity {
                 dateList.add(c.getString(3));
             }
             reportIdArr = arrListtoarr(reportIdList);
-            doctorIdArr = arrListtoarr(doctorIdList);
-            dateArr = arrStringListtoarr(dateList);
-            List<HashMap<String, String>> newList = new ArrayList<HashMap<String, String>>();
+            int[] doctorIdArr = arrListtoarr(doctorIdList);
+            String[] dateArr = arrStringListtoarr(dateList);
+            List<HashMap<String, String>> newList = new ArrayList<>();
             for (int i = 0; i < reportIdArr.length; i++) {
-                HashMap<String, String> hm = new HashMap<String, String>();
+                HashMap<String, String> hm = new HashMap<>();
                 //use ID find patient's name
                 Cursor u = dbh.getInformationUser(doctorIdArr[i]);
                 if (u.getCount() > 0) {
@@ -57,7 +53,7 @@ public class patient_check_history extends AppCompatActivity {
                         doctorName = "Doctor Name: " + u.getString(4) + " " + u.getString(5);
                     }
                 }
-                date = "Date: " + dateArr[i];
+                String date = "Date: " + dateArr[i];
                 hm.put("txt1", date);
                 hm.put("txt2", doctorName);
 
@@ -80,16 +76,16 @@ public class patient_check_history extends AppCompatActivity {
         }
     }
 
-    public static int[] arrListtoarr(List<Integer> arrList)
+    private static int[] arrListtoarr(List<Integer> arrList)
     {
         int[] arr = new int[arrList.size()];
         for (int i=0; i < arr.length; i++)
         {
-            arr[i] = arrList.get(i).intValue();
+            arr[i] = arrList.get(i);
         }
         return arr;
     }
-    public static String[] arrStringListtoarr(List<String> arrList)
+    private static String[] arrStringListtoarr(List<String> arrList)
     {
         String[] arr2 = new String[arrList.size()];
         for (int i=0; i < arr2.length; i++)

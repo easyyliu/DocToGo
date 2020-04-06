@@ -2,7 +2,6 @@ package com.example.doctogo;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
-import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.database.Cursor;
@@ -23,32 +22,26 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
-public class LocateDoctorAdapter extends BaseAdapter{
+class LocateDoctorAdapter extends BaseAdapter{
 
-    Context context;
-    List<String> doctorName = new ArrayList<>();
-    List<String> doctorAddress = new ArrayList<>();
-    List<String> doctorCity = new ArrayList<>();
-    List<Integer> doctorID = new ArrayList<>();
-    ArrayList<String>dateList = new ArrayList<String>();
-    String[] dateArr;
-    String[] dateTemp;
-    String[] dateTemp2;
-    int userID;
-    String dateSelected = "";
-    String time;
-    DatePickerDialog.OnDateSetListener dListener;
-    TimePickerDialog picker;
-    String setDate;
-    DatabaseHelper dbh;
-    int timeNum;
-    int[] tempArr;
-    String output="";
-    int[] timeSet;
+    private final Context context;
+    private List<String> doctorName = new ArrayList<>();
+    private List<String> doctorAddress = new ArrayList<>();
+    private List<String> doctorCity = new ArrayList<>();
+    private List<Integer> doctorID = new ArrayList<>();
+    private final int userID;
+    //private String dateSelected = "";
+   // String time;
+    private DatePickerDialog.OnDateSetListener dListener;
+    //TimePickerDialog picker;
+    private String setDate;
+    private DatabaseHelper dbh;
+    private String output="";
+    private int[] timeSet;
 
 
-    Calendar today = Calendar.getInstance();
-    Calendar chosenDate = Calendar.getInstance();
+    private final Calendar today = Calendar.getInstance();
+    private final Calendar chosenDate = Calendar.getInstance();
 
     public LocateDoctorAdapter(Context context, List<String> doctorName, List<String> doctorAddress, List<String> doctorCity, List<Integer> doctorID, int userID) {
         this.context = context;
@@ -105,11 +98,11 @@ public class LocateDoctorAdapter extends BaseAdapter{
                         } else {
                             try {
                                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
-                                dateSelected = dateFormat.format(chosenDate.getTime());
+                               // dateSelected = dateFormat.format(chosenDate.getTime());
 
                                 final Calendar calendar = Calendar.getInstance();
-                                int hour = calendar.get(Calendar.HOUR_OF_DAY);
-                                int minutes = calendar.get(Calendar.MINUTE);
+                               // int hour = calendar.get(Calendar.HOUR_OF_DAY);
+                               // int minutes = calendar.get(Calendar.MINUTE);
                                 //
                                 numberPicker(year, month, dayOfMonth, (int)getItemId(position));
                                 /*
@@ -167,7 +160,7 @@ public class LocateDoctorAdapter extends BaseAdapter{
         return convertView;
     }
 
-    public void numberPicker(int year, int month, int dayOfMonth, final int x){
+    private void numberPicker(int year, int month, int dayOfMonth, final int x){
         View view;
         LayoutInflater inflater = LayoutInflater.from(context);
         view = inflater.inflate(R.layout.number_timepicker, null);
@@ -198,36 +191,36 @@ public class LocateDoctorAdapter extends BaseAdapter{
         }
         dbh = new DatabaseHelper(context);
         Cursor c = dbh.getAppointmentDoctor(doctorID.get(x));
-        dateList = new ArrayList<String>();
+        ArrayList<String> dateList = new ArrayList<>();
         if(c.getCount()>0) {
             while (c.moveToNext()) {
                 dateList.add(c.getString(3));
             }
-            dateArr = arrStringListtoarr(dateList);
+            String[] dateArr = arrStringListtoarr(dateList);
             String[] dateTempArr = new String[3];
             String dateTempString;
-            for(int i=0; i< dateArr.length; i++){
-                dateTemp = dateArr[i].split(" ",2);
-                dateTempArr = dateTemp[0].split("-",3);
-                dateTempString = dateTempArr[0]+dateTempArr[1]+dateTempArr[2];
-                if(Integer.parseInt(setTempString) == Integer.parseInt(dateTempString)){
-                    dateTemp2 = dateTemp[1].split(":",2);
-                    timeNum = Integer.parseInt(dateTemp2[0])*2;
-                    if(Integer.parseInt(dateTemp2[1]) > 1){
+            for (String s : dateArr) {
+                String[] dateTemp = s.split(" ", 2);
+                dateTempArr = dateTemp[0].split("-", 3);
+                dateTempString = dateTempArr[0] + dateTempArr[1] + dateTempArr[2];
+                if (Integer.parseInt(setTempString) == Integer.parseInt(dateTempString)) {
+                    String[] dateTemp2 = dateTemp[1].split(":", 2);
+                    int timeNum = Integer.parseInt(dateTemp2[0]) * 2;
+                    if (Integer.parseInt(dateTemp2[1]) > 1) {
                         timeNum++;
                     }
                     a = 0;
-                    if(timeSet.length-1 == 0){
-                        Toast.makeText(context,"Appointment is full",Toast.LENGTH_SHORT).show();
+                    if (timeSet.length - 1 == 0) {
+                        Toast.makeText(context, "Appointment is full", Toast.LENGTH_SHORT).show();
                     }
-                    tempArr = new int[timeSet.length-1];
-                    for(int z=0; z<timeSet.length; z++){
-                        if(timeSet[z]!=timeNum){
-                            tempArr[a] = timeSet[z];
+                    int[] tempArr = new int[timeSet.length - 1];
+                    for (int value : timeSet) {
+                        if (value != timeNum) {
+                            tempArr[a] = value;
                             a++;
                         }
                     }
-                   timeSet = tempArr;
+                    timeSet = tempArr;
                 }
             }
         }
@@ -284,12 +277,12 @@ public class LocateDoctorAdapter extends BaseAdapter{
                 } else {
                     Toast.makeText(context, "Error to book an appointment ", Toast.LENGTH_SHORT).show();
                 }
-                pickerAlert.dismiss();;
+                pickerAlert.dismiss();
             }
         });
     }
 
-    public static String[] arrStringListtoarr(List<String> arrList)
+    private static String[] arrStringListtoarr(List<String> arrList)
     {
         String[] arr2 = new String[arrList.size()];
         for (int i=0; i < arr2.length; i++)

@@ -7,11 +7,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.PopupMenu;
 import android.widget.SimpleAdapter;
 
 import java.util.ArrayList;
@@ -20,24 +18,17 @@ import java.util.List;
 
 public class patient_payment extends AppCompatActivity {
 
-    DatabaseHelper dbh;
+    private final ArrayList<String> dueDateList = new ArrayList<>();
+    private final ArrayList<Integer> paymentIdList = new ArrayList<>();
+    private final ArrayList<Integer> pendingList = new ArrayList<>();
+    private final ArrayList<String> transDateList = new ArrayList<>();
+    private final ArrayList<Integer> amountList = new ArrayList<>();
+    private final ArrayList<Integer> reportIdList = new ArrayList<>();
 
-    private ArrayList<String> dueDateList = new ArrayList<String>();
-    private ArrayList<Integer> paymentIdList = new ArrayList<Integer>();
-    private ArrayList<Integer> pendingList = new ArrayList<Integer>();
-    private ArrayList<String> transDateList = new ArrayList<String>();
-    private ArrayList<Integer> amountList = new ArrayList<Integer>();
-    private ArrayList<Integer> reportIdList = new ArrayList<Integer>();
-
-    private String[] dueDateArr;
-    private String[] transDateArr;
     private int[] pendingArr;
     private int[] paymentIdArr;
-    private int[] amountArr;
-    private int[] reportIdArr;
     private String doctorName;
     private int doctorId;
-    private String info;
     private int payId;
 
 
@@ -48,7 +39,7 @@ public class patient_payment extends AppCompatActivity {
         setContentView(R.layout.activity_patient_payment);
         final SharedPreferences storage = getSharedPreferences("DOCTOGOSESSION", Context.MODE_PRIVATE);
         final int userID = storage.getInt("USERID", 0);
-        dbh = new DatabaseHelper(this);
+        DatabaseHelper dbh = new DatabaseHelper(this);
         Cursor c = dbh.viewPaymentByPatient(userID);
         if (c.getCount() > 0) {
             while (c.moveToNext()) {
@@ -61,12 +52,12 @@ public class patient_payment extends AppCompatActivity {
 
             }
             paymentIdArr = arrListtoarr(paymentIdList);
-            dueDateArr = arrStringListtoarr(dueDateList);
-            transDateArr = arrStringListtoarr(transDateList);
-            amountArr = arrListtoarr(amountList);
-            reportIdArr = arrListtoarr(reportIdList);
+            String[] dueDateArr = arrStringListtoarr(dueDateList);
+            String[] transDateArr = arrStringListtoarr(transDateList);
+            int[] amountArr = arrListtoarr(amountList);
+            int[] reportIdArr = arrListtoarr(reportIdList);
             pendingArr = arrListtoarr(pendingList);
-            List<HashMap<String, String>> newList = new ArrayList<HashMap<String, String>>();
+            List<HashMap<String, String>> newList = new ArrayList<>();
             for (int i = 0; i < paymentIdArr.length; i++) {
                 Cursor z = dbh.viewReport(reportIdArr[i]);
                 if (z.getCount() > 0) {
@@ -80,10 +71,10 @@ public class patient_payment extends AppCompatActivity {
                         }
                     }
                 }
-                info = doctorName + "\n" + "Due Date: " + dueDateArr[i] + "\n" + "Amount: "+amountArr[i];
+                String info = doctorName + "\n" + "Due Date: " + dueDateArr[i] + "\n" + "Amount: " + amountArr[i];
 
                 if(transDateArr[i]==null || transDateArr[i].isEmpty()) {
-                    HashMap<String, String> hm = new HashMap<String, String>();
+                    HashMap<String, String> hm = new HashMap<>();
                     hm.put("txt1", info);
                     if (pendingArr[i] == 0) {
                         hm.put("txt2", "New");
@@ -125,16 +116,16 @@ public class patient_payment extends AppCompatActivity {
         super.onRestart();
         this.recreate();
     }
-    public static int[] arrListtoarr(List<Integer> arrList)
+    private static int[] arrListtoarr(List<Integer> arrList)
     {
         int[] arr = new int[arrList.size()];
         for (int i=0; i < arr.length; i++)
         {
-            arr[i] = arrList.get(i).intValue();
+            arr[i] = arrList.get(i);
         }
         return arr;
     }
-    public static String[] arrStringListtoarr(List<String> arrList)
+    private static String[] arrStringListtoarr(List<String> arrList)
     {
         String[] arr2 = new String[arrList.size()];
         for (int i=0; i < arr2.length; i++)

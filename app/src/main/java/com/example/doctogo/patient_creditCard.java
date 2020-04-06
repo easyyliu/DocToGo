@@ -12,7 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class patient_creditCard extends AppCompatActivity {
-    DatabaseHelper dbh;
+    private DatabaseHelper dbh;
     private int paymentID;
     private int amount;
     private String dueDate;
@@ -38,7 +38,7 @@ public class patient_creditCard extends AppCompatActivity {
                     amount = c.getInt(3);
                     dueDate = c.getString(1);
                 }
-                amountTXT.setText("$"+Integer.toString(amount));
+                amountTXT.setText("$"+ amount);
                 dueDateTXT.setText(dueDate);
             }
         }

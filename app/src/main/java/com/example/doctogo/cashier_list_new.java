@@ -16,18 +16,15 @@ import java.util.HashMap;
 import java.util.List;
 
 public class cashier_list_new extends AppCompatActivity {
-    DatabaseHelper dbh;
-    private ArrayList<Integer> ReportList = new ArrayList<Integer>();
-    private ArrayList<Integer> patiIDList = new ArrayList<Integer>();
+    private final ArrayList<Integer> ReportList = new ArrayList<>();
+    private final ArrayList<Integer> patiIDList = new ArrayList<>();
     private int[] reportID;
-    private int[] patientsId;
-    private TextView title;
     private String patientName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cashier_list_new);
-        dbh = new DatabaseHelper(this);
+        DatabaseHelper dbh = new DatabaseHelper(this);
         Cursor c = dbh.viewReportWithoutPaymentId();
         if(c.getCount()>0) {
             while (c.moveToNext()) {
@@ -35,11 +32,11 @@ public class cashier_list_new extends AppCompatActivity {
                 patiIDList.add(c.getInt(1));
             }
             reportID = arrListtoarr(ReportList);
-            patientsId = arrListtoarr(patiIDList);
-            List<HashMap<String, String>> newList = new ArrayList<HashMap<String, String>>();
+            int[] patientsId = arrListtoarr(patiIDList);
+            List<HashMap<String, String>> newList = new ArrayList<>();
 
             for (int i = 0; i < reportID.length; i++) {
-                HashMap<String, String> hm = new HashMap<String, String>();
+                HashMap<String, String> hm = new HashMap<>();
                 hm.put("txt1", Integer.toString(reportID[i]));
                 //use ID find patient's name
                 Cursor u = dbh.getInformationUser(patientsId[i]);
@@ -67,16 +64,16 @@ public class cashier_list_new extends AppCompatActivity {
             });
         }
         else{
-            title = (TextView)findViewById(R.id.cashier_newReportTitle);
+            TextView title = (TextView) findViewById(R.id.cashier_newReportTitle);
             title.setText("Empty, all new transactions have been processed");
         }
     }
-    public static int[] arrListtoarr(List<Integer> arrList)
+    private static int[] arrListtoarr(List<Integer> arrList)
     {
         int[] arr = new int[arrList.size()];
         for (int i=0; i < arr.length; i++)
         {
-            arr[i] = arrList.get(i).intValue();
+            arr[i] = arrList.get(i);
         }
         return arr;
     }

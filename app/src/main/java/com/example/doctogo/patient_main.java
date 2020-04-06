@@ -13,14 +13,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class patient_main extends AppCompatActivity {
 
-    patientInformationFragment updateFragment = patientInformationFragment.newInstance();
-    FragmentManager manager = getSupportFragmentManager();
-    DatabaseHelper dbh;
+    private patientInformationFragment updateFragment = patientInformationFragment.newInstance();
+    private final FragmentManager manager = getSupportFragmentManager();
     private String sentenceForReminder="";
 
     @Override
@@ -81,10 +77,10 @@ public class patient_main extends AppCompatActivity {
         });
     }
 
-    public void showReminder() {
+    private void showReminder() {
         final SharedPreferences storage = getSharedPreferences("DOCTOGOSESSION", Context.MODE_PRIVATE);
         final int userID = storage.getInt("USERID", 0);
-        dbh = new DatabaseHelper(this);
+        DatabaseHelper dbh = new DatabaseHelper(this);
         Cursor c = dbh.checkReminder(userID);
         int i =0;
         if (c.getCount() > 0) {
@@ -105,15 +101,6 @@ public class patient_main extends AppCompatActivity {
     }
 
 
-    public static int[] arrListtoarr(List<Integer> arrList)
-    {
-        int[] arr = new int[arrList.size()];
-        for (int i=0; i < arr.length; i++)
-        {
-            arr[i] = arrList.get(i).intValue();
-        }
-        return arr;
-    }
 
     @Override
     protected void onStart() {

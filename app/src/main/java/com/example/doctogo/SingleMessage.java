@@ -2,8 +2,8 @@ package com.example.doctogo;
 
 public class SingleMessage {
 
-    public boolean position;
-    public String message;
+    public final boolean position;
+    public final String message;
 
     public SingleMessage(boolean position, String message) {
         super();

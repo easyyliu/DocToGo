@@ -16,7 +16,6 @@
     <string name="doctorReportTitle">REPORTS</string>
     <string name="patientLocationDocName">Doctor Name: </string>
     <string name="patientLocationDocAddress">Address: </string>
-    <string name="patientLocationDocCity">City:</string>
     <string name="patientLocationBtnApp">Book an appointment</string>
     <string name="button_patient_locate_doctor">LOCATE DOCTOR</string>
     <string name="button_patient_payments">PAYMENTS</string>
@@ -39,7 +38,6 @@
     <string name="btn_logout">Log Out</string>
     <string name="btn_cashier_addNewTransaction">New Transaction</string>
     <string name="btn_cashier_viewTransactions">View Pending Transactions</string>
-    <string name="cashierNameTxt" />
     <string name="txt_FirstName">First Name</string>
     <string name="txt_Username">Username*</string>
     <string name="txt_Password">Password*</string>
@@ -69,12 +67,9 @@
     <string name="txt_AdminDetailAccountWeight">Weight:</string>
     <string name="txt_AdminDetailAccountQualifications">Qualifications:</string>
     <string name="txt_Qualifications">Qualifications</string>
-    <string name="cashier_new_patientTxt"></string>
+    <string name="cashier_new_patientTxt" />
     <string name="cashier_newNameTxt">Patient Name</string>
-    <string name="add_image">An add image to show the list of patients</string>
     <string name="cashier_patient_desc" />
-    <string name="cashier_new_select_date">Select Date</string>
-    <string name="cashier_new_due_date" />
     <string name="cashier_new_patient_payment_amount" />
     <string name="cashier_newReportTitle">Select A Report</string>
     <string name="cashier_newReportTxt">Report#</string>
@@ -82,19 +77,15 @@
     <string name="cashier_newDoctor">Doctor Name</string>
     <string name="cashier_new_doctorTxt" />
     <string name="cashier_newAddress">Patient Address</string>
-    <string name="cashier_newDetail">Case detail</string>
     <string name="cashier_new_amount">Amount</string>
     <string name="cashier_new_dueDate">Due Date</string>
-    <string name="cashier_new_dueDateTxt" />
     <string name="cashier_new_btn_done">Done</string>
-    <string name="cashier_new_btn_cancel">Cancel</string>
     <string name="cashier_newDescription">Case Description</string>
     <string name="cashier_patient_address" />
     <string name="cashier_newCaseDate">Date</string>
     <string name="cashier_new_CaseDateTxt" />
     <string name="cashier_listview1_reportNum" />
     <string name="cashier_listview1_patient" />
-    <string name="cashier_listview2_payId" />
     <string name="cashier_listview2_patient" />
     <string name="cashier_listview2_due" />
     <string name="cashier_viewTitle">Select A Transaction</string>
@@ -108,41 +99,27 @@
     <string name="pop_amount">Amount</string>
     <string name="pop_date">Due Date</string>
     <string name="btn_cashier_historyTransaction">"Transaction Archive "</string>
-    <string name="pop_trans_date">Transaction Date</string>
     <string name="cashier_archiveTitle">Archive Transactions List</string>
     <string name="cashier_archive_transID">Transaction#</string>
     <string name="cashier_transDate">Transaction Date</string>
-    <string name="cashier_archive_descTxt" />
     <string name="cashier_archive_addressTxt" />
     <string name="cashier_archive_transIDTxt" />
     <string name="cashier_archive_transDateTxt" />
     <string name="cashier_archive_patientTxt" />
-    <string name="cashier_archive_doctorTxt" />
     <string name="cashier_archive_amountTxt" />
     <string name="cashier_listview1_arrow"><![CDATA[>]]></string>
     <string name="cashier_listview2_arrow"><![CDATA[>]]></string>
     <string name="cashier_new_trans_dueDate">Click to enter</string>
     <string name="appointment_listview1" />
     <string name="appointment_listview2" />
-    <string name="title_doctor_comments">COMMENTS</string>
     <string name="pop_message">Message</string>
     <string name="pop_report">Report</string>
-    <string name="title_message_activity">WELCOME</string>
-    <string name="title_message_name">Patient Name:</string>
-    <string name="title_message_age">Age:</string>
-    <string name="title_message_docName">Doctor Name:</string>
     <string name="singleMessage" />
     <string name="message_sendImg">image of Sending icon</string>
     <string name="message_inputText" />
-    <string name="button_patient_Message">MESSAGE</string>
     <string name="doctor_report_patientName">Patient Name:</string>
     <string name="doctor_report_age">Age:</string>
     <string name="doctor_report_date">Date:</string>
-    <string name="doctor_report_dateTxt" />
-    <string name="doctor_report_patientNameTxt" />
-    <string name="doctor_report_ageTxt" />
-    <string name="doctor_report_doctorName">Doctor Name:</string>
-    <string name="doctor_report_doctorNameTxt" />
     <string name="doctor_report_desc">Case Description/Comment:</string>
     <string name="btn_doctor_report_submit">SUBMIT</string>
     <string name="title_message">MESSAGE</string>
@@ -164,54 +141,13 @@
     <string name="cashier_archive_mspTxt" />
     <string name="title_cashier">WELCOME</string>
     <string name="name_cashier" />
-
-    <!--PLACEHOLDERS. REMOVE AT FINAL-->
-    <string-array name="Roles">
-        <item>Admin</item>
-        <item>Patient</item>
-        <item>Doctor</item>
-        <item>Cashier</item>
-    </string-array>
-    <string-array name="FilterRoles">
-        <item>All</item>
-        <item>Admin</item>
-        <item>Patient</item>
-        <item>Doctor</item>
-        <item>Cashier</item>
-    </string-array>
-
-    <string-array name="Genders">
-        <item>Male</item>
-        <item>Female</item>
-        <item>Other</item>
-        <item>Undefined</item>
-    </string-array>
-
-    <string-array name="ScrollMenu">
-        <item></item>
-        <item>Locate Doctor</item>
-        <item>Payments</item>
-        <item>Check History</item>
-        <item>Update Personal Information</item>
-    </string-array>
-
-    <string-array name="ScrollDoctor">
-        <item></item>
-        <item>View Appointments</item>
-        <item>Reports</item>
-    </string-array>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="btncheckAppointment">CHECK APPOINTMENT</string>
     <string name="title_patient_appointment">CHECK APPOINTMENT</string>
-    <string name="listview_patient_appointment_docInfo"></string>
-    <string name="listview_patient_appointment_date"></string>
+    <string name="listview_patient_appointment_docInfo" />
+    <string name="listview_patient_appointment_date" />
     <string name="pop_cancel">Cancel Appointment</string>
-    <string name="listview_patient_payment_due_amount" />
     <string name="listview_patient_patient_appointInformation" />
     <string name="listview_patient_payment_pending" />
-    <string name="patient_payment_credit">Credit Card#:</string>
     <string name="patient_payment_credit_amount">Amount:</string>
     <string name="patient_payment_credit_dueDate">Due Date:</string>
     <string name="patient_payment_credit_number">Credit Card#:</string>
@@ -240,6 +176,40 @@
     <string name="patient_payment_history_finalAmountTXT" />
     <string name="cashier_new_btn_msp">MSP CHECKED</string>
     <string name="pop_MSP_reCheck">MSP ReChecked</string>
+    <string name="btnExitAppDoctorDesc">Image of Exit button</string>
+    <string name="btnMainMenuDoctorDesc">Image of Main Menu button</string>
+
+    <!--PLACEHOLDERS. REMOVE AT FINAL-->
+    <string-array name="Roles">
+        <item>Admin</item>
+        <item>Patient</item>
+        <item>Doctor</item>
+        <item>Cashier</item>
+    </string-array>
+    <string-array name="FilterRoles">
+        <item>All</item>
+        <item>Admin</item>
+        <item>Patient</item>
+        <item>Doctor</item>
+        <item>Cashier</item>
+    </string-array>
+
+    <string-array name="Genders">
+        <item>Male</item>
+        <item>Female</item>
+        <item>Other</item>
+        <item>Undefined</item>
+    </string-array>
+
+    <string-array name="ScrollMenu">
+        <item />
+        <item>Locate Doctor</item>
+        <item>Payments</item>
+        <item>Check History</item>
+        <item>Update Personal Information</item>
+    </string-array>
+
+
 
 
 </resources>

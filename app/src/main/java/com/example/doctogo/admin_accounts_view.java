@@ -22,7 +22,7 @@ import java.util.ArrayList;
 
 public class admin_accounts_view extends AppCompatActivity
 {
-    DatabaseHelper dbh = new DatabaseHelper(this);
+    private final DatabaseHelper dbh = new DatabaseHelper(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -116,7 +116,7 @@ public class admin_accounts_view extends AppCompatActivity
             while(c.moveToNext())
             {
                 //add to list
-                account ac = new account(c.getInt(0),c.getString(1),c.getString(2),c.getString(3),c.getInt(3));
+                account ac = new account(c.getInt(0), c.getString(1), c.getString(2), c.getString(3), c.getInt(3));
                 accList.add(ac);
             }
         }
@@ -141,16 +141,16 @@ public class admin_accounts_view extends AppCompatActivity
     }
 
     //account model
-    private class account
+    private static class account
     {
-        public int id;
-        public String userName;
-        public String fullName;
-        public String role;
+        final int id;
+        final String userName;
+        final String fullName;
+        String role;
 
         //constructor requires input id, firstname, lastname and role (int)
         //role will be automatically translated into string.
-        public account(int id, String username, String firstName, String lastName, int roleInt)
+        account(int id, String username, String firstName, String lastName, int roleInt)
         {
             this.id = id;
             this.userName = (username);

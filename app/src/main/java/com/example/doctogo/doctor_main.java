@@ -4,29 +4,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.database.Cursor;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Gravity;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TableLayout;
-import android.widget.TableRow;
-import android.widget.TextView;
-import android.widget.Toast;
 
 public class doctor_main extends AppCompatActivity {
 
-    DoctorFragment updateFragmentDoctor = DoctorFragment.newInstance();
-    DoctorAppointFragment updateFragmentAppoint = DoctorAppointFragment.newInstance();
-    FragmentManager manager = getSupportFragmentManager();
-    FragmentManager manager2 = getSupportFragmentManager();
-    TextView column1, column2, column3;
-    TableLayout mainTable;
-    TableRow row;
-    DatabaseHelper db = new DatabaseHelper(this);
+    private DoctorFragment updateFragmentDoctor = DoctorFragment.newInstance();
+    private DoctorAppointFragment updateFragmentAppoint = DoctorAppointFragment.newInstance();
+    private final FragmentManager manager = getSupportFragmentManager();
+    private final FragmentManager manager2 = getSupportFragmentManager();
+    //TextView column1, column2, column3;
+    //TableLayout mainTable;
+    //TableRow row;
+    //DatabaseHelper db = new DatabaseHelper(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

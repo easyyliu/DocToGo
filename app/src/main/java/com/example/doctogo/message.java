@@ -15,18 +15,12 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 
-import java.util.ArrayList;
-
 public class message extends AppCompatActivity {
 
-    DatabaseHelper dbh;
+    private DatabaseHelper dbh;
     private ListView listView;
-    private ImageView imageView;
-    private MessageAdapter adapter;
     private EditText messageEditText;
     private int appointment_ID;
-    private int sender_id;
-    private String context;
     private int userID;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +29,7 @@ public class message extends AppCompatActivity {
 
         SharedPreferences storageIDUser = getApplicationContext().getSharedPreferences("DOCTOGOSESSION", Context.MODE_PRIVATE);
         userID = storageIDUser.getInt("USERID",0);
-        imageView = (ImageView) findViewById(R.id.message_sendImg);
+        ImageView imageView = (ImageView) findViewById(R.id.message_sendImg);
         listView = (ListView) findViewById(R.id.message_listview);
 
         refreshMessageList();
@@ -49,15 +43,18 @@ public class message extends AppCompatActivity {
     }
 
     private void refreshMessageList(){
-        adapter = new MessageAdapter(getApplicationContext(), R.layout.single_message);
+        MessageAdapter adapter = new MessageAdapter(getApplicationContext(), R.layout.single_message);
         listView.setAdapter(adapter);
         messageEditText = (EditText) findViewById(R.id.message_inputText);
         messageEditText.setOnKeyListener(new View.OnKeyListener() {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if ((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
-                    return sendChatMessage();
+                    sendChatMessage();
+                    return true;
                 }
-                return false;
+                else {
+                    return false;
+                }
             }
         });
 
@@ -68,8 +65,8 @@ public class message extends AppCompatActivity {
             Cursor c = dbh.viewMessagesByAppointID(appointment_ID);
             if (c.getCount() > 0) {
                 while (c.moveToNext()) {
-                    sender_id = c.getInt(1);
-                    context = c.getString(2);
+                    int sender_id = c.getInt(1);
+                    String context = c.getString(2);
                     if(userID == sender_id){
                         adapter.add(new SingleMessage(false, context));
                     }
@@ -96,7 +93,7 @@ public class message extends AppCompatActivity {
             }
         },5000);
     }
-    private boolean sendChatMessage(){
+    private void sendChatMessage(){
         String cont = messageEditText.getText().toString().trim();
         if(!cont.isEmpty()) {
             dbh = new DatabaseHelper(this);
@@ -104,7 +101,7 @@ public class message extends AppCompatActivity {
         }
         messageEditText.setText("");
         refreshMessageList();
-        return true;
+
     }
 
 

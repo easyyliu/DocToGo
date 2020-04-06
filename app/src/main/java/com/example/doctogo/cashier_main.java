@@ -12,7 +12,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class cashier_main extends AppCompatActivity {
-    private String cashier_name;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,7 +27,7 @@ public class cashier_main extends AppCompatActivity {
         Cursor c = dbh.getInformationUser(userID);
         if (c.getCount() > 0) {
             while (c.moveToNext()) {
-                cashier_name = "Hi, " + c.getString(4) + " " + c.getString(5);
+                String cashier_name = "Hi, " + c.getString(4) + " " + c.getString(5);
                 name_cashier.setText(cashier_name);
             }
         }

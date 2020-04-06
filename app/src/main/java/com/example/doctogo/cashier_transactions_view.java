@@ -24,29 +24,23 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class cashier_transactions_view extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
-    DatabaseHelper dbh;
-    DatabaseHelper dbh2;
+    private DatabaseHelper dbh;
+    private DatabaseHelper dbh2;
     private int paymentId;
     private int patientId;
     private String due_Date;
-    private String datePicker;
     private int amount;
-    private String patientName;
     private int tempAmount;
-    private Date tempDate;
     private Date currDate;
     private String date;
-    private int selectOptionNumber;
-    private int msp;
-    private String curr;
     private String creditNum;
     private String expiryDate;
+    //private int selectOptionNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cashier_transactions_view);
-        DatabaseHelper dbh = new DatabaseHelper(this);
         final TextView transNumberTxt = (TextView)findViewById(R.id.cashier_view_TranscationNumberTxt);
         final TextView dueTxt = (TextView)findViewById(R.id.cashier_view_dueDateTxt);
         final TextView patientTxt = (TextView)findViewById(R.id.cashier_view_patientNameTxt);
@@ -54,7 +48,7 @@ public class cashier_transactions_view extends AppCompatActivity implements Date
         final TextView mspTxt = (TextView)findViewById(R.id.cashier_view_mspTxt);
         final TextView creditTxt = (TextView)findViewById(R.id.cashier_view_creditTxt);
         final TextView expiryTxt = (TextView)findViewById(R.id.cashier_view_expiryTxt);
-        Button btn_Edit = (Button)findViewById(R.id.cashier_view_Edit);
+        //Button btn_Edit = (Button)findViewById(R.id.cashier_view_Edit);
         Button btn_reminder = (Button)findViewById(R.id.cashier_view_send_Reminder);
         Intent intent = getIntent();
         if(intent!=null) {
@@ -71,20 +65,20 @@ public class cashier_transactions_view extends AppCompatActivity implements Date
                 }
                 transNumberTxt.setText(Integer.toString(patientId));
                 dueTxt.setText(due_Date);
-                amountTxt.setText("$"+Integer.toString(amount));
+                amountTxt.setText("$"+ amount);
                 creditTxt.setText(creditNum);
                 expiryTxt.setText(expiryDate);
                 Cursor u = dbh.getInformationUser(patientId);
                 if(u.getCount()>0){
                     while(u.moveToNext()){
-                        patientName = u.getString(4) +" "+ u.getString(5);
+                        String patientName = u.getString(4) + " " + u.getString(5);
                         patientTxt.setText(patientName);
-                        msp = u.getInt(15);
+                        int msp = u.getInt(15);
                         if(msp == 0 ){
                             mspTxt.setText("n/a");
                         }
                         else {
-                            mspTxt.setText(msp);
+                            mspTxt.setText(Integer.toString(msp));
                         }
                     }
                 }
@@ -140,11 +134,11 @@ public class cashier_transactions_view extends AppCompatActivity implements Date
     }
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-        datePicker = month+1 + "-" + dayOfMonth + "-" + year;
+        String datePicker = month + 1 + "-" + dayOfMonth + "-" + year;
         SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
         try {
             //if(selectOptionNumber == 1) {
-                tempDate = dateFormat.parse(datePicker);
+            Date tempDate = dateFormat.parse(datePicker);
                 currDate = Calendar.getInstance().getTime();
                 if (!(tempDate.compareTo(currDate) > 0)) {
                     Toast.makeText(getBaseContext(), "please select the a due date later than today", Toast.LENGTH_SHORT).show();
@@ -186,7 +180,7 @@ public class cashier_transactions_view extends AppCompatActivity implements Date
     private void closing(){
         SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
         Date date = new Date();
-       curr = dateFormat.format(date);
+        String curr = dateFormat.format(date);
         dbh = new DatabaseHelper(this);
             dbh.updatePaymentWithtransDate(paymentId, curr);
             onBackPressed();

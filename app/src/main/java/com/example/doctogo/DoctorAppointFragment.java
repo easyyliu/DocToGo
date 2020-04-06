@@ -29,13 +29,10 @@ import java.util.List;
  */
 public class DoctorAppointFragment extends Fragment {
 
-    DatabaseHelper dbh;
-    private ArrayList<Integer> appIdList = new ArrayList<Integer>();
-    private ArrayList<Integer> patiIdList = new ArrayList<Integer>();
-    private ArrayList<String> dateList = new ArrayList<String>();
+    private final ArrayList<Integer> appIdList = new ArrayList<>();
+    private final ArrayList<Integer> patiIdList = new ArrayList<>();
+    private final ArrayList<String> dateList = new ArrayList<>();
     private int[] appIdArr;
-    private int[] patientsIdArr;
-    private String[] dateArr;
     private String patientNames;
     private int a;
 
@@ -48,8 +45,7 @@ public class DoctorAppointFragment extends Fragment {
      * @return A new instance of fragment DoctorAppointFragment.
      */
     public static DoctorAppointFragment newInstance() {
-        DoctorAppointFragment fragment = new DoctorAppointFragment();
-        return fragment;
+        return new DoctorAppointFragment();
     }
 
     @Override
@@ -60,7 +56,7 @@ public class DoctorAppointFragment extends Fragment {
         try{
             final SharedPreferences storage = getContext().getSharedPreferences("DOCTOGOSESSION", Context.MODE_PRIVATE);
             int userID = storage.getInt("USERID",0);
-            dbh = new DatabaseHelper(getContext());
+            DatabaseHelper dbh = new DatabaseHelper(getContext());
             Cursor c = dbh.getAppointmentDoctor(userID);
             if (c.getCount() > 0) {
                 while (c.moveToNext()) {
@@ -69,11 +65,11 @@ public class DoctorAppointFragment extends Fragment {
                     dateList.add(c.getString(3));
                 }
                 appIdArr = arrListtoarr(appIdList);
-                patientsIdArr = arrListtoarr(patiIdList);
-                dateArr = arrStringListtoarr(dateList);
-                List<HashMap<String, String>> newList = new ArrayList<HashMap<String, String>>();
+                int[] patientsIdArr = arrListtoarr(patiIdList);
+                String[] dateArr = arrStringListtoarr(dateList);
+                List<HashMap<String, String>> newList = new ArrayList<>();
                 for (int i = 0; i < appIdArr.length; i++) {
-                    HashMap<String, String> hm = new HashMap<String, String>();
+                    HashMap<String, String> hm = new HashMap<>();
                     //use ID find patient's name
                     Cursor u = dbh.getInformationUser(patientsIdArr[i]);
                     if (u.getCount() > 0) {
@@ -134,16 +130,16 @@ public class DoctorAppointFragment extends Fragment {
 
         return view;
     }
-    public static int[] arrListtoarr(List<Integer> arrList)
+    private static int[] arrListtoarr(List<Integer> arrList)
     {
         int[] arr = new int[arrList.size()];
         for (int i=0; i < arr.length; i++)
         {
-            arr[i] = arrList.get(i).intValue();
+            arr[i] = arrList.get(i);
         }
         return arr;
     }
-    public static String[] arrStringListtoarr(List<String> arrList)
+    private static String[] arrStringListtoarr(List<String> arrList)
     {
         String[] arr2 = new String[arrList.size()];
         for (int i=0; i < arr2.length; i++)

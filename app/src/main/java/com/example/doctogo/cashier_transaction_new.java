@@ -21,22 +21,18 @@ import java.util.Date;
 
 public class cashier_transaction_new extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
     private EditText dueDateTxt;
-    int reportNum;
-    int patient_ID;
-    int doctor_ID;
-    int amount_due;
-    String due_Date;
-    String amount_dueString;
-    String date;
-    String desc;
-    String patientName;
-    String doctorName;
-    String address;
-    int MSP;
-    DatabaseHelper dbh;
-    java.util.Date due_DateFormat;
-    java.util.Date current_DateFormat;
-    Date currdate;
+    private int reportNum;
+    private int patient_ID;
+    private int doctor_ID;
+    private int amount_due;
+    private String due_Date;
+    private String amount_dueString;
+    private String date;
+    private String desc;
+    private DatabaseHelper dbh;
+    private java.util.Date due_DateFormat;
+    private java.util.Date current_DateFormat;
+    private Date currdate;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,23 +68,23 @@ public class cashier_transaction_new extends AppCompatActivity implements DatePi
             Cursor u = dbh.getInformationUser(patient_ID);
             if(u.getCount()>0){
                 while(u.moveToNext()){
-                    patientName = u.getString(4) +" "+ u.getString(5);
-                    address = u.getString(6)+", "+u.getString(14);
-                    MSP = u.getInt(15);
+                    String patientName = u.getString(4) + " " + u.getString(5);
+                    String address = u.getString(6) + ", " + u.getString(14);
+                    int MSP = u.getInt(15);
                     patientTxt.setText(patientName);
                     addressTxt.setText(address);
                     if(MSP == 0) {
                         MSPTxt.setText("n/a");
                     }
                     else{
-                        MSPTxt.setText(MSP);
+                        MSPTxt.setText(Integer.toString(MSP));
                     }
                 }
             }
             Cursor v = dbh.getInformationUser(doctor_ID);
             if(v.getCount()>0){
                 while(v.moveToNext()){
-                    doctorName = v.getString(4) +" "+ v.getString(5);
+                    String doctorName = v.getString(4) + " " + v.getString(5);
                     doctorTxt.setText(doctorName);
                 }
             }

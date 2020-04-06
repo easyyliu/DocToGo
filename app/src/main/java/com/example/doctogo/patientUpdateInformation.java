@@ -15,9 +15,9 @@ import android.widget.EditText;
 
 public class patientUpdateInformation extends AppCompatActivity {
 
-    DatabaseHelper db = new DatabaseHelper(this);
-    patientInformationFragment updateFragment;
-    FragmentManager manager;
+    private final DatabaseHelper db = new DatabaseHelper(this);
+    private patientInformationFragment updateFragment;
+    private FragmentManager manager;
     private int msp;
 
     @Override
