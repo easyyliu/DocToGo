@@ -251,14 +251,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return false;
     }
 
-    public boolean normalRegister(String accName, String accPass, int accRole, String accEmail, String accFirstName, String accLastName, String accAddress, String accCity, String accPhone, int accWeight, String accGender, int accAge, int accMSP) {
+    //public boolean normalRegister(String accName, String accPass, int accRole, String accEmail, String accFirstName, String accLastName, String accAddress, String accCity, String accPhone, int accWeight, String accGender, int accAge, int accMSP) {
+    public boolean normalRegister(String accName, String accPass,  String accEmail, String accFirstName, String accLastName, String accAddress, String accCity, String accPhone, int accWeight, String accGender, int accAge, int accMSP) {
         accCity = (accCity.trim().toLowerCase()).substring(0, 1).toUpperCase() + (accCity.trim().toLowerCase()).substring(1);
         SQLiteDatabase db = this.getWritableDatabase();
         //insert into db
         ContentValues cv = new ContentValues();
         cv.put(T1COL_2, accName.trim());
         cv.put(T1COL_3, accPass.trim());
-        cv.put(T1COL_4, accRole);
+        //cv.put(T1COL_4, accRole);
+        cv.put(T1COL_4, 2);
         cv.put(T1COL_5, accFirstName.trim());
         cv.put(T1COL_6, accLastName.trim());
         cv.put(T1COL_7, accAddress.trim());

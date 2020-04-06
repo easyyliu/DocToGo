@@ -29,7 +29,7 @@
         android:importantForAutofill="no"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_RegisterUsername" />
-
+<!--
     <Spinner
         android:id="@+id/spn_RegisterRole"
         android:layout_width="match_parent"
@@ -38,7 +38,7 @@
         android:entries="@array/Roles"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_RegisterPassword" />
-
+-->
     <Spinner
         android:id="@+id/spn_RegisterGender"
         android:layout_width="match_parent"
@@ -57,7 +57,11 @@
         android:hint="@string/txt_FirstName"
         android:importantForAutofill="no"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spn_RegisterRole" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_RegisterPassword"/>
+        <!--
+        app:layout_constraintTop_toBottomOf="@+id/spn_RegisterRole"
+         -->
+
 
     <EditText
         android:id="@+id/txt_RegisterLastname"
