@@ -165,7 +165,10 @@
     <string name="title_cashier">WELCOME</string>
     <string name="name_cashier" />
 
-    <!--PLACEHOLDERS. REMOVE AT FINAL-->
+    <string-array name="RegisterRoles">
+        <item>Patient</item>
+        <item>Doctor</item>
+    </string-array>
     <string-array name="Roles">
         <item>Admin</item>
         <item>Patient</item>
