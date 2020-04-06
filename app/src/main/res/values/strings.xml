@@ -238,6 +238,8 @@
     <string name="patient_payment_history_descTXT" />
     <string name="patient_payment_history_finalAmount">Amount:</string>
     <string name="patient_payment_history_finalAmountTXT" />
+    <string name="cashier_new_btn_msp">MSP CHECKED</string>
+    <string name="pop_MSP_reCheck">MSP ReChecked</string>
 
 
 </resources>

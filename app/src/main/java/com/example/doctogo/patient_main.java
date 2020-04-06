@@ -1,18 +1,28 @@
 package com.example.doctogo;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class patient_main extends AppCompatActivity {
 
     patientInformationFragment updateFragment = patientInformationFragment.newInstance();
     FragmentManager manager = getSupportFragmentManager();
+    DatabaseHelper dbh;
+    private String sentenceForReminder="";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,6 +31,7 @@ public class patient_main extends AppCompatActivity {
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.add(R.id.fragMainMenu, updateFragment).commit();
 
+        showReminder();
         Button btnLocateDoctor = findViewById(R.id.btnLocateDoctor);
         Button btnPatientPayment = findViewById(R.id.btnPayments);
         Button btnPatientHistory = findViewById(R.id.btncheckhistory);
@@ -68,6 +79,40 @@ public class patient_main extends AppCompatActivity {
                 startActivity(goToLocateDoctor);
             }
         });
+    }
+
+    public void showReminder() {
+        final SharedPreferences storage = getSharedPreferences("DOCTOGOSESSION", Context.MODE_PRIVATE);
+        final int userID = storage.getInt("USERID", 0);
+        dbh = new DatabaseHelper(this);
+        Cursor c = dbh.checkReminder(userID);
+        int i =0;
+        if (c.getCount() > 0) {
+            while (c.moveToNext()) {
+                i++;
+                sentenceForReminder += i + ". Due Date: " + c.getString(1) + "\n";
+                dbh.setReminder(c.getInt(0),0);
+                AlertDialog.Builder reminder = new AlertDialog.Builder(this);
+                if (i == 1) {
+                    reminder.setTitle("You have total " + i + " reminder\n");
+                } else {
+                    reminder.setTitle("You have total " + i + " reminders\n");
+                }
+                reminder.setMessage(sentenceForReminder);
+                reminder.create().show();
+            }
+        }
+    }
+
+
+    public static int[] arrListtoarr(List<Integer> arrList)
+    {
+        int[] arr = new int[arrList.size()];
+        for (int i=0; i < arr.length; i++)
+        {
+            arr[i] = arrList.get(i).intValue();
+        }
+        return arr;
     }
 
     @Override

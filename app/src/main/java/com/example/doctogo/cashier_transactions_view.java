@@ -25,6 +25,7 @@ import java.util.Date;
 
 public class cashier_transactions_view extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
     DatabaseHelper dbh;
+    DatabaseHelper dbh2;
     private int paymentId;
     private int patientId;
     private String due_Date;
@@ -34,6 +35,7 @@ public class cashier_transactions_view extends AppCompatActivity implements Date
     private int tempAmount;
     private Date tempDate;
     private Date currDate;
+    private String date;
     private int selectOptionNumber;
     private int msp;
     private String curr;
@@ -87,7 +89,16 @@ public class cashier_transactions_view extends AppCompatActivity implements Date
                     }
                 }
             }
+            btn_reminder.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dbh2 = new DatabaseHelper(getBaseContext());
+                    dbh2.setReminder(paymentId,1);
+                    Toast.makeText(getBaseContext(),"Reminder sent to patient", Toast.LENGTH_SHORT).show();
+                }
+            });
         }
+
     }
     public void Popup(View v) {
         PopupMenu popup = new PopupMenu(this, v);
@@ -110,6 +121,15 @@ public class cashier_transactions_view extends AppCompatActivity implements Date
                         break;
                     case R.id.pop_decline:
                         decline();
+                        break;
+                    case R.id.pop_MSP_reCheck:
+                        dbh = new DatabaseHelper(getBaseContext());
+                        currDate = Calendar.getInstance().getTime();
+                        SimpleDateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+                        date = df.format(currDate);
+                        dbh.updatePaymentWithtransDate(paymentId,date);
+                        dbh.updatePaymentWithAmount(paymentId,0);
+                        onBackPressed();
                         break;
                     default:
                         return false;

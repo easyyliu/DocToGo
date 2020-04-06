@@ -9,8 +9,7 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 
-public class DatabaseHelper extends SQLiteOpenHelper
-{
+public class DatabaseHelper extends SQLiteOpenHelper {
     private static int DATABASE_VERSION = 6;
     //DATABASE TABLES & COLUMNS
     private static final String DATABASE_NAME = "DocToGoDatabase .db";
@@ -80,8 +79,9 @@ public class DatabaseHelper extends SQLiteOpenHelper
     private final static String T3COL_5 = "Amount";       //REAL
     private final static String T3COL_6 = "Report_ID";    //INTEGER FOREIGN KEY
     private final static String T3COL_7 = "Credit_Card_num"; //TEXT
-    private final static String T3COL_8 = "CVV"; //TEXT
+    private final static String T3COL_8 = "Expiry_Date"; //TEXT
     private final static String T3COL_9 = "Pending"; //INTEGER
+    private final static String T3COL_10 = "Reminder"; //INTEGER
 
     /*
         Messages table: Contains all Messages between patients (role 2) and doctors (role 3).
@@ -117,101 +117,99 @@ public class DatabaseHelper extends SQLiteOpenHelper
     private final static String T5COL_6 = "Payment_ID";    //INTEGER FOREIGN KEY
     private final static String T5COL_7 = "Appointments_ID"; //INTEGER FOREIGN KEY
 
-    public DatabaseHelper(@Nullable Context context)
-    {
+    public DatabaseHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     @Override
-    public void onCreate(SQLiteDatabase db)
-    {
+    public void onCreate(SQLiteDatabase db) {
         //SQL Create tables
         //users
         String query = "CREATE TABLE " + TABLE1_NAME +
-                "("+ T1COL_1 +" INTEGER PRIMARY KEY, " +
-                T1COL_2 +" TEXT, " +
-                T1COL_3+" TEXT, " +
-                T1COL_4+" INTEGER, " +
-                T1COL_5+" TEXT, " +
-                T1COL_6+" TEXT, " +
-                T1COL_7+" TEXT, " +
-                T1COL_8+" TEXT, " +
-                T1COL_9+" TEXT, " +
-                T1COL_10+" TEXT, " +
-                T1COL_11+" INTEGER, " +
-                T1COL_12+" TEXT, " +
-                T1COL_13+" INTEGER, " +
-                T1COL_14+" INTEGER, " +
-                T1COL_15+" TEXT, " +
-                T1COL_16+" INTEGER)";
+                "(" + T1COL_1 + " INTEGER PRIMARY KEY, " +
+                T1COL_2 + " TEXT, " +
+                T1COL_3 + " TEXT, " +
+                T1COL_4 + " INTEGER, " +
+                T1COL_5 + " TEXT, " +
+                T1COL_6 + " TEXT, " +
+                T1COL_7 + " TEXT, " +
+                T1COL_8 + " TEXT, " +
+                T1COL_9 + " TEXT, " +
+                T1COL_10 + " TEXT, " +
+                T1COL_11 + " INTEGER, " +
+                T1COL_12 + " TEXT, " +
+                T1COL_13 + " INTEGER, " +
+                T1COL_14 + " INTEGER, " +
+                T1COL_15 + " TEXT, " +
+                T1COL_16 + " INTEGER)";
         db.execSQL(query);
 
         //appointments
         query = "CREATE TABLE " + TABLE2_NAME +
-                "("+T2COL_1+" INTEGER PRIMARY KEY, " +
-                T2COL_2+" INTEGER, " +
-                T2COL_3+" INTEGER, " +
-                T2COL_4+" TEXT, " +
-                T2COL_5+" INTEGER, " +
-                T2COL_6+" INTEGER, " +
-                "CONSTRAINT "+ T2CONST_1 +" FOREIGN KEY ("+T2COL_2+") REFERENCES "+TABLE1_NAME+"("+T1COL_1+")," +
-                "CONSTRAINT "+ T2CONST_2 +" FOREIGN KEY ("+T2COL_3+") REFERENCES "+TABLE1_NAME+"("+T1COL_1+"))";
+                "(" + T2COL_1 + " INTEGER PRIMARY KEY, " +
+                T2COL_2 + " INTEGER, " +
+                T2COL_3 + " INTEGER, " +
+                T2COL_4 + " TEXT, " +
+                T2COL_5 + " INTEGER, " +
+                T2COL_6 + " INTEGER, " +
+                "CONSTRAINT " + T2CONST_1 + " FOREIGN KEY (" + T2COL_2 + ") REFERENCES " + TABLE1_NAME + "(" + T1COL_1 + ")," +
+                "CONSTRAINT " + T2CONST_2 + " FOREIGN KEY (" + T2COL_3 + ") REFERENCES " + TABLE1_NAME + "(" + T1COL_1 + "))";
         db.execSQL(query);
 
         //payments
         query = "CREATE TABLE " + TABLE3_NAME +
-                "("+T3COL_1+" INTEGER PRIMARY KEY, " +
-                T3COL_2+" INTEGER, " +
-                T3COL_3+" TEXT, " +
-                T3COL_4+" TEXT, " +
-                T3COL_5+" REAL, " +
-                T3COL_6+" INTEGER, " +
-                T3COL_7+" TEXT, " +
-                T3COL_8+" TEXT, " +
-                T3COL_9+" INTEGER, " +
-                "CONSTRAINT "+ T3CONST_1 +" FOREIGN KEY ("+T3COL_2+") REFERENCES "+TABLE1_NAME+"("+T1COL_1+")," +
-                "CONSTRAINT "+ T3CONST_2 +" FOREIGN KEY ("+T3COL_6+") REFERENCES "+TABLE5_NAME+"("+T5COL_1+"))";
+                "(" + T3COL_1 + " INTEGER PRIMARY KEY, " +
+                T3COL_2 + " INTEGER, " +
+                T3COL_3 + " TEXT, " +
+                T3COL_4 + " TEXT, " +
+                T3COL_5 + " REAL, " +
+                T3COL_6 + " INTEGER, " +
+                T3COL_7 + " TEXT, " +
+                T3COL_8 + " TEXT, " +
+                T3COL_9 + " INTEGER, " +
+                T3COL_10 + " INTEGER, " +
+                "CONSTRAINT " + T3CONST_1 + " FOREIGN KEY (" + T3COL_2 + ") REFERENCES " + TABLE1_NAME + "(" + T1COL_1 + ")," +
+                "CONSTRAINT " + T3CONST_2 + " FOREIGN KEY (" + T3COL_6 + ") REFERENCES " + TABLE5_NAME + "(" + T5COL_1 + "))";
         db.execSQL(query);
 
         //
         // Messages
         query = "CREATE TABLE " + TABLE4_NAME +
-                "("+T4COL_1+" INTEGER PRIMARY KEY, " +
-                T4COL_2+" INTEGER, " +
-                T4COL_3+" TEXT, " +
-                T4COL_4+" INTEGER, "+
-                T4COL_5+" INTEGER, " +
-                "CONSTRAINT "+ T4CONST_1 +" FOREIGN KEY ("+T4COL_5+") REFERENCES "+TABLE2_NAME+"("+T2COL_1+")," +
-                "CONSTRAINT "+ T4CONST_2 +" FOREIGN KEY ("+T4COL_2+") REFERENCES "+TABLE1_NAME+"("+T1COL_1+"))";
+                "(" + T4COL_1 + " INTEGER PRIMARY KEY, " +
+                T4COL_2 + " INTEGER, " +
+                T4COL_3 + " TEXT, " +
+                T4COL_4 + " INTEGER, " +
+                T4COL_5 + " INTEGER, " +
+                "CONSTRAINT " + T4CONST_1 + " FOREIGN KEY (" + T4COL_5 + ") REFERENCES " + TABLE2_NAME + "(" + T2COL_1 + ")," +
+                "CONSTRAINT " + T4CONST_2 + " FOREIGN KEY (" + T4COL_2 + ") REFERENCES " + TABLE1_NAME + "(" + T1COL_1 + "))";
         db.execSQL(query);
 
         //reports
         query = "CREATE TABLE " + TABLE5_NAME +
-                "("+T5COL_1+" INTEGER PRIMARY KEY, " +
-                T5COL_2+" INTEGER, " +
-                T5COL_3+" INTEGER, " +
-                T5COL_4+" TEXT, " +
-                T5COL_5+" TEXT, " +
-                T5COL_6+" INTEGER, " +
-                T5COL_7+" INTEGER, " +
-                "CONSTRAINT "+ T5CONST_1 +" FOREIGN KEY ("+T5COL_2+") REFERENCES "+TABLE1_NAME+"("+T1COL_1+")," +
-                "CONSTRAINT "+ T5CONST_2 +" FOREIGN KEY ("+T5COL_3+") REFERENCES "+TABLE1_NAME+"("+T1COL_1+")" +
-                "," + "CONSTRAINT "+ T5CONST_3 +" FOREIGN KEY ("+T5COL_7+") REFERENCES "+TABLE2_NAME+"("+T2COL_1+")" +
+                "(" + T5COL_1 + " INTEGER PRIMARY KEY, " +
+                T5COL_2 + " INTEGER, " +
+                T5COL_3 + " INTEGER, " +
+                T5COL_4 + " TEXT, " +
+                T5COL_5 + " TEXT, " +
+                T5COL_6 + " INTEGER, " +
+                T5COL_7 + " INTEGER, " +
+                "CONSTRAINT " + T5CONST_1 + " FOREIGN KEY (" + T5COL_2 + ") REFERENCES " + TABLE1_NAME + "(" + T1COL_1 + ")," +
+                "CONSTRAINT " + T5CONST_2 + " FOREIGN KEY (" + T5COL_3 + ") REFERENCES " + TABLE1_NAME + "(" + T1COL_1 + ")" +
+                "," + "CONSTRAINT " + T5CONST_3 + " FOREIGN KEY (" + T5COL_7 + ") REFERENCES " + TABLE2_NAME + "(" + T2COL_1 + ")" +
                 ")";
         db.execSQL(query);
 
         //insert a single admin account for access
         ContentValues cv = new ContentValues();
-        cv.put(T1COL_2,"root");
-        cv.put(T1COL_3,"pass");
-        cv.put(T1COL_8,"localhost");
-        cv.put(T1COL_4,1);
-        db.insert(TABLE1_NAME,null,cv);
+        cv.put(T1COL_2, "root");
+        cv.put(T1COL_3, "pass");
+        cv.put(T1COL_8, "localhost");
+        cv.put(T1COL_4, 1);
+        db.insert(TABLE1_NAME, null, cv);
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase db, int i, int i1)
-    {
+    public void onUpgrade(SQLiteDatabase db, int i, int i1) {
         //Drop tables if exists
         //ORDER IS IMPORTANT! Watch constraints.
         db.execSQL("DROP TABLE IF EXISTS " + TABLE4_NAME);
@@ -223,119 +221,116 @@ public class DatabaseHelper extends SQLiteOpenHelper
     }
 
     //login user function: find matching username + password.
-    public Cursor loginUser(String user, String pass)
-    {
+    public Cursor loginUser(String user, String pass) {
         SQLiteDatabase db = this.getWritableDatabase();
-        String query = "SELECT "+T1COL_1+", "+T1COL_4+" FROM "+TABLE1_NAME+
-                " WHERE "+T1COL_2+"=?  AND "+T1COL_3+"= ? ";
-        return db.rawQuery(query,new String[]{user,pass});
+        String query = "SELECT " + T1COL_1 + ", " + T1COL_4 + " FROM " + TABLE1_NAME +
+                " WHERE " + T1COL_2 + "=?  AND " + T1COL_3 + "= ? ";
+        return db.rawQuery(query, new String[]{user, pass});
     }
 
 
-    public boolean adminRegister(String accName, String accPass, int accRole, String accEmail)
-    {
+    public boolean adminRegister(String accName, String accPass, int accRole, String accEmail) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         //validation: ROLE MUST BE 1-4!
-        if(accRole > 0 && accRole < 5)
-        {
+        if (accRole > 0 && accRole < 5) {
             //accRole acceptable, insert into db
             ContentValues cv = new ContentValues();
-            cv.put(T1COL_2,accName.trim());
-            cv.put(T1COL_3,accPass.trim());
-            cv.put(T1COL_4,accRole);
-            cv.put(T1COL_8,accEmail.trim());
-            cv.put(T1COL_14,1); //First time login, user HAS to modify account.
-            Long reply = db.insert(TABLE1_NAME,null,cv);
+            cv.put(T1COL_2, accName.trim());
+            cv.put(T1COL_3, accPass.trim());
+            cv.put(T1COL_4, accRole);
+            cv.put(T1COL_8, accEmail.trim());
+            cv.put(T1COL_14, 1); //First time login, user HAS to modify account.
+            Long reply = db.insert(TABLE1_NAME, null, cv);
 
             //return results
-            if(reply > 0)
-            {return true;}
+            if (reply > 0) {
+                return true;
+            }
         }
         return false;
     }
 
-    public boolean normalRegister(String accName, String accPass, int accRole, String accEmail, String accFirstName, String accLastName, String accAddress, String accCity, String accPhone, int accWeight, String accGender, int accAge, int accMSP)
-    {
-        accCity = (accCity.trim().toLowerCase()).substring(0,1).toUpperCase() + (accCity.trim().toLowerCase()).substring(1);
+    public boolean normalRegister(String accName, String accPass, int accRole, String accEmail, String accFirstName, String accLastName, String accAddress, String accCity, String accPhone, int accWeight, String accGender, int accAge, int accMSP) {
+        accCity = (accCity.trim().toLowerCase()).substring(0, 1).toUpperCase() + (accCity.trim().toLowerCase()).substring(1);
         SQLiteDatabase db = this.getWritableDatabase();
         //insert into db
         ContentValues cv = new ContentValues();
-        cv.put(T1COL_2,accName.trim());
-        cv.put(T1COL_3,accPass.trim());
-        cv.put(T1COL_4,accRole);
-        cv.put(T1COL_5,accFirstName.trim());
-        cv.put(T1COL_6,accLastName.trim());
-        cv.put(T1COL_7,accAddress.trim());
-        cv.put(T1COL_8,accEmail);
-        cv.put(T1COL_9,accPhone.trim());
-        cv.put(T1COL_11,accWeight);
-        cv.put(T1COL_12,accGender);
-        cv.put(T1COL_13,accAge);
-        cv.put(T1COL_15,accCity);
-        cv.put(T1COL_16,accMSP);
-        cv.put(T1COL_14,0);
-        Long reply = db.insert(TABLE1_NAME,null,cv);
+        cv.put(T1COL_2, accName.trim());
+        cv.put(T1COL_3, accPass.trim());
+        cv.put(T1COL_4, accRole);
+        cv.put(T1COL_5, accFirstName.trim());
+        cv.put(T1COL_6, accLastName.trim());
+        cv.put(T1COL_7, accAddress.trim());
+        cv.put(T1COL_8, accEmail);
+        cv.put(T1COL_9, accPhone.trim());
+        cv.put(T1COL_11, accWeight);
+        cv.put(T1COL_12, accGender);
+        cv.put(T1COL_13, accAge);
+        cv.put(T1COL_15, accCity);
+        cv.put(T1COL_16, accMSP);
+        cv.put(T1COL_14, 0);
+        Long reply = db.insert(TABLE1_NAME, null, cv);
 
         //return results
-        if(reply > 0)
-        {return true;}
-        else
-        {return false;}
+        if (reply > 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     //get all accounts (id, name, pass, role) WHERE Role & Username MATCH filter.
-    public Cursor viewAllAccounts(String usernameFilter, String roleFilter)
-    {
+    public Cursor viewAllAccounts(String usernameFilter, String roleFilter) {
         SQLiteDatabase db = this.getWritableDatabase();
-        String query = "SELECT "+T1COL_1+", "+T1COL_2+", "+T1COL_5+", "+T1COL_6+", "+T1COL_4+ " FROM "+TABLE1_NAME
-                +" WHERE " + T1COL_4 + roleFilter
-                +" AND " + T1COL_2 + usernameFilter;
+        String query = "SELECT " + T1COL_1 + ", " + T1COL_2 + ", " + T1COL_5 + ", " + T1COL_6 + ", " + T1COL_4 + " FROM " + TABLE1_NAME
+                + " WHERE " + T1COL_4 + roleFilter
+                + " AND " + T1COL_2 + usernameFilter;
         Log.e("DbAdminViewAll ", query);
-        return db.rawQuery(query,null);
+        return db.rawQuery(query, null);
     }
 
     //Get information from TABLE1_NAME to show in patient activities
-    public Cursor getInformationUser(int userId)
-    {
+    public Cursor getInformationUser(int userId) {
 
         try {
             SQLiteDatabase db = this.getReadableDatabase();
             String query = "SELECT * FROM " + TABLE1_NAME + " WHERE " + T1COL_1 + " = " + userId;
-            Log.d("DbgetInformationUser ",query);
+            Log.d("DbgetInformationUser ", query);
             return db.rawQuery(query, null);
-        }catch (Exception msg){
-            Log.e("DbgetInformationUser ",msg.getMessage());
+        } catch (Exception msg) {
+            Log.e("DbgetInformationUser ", msg.getMessage());
             return null;
         }
     }
 
     //update an account from admin perspective
-    public boolean adminUpdate(int accID, String accName, String accPass, String accEmail, String accFirstName, String accLastName, String accAddress, String accCity, String accPhone, int accWeight, String accQualifications,  String accGender, int accAge, int accMSP) {
+    public boolean adminUpdate(int accID, String accName, String accPass, String accEmail, String accFirstName, String accLastName, String accAddress, String accCity, String accPhone, int accWeight, String accQualifications, String accGender, int accAge, int accMSP) {
         try {
-            accCity = (accCity.trim().toLowerCase()).substring(0,1).toUpperCase() + (accCity.trim().toLowerCase()).substring(1);
+            accCity = (accCity.trim().toLowerCase()).substring(0, 1).toUpperCase() + (accCity.trim().toLowerCase()).substring(1);
             SQLiteDatabase db = this.getWritableDatabase();
             //insert into db
             ContentValues cv = new ContentValues();
-            cv.put(T1COL_2,accName.trim());
-            cv.put(T1COL_3,accPass.trim());
-            cv.put(T1COL_5,accFirstName.trim());
-            cv.put(T1COL_6,accLastName.trim());
-            cv.put(T1COL_7,accAddress.trim());
-            cv.put(T1COL_8,accEmail.trim());
-            cv.put(T1COL_9,accPhone.trim());
-            cv.put(T1COL_11,accWeight);
-            cv.put(T1COL_12,accGender);
-            cv.put(T1COL_13,accAge);
-            cv.put(T1COL_15,accCity);
-            cv.put(T1COL_16,accMSP);
-            int reply = db.update(TABLE1_NAME,cv,T1COL_1+"="+accID,null);
+            cv.put(T1COL_2, accName.trim());
+            cv.put(T1COL_3, accPass.trim());
+            cv.put(T1COL_5, accFirstName.trim());
+            cv.put(T1COL_6, accLastName.trim());
+            cv.put(T1COL_7, accAddress.trim());
+            cv.put(T1COL_8, accEmail.trim());
+            cv.put(T1COL_9, accPhone.trim());
+            cv.put(T1COL_11, accWeight);
+            cv.put(T1COL_12, accGender);
+            cv.put(T1COL_13, accAge);
+            cv.put(T1COL_15, accCity);
+            cv.put(T1COL_16, accMSP);
+            int reply = db.update(TABLE1_NAME, cv, T1COL_1 + "=" + accID, null);
 
             //return results
-            if(reply > 0)
-            {return true;}
-            else
-            {return false;}
+            if (reply > 0) {
+                return true;
+            } else {
+                return false;
+            }
         } catch (Exception msg) {
             Log.e("DbAdminupdInfoUser ", msg.getMessage());
             return false;
@@ -344,152 +339,158 @@ public class DatabaseHelper extends SQLiteOpenHelper
 
     //Update Patient Information
 //    public Cursor updateInformationUser(int userId,String address,String email,String phone,int weight){
-        public Cursor updateInformationUser(int userId,String address,String city,String email,String phone,int weight, int msp){
+    public Cursor updateInformationUser(int userId, String address, String city, String email, String phone, int weight, int msp) {
         try {
-            city = (city.trim().toLowerCase()).substring(0,1).toUpperCase() + (city.trim().toLowerCase()).substring(1);
+            city = (city.trim().toLowerCase()).substring(0, 1).toUpperCase() + (city.trim().toLowerCase()).substring(1);
             SQLiteDatabase db = this.getWritableDatabase();
             String query = "UPDATE " + TABLE1_NAME + " SET " + T1COL_7 + "=" + "'" + address.trim() + "'," + T1COL_8 + "=" + "'" + email.trim() + "',"
-                    + T1COL_9 + "=" + "'" + phone.trim() + "'," + T1COL_11 + "=" + "'" + weight + "'," + T1COL_16 + "=" + "'" + msp + "'," + T1COL_15 + "=" + "'" + city + "'"+ " WHERE " + T1COL_1 + "=" + userId;
-            Log.d("DbupdInfoUser ",query);
+                    + T1COL_9 + "=" + "'" + phone.trim() + "'," + T1COL_11 + "=" + "'" + weight + "'," + T1COL_16 + "=" + "'" + msp + "'," + T1COL_15 + "=" + "'" + city + "'" + " WHERE " + T1COL_1 + "=" + userId;
+            Log.d("DbupdInfoUser ", query);
             return db.rawQuery(query, null);
-        }catch (Exception msg){
-            Log.e("DbupdInfoUser ",msg.getMessage());
+        } catch (Exception msg) {
+            Log.e("DbupdInfoUser ", msg.getMessage());
             return null;
         }
     }
 
     //Search for Doctor
-    public Cursor searchDoctor(String city){
+    public Cursor searchDoctor(String city) {
         try {
-            city = (city.trim().toLowerCase()).substring(0,1).toUpperCase() + (city.trim().toLowerCase()).substring(1);
+            city = (city.trim().toLowerCase()).substring(0, 1).toUpperCase() + (city.trim().toLowerCase()).substring(1);
             SQLiteDatabase db = this.getReadableDatabase();
             String query = "SELECT * FROM " + TABLE1_NAME + " WHERE " + T1COL_4 + "=3" + " AND " + T1COL_15 + " LIKE '%" + city + "%'";
-            Log.d("DbgetDocInfo ",query);
+            Log.d("DbgetDocInfo ", query);
             return db.rawQuery(query, null);
-        }catch (Exception msg){
-            Log.e("DbgetDocInfo ",msg.getMessage());
+        } catch (Exception msg) {
+            Log.e("DbgetDocInfo ", msg.getMessage());
             return null;
         }
     }
 
     //Insert info into appointments table
-    public boolean bookAppointment(int patientID,int doctorID,String date){
-             SQLiteDatabase db = this.getWritableDatabase();
-            //Insert info into Appointments Table
-            ContentValues cv = new ContentValues();
-            cv.put(T2COL_2,patientID);
-            cv.put(T2COL_3,doctorID);
-            cv.put(T2COL_4,date.trim());
-            cv.put(T2COL_5,30);
-            Long reply = db.insert(TABLE2_NAME,null,cv);
+    public boolean bookAppointment(int patientID, int doctorID, String date) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        //Insert info into Appointments Table
+        ContentValues cv = new ContentValues();
+        cv.put(T2COL_2, patientID);
+        cv.put(T2COL_3, doctorID);
+        cv.put(T2COL_4, date.trim());
+        cv.put(T2COL_5, 30);
+        Long reply = db.insert(TABLE2_NAME, null, cv);
 
-            //return results
-            if(reply > 0)
-            {return true;}
-            else
-            {return false;}
+        //return results
+        if (reply > 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 
     //Get appointments by doctorID for Doctor
-    public Cursor getAppointmentDoctor(int doctorID){
+    public Cursor getAppointmentDoctor(int doctorID) {
         try {
             SQLiteDatabase db = this.getReadableDatabase();
             String query = "SELECT * FROM " + TABLE2_NAME + " WHERE " + T2COL_3 + "=" + doctorID + " AND " + T2COL_6 + " IS NULL";
-            Log.d("DbgetAppDoctorIDInfo ",query);
+            Log.d("DbgetAppDoctorIDInfo ", query);
             return db.rawQuery(query, null);
-        }catch (Exception msg){
-            Log.e("DbgetAppDoctorIDInfo ",msg.getMessage());
+        } catch (Exception msg) {
+            Log.e("DbgetAppDoctorIDInfo ", msg.getMessage());
             return null;
         }
     }
 
     //Get appointments by doctorID for Doctor
-    public Cursor getAppointmentPatient(int patiID){
+    public Cursor getAppointmentPatient(int patiID) {
         try {
             SQLiteDatabase db = this.getReadableDatabase();
             String query = "SELECT * FROM " + TABLE2_NAME + " WHERE " + T2COL_2 + "=" + patiID + " AND " + T2COL_6 + " IS NULL";
-            Log.d("DbgetAppPatiIDInfo ",query);
+            Log.d("DbgetAppPatiIDInfo ", query);
             return db.rawQuery(query, null);
-        }catch (Exception msg){
-            Log.e("DbgetAppPatiIDInfo ",msg.getMessage());
+        } catch (Exception msg) {
+            Log.e("DbgetAppPatiIDInfo ", msg.getMessage());
             return null;
         }
     }
+
     //Get appointments by appointment_ID
-    public Cursor getAppointmentByID(int appointID){
+    public Cursor getAppointmentByID(int appointID) {
         try {
             SQLiteDatabase db = this.getReadableDatabase();
             String query = "SELECT * FROM " + TABLE2_NAME + " WHERE " + T2COL_1 + "=" + appointID;
-            Log.d("DbgetAppInfo ",query);
+            Log.d("DbgetAppInfo ", query);
             return db.rawQuery(query, null);
-        }catch (Exception msg){
-            Log.e("DbgetAppInfo ",msg.getMessage());
+        } catch (Exception msg) {
+            Log.e("DbgetAppInfo ", msg.getMessage());
             return null;
         }
     }
 
     //Delete appointment
-    public boolean cancelAppointment(int appointID){
+    public boolean cancelAppointment(int appointID) {
         SQLiteDatabase db = this.getWritableDatabase();
 
-        long reply = db.delete(TABLE2_NAME, T2COL_1 + " = " + appointID,null);
+        long reply = db.delete(TABLE2_NAME, T2COL_1 + " = " + appointID, null);
         //return results
-        if(reply > 0)
-        {return true;}
-        else
-        {return false;}
+        if (reply > 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     //Create message row
-    public boolean newMessages(int sender_ID, String context, int appointID){
+    public boolean newMessages(int sender_ID, String context, int appointID) {
         SQLiteDatabase db = this.getWritableDatabase();
         //insert into db
         ContentValues cv = new ContentValues();
-        cv.put(T4COL_2,sender_ID);
-        cv.put(T4COL_3,context);
-        cv.put(T4COL_4,"strftime('%s','now')");
-        cv.put(T4COL_5,appointID);
-        long reply = db.insert(TABLE4_NAME,null,cv);
+        cv.put(T4COL_2, sender_ID);
+        cv.put(T4COL_3, context);
+        cv.put(T4COL_4, "strftime('%s','now')");
+        cv.put(T4COL_5, appointID);
+        long reply = db.insert(TABLE4_NAME, null, cv);
         //return results
-        if(reply > 0)
-        {return true;}
-        else
-        {return false;}
+        if (reply > 0) {
+            return true;
+        } else {
+            return false;
+        }
 
     }
+
     //Get messages by appointment_ID
-    public Cursor viewMessagesByAppointID(int appointID){
+    public Cursor viewMessagesByAppointID(int appointID) {
         try {
             SQLiteDatabase db = this.getReadableDatabase();
-            String query = "SELECT * FROM " + TABLE4_NAME + " WHERE " + T4COL_5 + "=" + appointID + " ORDER BY " + T4COL_4 + " ASC " ;
-            Log.d("DbgetMessageInfo ",query);
+            String query = "SELECT * FROM " + TABLE4_NAME + " WHERE " + T4COL_5 + "=" + appointID + " ORDER BY " + T4COL_4 + " ASC ";
+            Log.d("DbgetMessageInfo ", query);
             return db.rawQuery(query, null);
-        }catch (Exception msg){
-            Log.e("DbgetMessageInfo ",msg.getMessage());
+        } catch (Exception msg) {
+            Log.e("DbgetMessageInfo ", msg.getMessage());
             return null;
         }
     }
 
     //set ReportID to appointment
-    public boolean setReportIDtoAppointment(int appointID,int reportID){
+    public boolean setReportIDtoAppointment(int appointID, int reportID) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues cv = new ContentValues();
-        cv.put(T2COL_6,reportID);
-        int reply = db.update(TABLE2_NAME,cv,T2COL_1+"="+appointID,null);
+        cv.put(T2COL_6, reportID);
+        int reply = db.update(TABLE2_NAME, cv, T2COL_1 + "=" + appointID, null);
 
         //return results
-        if(reply > 0)
-        {return true;}
-        else
-        {return false;}
+        if (reply > 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     //delete row from Messages
-    public boolean messagesDel(int appointId){
+    public boolean messagesDel(int appointId) {
         SQLiteDatabase db = this.getWritableDatabase();
-         return db.delete(TABLE4_NAME, T4COL_5 + " = "+appointId,null) >0;
+        return db.delete(TABLE4_NAME, T4COL_5 + " = " + appointId, null) > 0;
     }
 
     //insert row to report
@@ -511,18 +512,18 @@ public class DatabaseHelper extends SQLiteOpenHelper
         }
 
     }
+
     //Get all rows from the table Report with paymentID-filter
-    public Cursor viewReportWithoutPaymentId(int x)
-    {
-            SQLiteDatabase db = this.getReadableDatabase();
-            String query = "SELECT " + T5COL_1 + ", " + T5COL_2 + ", " + T5COL_3 + ", " + T5COL_4 + ", " + T5COL_5 + " FROM " + TABLE5_NAME
-                    + " WHERE " + T5COL_6 + " IS NULL ";
-            Log.e("DbviewReportWithoutP ", query);
-            return db.rawQuery(query, null);
+    public Cursor viewReportWithoutPaymentId() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT " + T5COL_1 + ", " + T5COL_2 + ", " + T5COL_3 + ", " + T5COL_4 + ", " + T5COL_5 + " FROM " + TABLE5_NAME
+                + " WHERE " + T5COL_6 + " IS NULL ";
+        Log.e("DbviewReportWithoutP ", query);
+        return db.rawQuery(query, null);
     }
+
     //Get row from the table Report with reportID-filter
-    public Cursor viewReport(int x)
-    {
+    public Cursor viewReport(int x) {
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT " + T5COL_2 + ", " + T5COL_3 + ", " + T5COL_4 + ", " + T5COL_5 + ", " + T5COL_6 + " FROM " + TABLE5_NAME
                 + " WHERE " + T5COL_1 + "=" + x;
@@ -531,35 +532,34 @@ public class DatabaseHelper extends SQLiteOpenHelper
     }
 
     //Get row from the table Report with patientID-filter
-    public Cursor viewReportwithPatient(int x)
-    {
+    public Cursor viewReportwithPatient(int x) {
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT * FROM " + TABLE5_NAME
                 + " WHERE " + T5COL_2 + "=" + x;
         Log.e("DbviewReportPati ", query);
         return db.rawQuery(query, null);
     }
+
     //Get all rows from payment will transDate-fliter
-    public Cursor viewPaymentPayedOrNot(String n)
-    {
+    public Cursor viewPaymentPayedOrNot(String n) {
         SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT " + T3COL_1 + ", " + T3COL_2 + ", " + T3COL_3 + ", " + T3COL_5 +  " FROM " + TABLE3_NAME
+        String query = "SELECT " + T3COL_1 + ", " + T3COL_2 + ", " + T3COL_3 + ", " + T3COL_5 + " FROM " + TABLE3_NAME
                 + " WHERE " + T3COL_4 + n;
         Log.e("Dbpaymentpayed ", query);
         return db.rawQuery(query, null);
     }
+
     //Find payment row with paymentID
-    public Cursor viewPayment(int x)
-    {
+    public Cursor viewPayment(int x) {
         SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT " + T3COL_2 + ", " + T3COL_3 + ", " + T3COL_4 + ", " + T3COL_5  + ", " + T3COL_6  + ", " + T3COL_7  + ", " + T3COL_8 + ", " + T3COL_9  + " FROM " + TABLE3_NAME
+        String query = "SELECT " + T3COL_2 + ", " + T3COL_3 + ", " + T3COL_4 + ", " + T3COL_5 + ", " + T3COL_6 + ", " + T3COL_7 + ", " + T3COL_8 + ", " + T3COL_9 + " FROM " + TABLE3_NAME
                 + " WHERE " + T3COL_1 + "=" + x;
         Log.e("DbviewPayment ", query);
         return db.rawQuery(query, null);
     }
+
     //get unpayed payment with patient id
-    public Cursor viewPaymentByPatient(int x)
-    {
+    public Cursor viewPaymentByPatient(int x) {
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT * FROM " + TABLE3_NAME
                 + " WHERE " + T3COL_2 + "=" + x + " AND " + T3COL_4 + " IS NULL";
@@ -568,38 +568,41 @@ public class DatabaseHelper extends SQLiteOpenHelper
     }
 
     //Insert a new row to payment table
-    public long paymentInsert(int patiId, String dueDate, int amount_num, int reportID){
+    public long paymentInsert(int patiId, String dueDate, int amount_num, int reportID) {
         SQLiteDatabase db = this.getWritableDatabase();
         //insert into db
         ContentValues cv = new ContentValues();
-        cv.put(T3COL_2,patiId);
-        cv.put(T3COL_3,dueDate);
-        cv.put(T3COL_5,amount_num);
-        cv.put(T3COL_6,reportID);
-        cv.put(T3COL_9,0);
-        Long reply = db.insert(TABLE3_NAME,null,cv);
+        cv.put(T3COL_2, patiId);
+        cv.put(T3COL_3, dueDate);
+        cv.put(T3COL_5, amount_num);
+        cv.put(T3COL_6, reportID);
+        cv.put(T3COL_9, 0);
+        cv.put(T3COL_10, 0);
+        Long reply = db.insert(TABLE3_NAME, null, cv);
         //return results
-        if(reply > 0)
-        {return reply;}
-        else
-        {return 0;}
+        if (reply > 0) {
+            return reply;
+        } else {
+            return 0;
+        }
 
     }
 
     //Update dueDate to Payment table
-    public boolean updatePaymentWithdueDate(int payID, String duedate){
+    public boolean updatePaymentWithdueDate(int payID, String duedate) {
         try {
             SQLiteDatabase db = this.getWritableDatabase();
 
             ContentValues cv = new ContentValues();
-            cv.put(T3COL_3,duedate);
-            int reply = db.update(TABLE3_NAME,cv,T3COL_1+"="+payID,null);
+            cv.put(T3COL_3, duedate);
+            int reply = db.update(TABLE3_NAME, cv, T3COL_1 + "=" + payID, null);
 
             //return results
-            if(reply > 0)
-            {return true;}
-            else
-            {return false;}
+            if (reply > 0) {
+                return true;
+            } else {
+                return false;
+            }
         } catch (Exception msg) {
             Log.e("updatePaymentWithdue ", msg.getMessage());
             return false;
@@ -607,19 +610,20 @@ public class DatabaseHelper extends SQLiteOpenHelper
     }
 
     //Update TransDate to Payment table
-    public boolean updatePaymentWithtransDate(int payID, String transDate){
+    public boolean updatePaymentWithtransDate(int payID, String transDate) {
         try {
             SQLiteDatabase db = this.getWritableDatabase();
 
             ContentValues cv = new ContentValues();
-            cv.put(T3COL_4,transDate);
-            int reply = db.update(TABLE3_NAME,cv,T3COL_1+"="+payID,null);
+            cv.put(T3COL_4, transDate);
+            int reply = db.update(TABLE3_NAME, cv, T3COL_1 + "=" + payID, null);
 
             //return results
-            if(reply > 0)
-            {return true;}
-            else
-            {return false;}
+            if (reply > 0) {
+                return true;
+            } else {
+                return false;
+            }
         } catch (Exception msg) {
             Log.e("updatePaymentWithtrans ", msg.getMessage());
             return false;
@@ -627,38 +631,41 @@ public class DatabaseHelper extends SQLiteOpenHelper
     }
 
     //Update pendingStatus to Payment table
-    public boolean updatePaymentWithPending(int payID, int pending){
+    public boolean updatePaymentWithPending(int payID, int pending) {
         try {
             SQLiteDatabase db = this.getWritableDatabase();
 
             ContentValues cv = new ContentValues();
-            cv.put(T3COL_9,pending);
-            int reply = db.update(TABLE3_NAME,cv,T3COL_1+"="+payID,null);
+            cv.put(T3COL_9, pending);
+            int reply = db.update(TABLE3_NAME, cv, T3COL_1 + "=" + payID, null);
 
             //return results
-            if(reply > 0)
-            {return true;}
-            else
-            {return false;}
+            if (reply > 0) {
+                return true;
+            } else {
+                return false;
+            }
         } catch (Exception msg) {
             Log.e("updatePaymentWithPend ", msg.getMessage());
             return false;
         }
     }
+
     //Update amount to Payment table
-    public boolean updatePaymentWithAmount(int payID, int amount){
+    public boolean updatePaymentWithAmount(int payID, int amount) {
         try {
             SQLiteDatabase db = this.getWritableDatabase();
 
             ContentValues cv = new ContentValues();
-            cv.put(T3COL_5,amount);
-            int reply = db.update(TABLE3_NAME,cv,T3COL_1+"="+payID,null);
+            cv.put(T3COL_5, amount);
+            int reply = db.update(TABLE3_NAME, cv, T3COL_1 + "=" + payID, null);
 
             //return results
-            if(reply > 0)
-            {return true;}
-            else
-            {return false;}
+            if (reply > 0) {
+                return true;
+            } else {
+                return false;
+            }
         } catch (Exception msg) {
             Log.e("updatePaymentWithAmou ", msg.getMessage());
             return false;
@@ -666,20 +673,21 @@ public class DatabaseHelper extends SQLiteOpenHelper
     }
 
     //Update expiry and credit number to Payment table
-    public boolean updatePaymentWithCredit(int payID, String credit, String expiry){
+    public boolean updatePaymentWithCredit(int payID, String credit, String expiry) {
         try {
             SQLiteDatabase db = this.getWritableDatabase();
 
             ContentValues cv = new ContentValues();
-            cv.put(T3COL_7,credit);
-            cv.put(T3COL_8,expiry);
-            cv.put(T3COL_9,1);
-            int reply = db.update(TABLE3_NAME,cv,T3COL_1+"="+payID,null);
+            cv.put(T3COL_7, credit);
+            cv.put(T3COL_8, expiry);
+            cv.put(T3COL_9, 1);
+            int reply = db.update(TABLE3_NAME, cv, T3COL_1 + "=" + payID, null);
             //return results
-            if(reply > 0)
-            {return true;}
-            else
-            {return false;}
+            if (reply > 0) {
+                return true;
+            } else {
+                return false;
+            }
         } catch (Exception msg) {
             Log.e("updatePaymentWithCred ", msg.getMessage());
             return false;
@@ -687,24 +695,53 @@ public class DatabaseHelper extends SQLiteOpenHelper
     }
 
     //Update paymentID to Report
-    public boolean updateReportWithPaymentID(int payID, int reportID){
+    public boolean updateReportWithPaymentID(int payID, int reportID) {
         try {
             SQLiteDatabase db = this.getWritableDatabase();
 
             ContentValues cv = new ContentValues();
-            cv.put(T5COL_6,payID);
-            int reply = db.update(TABLE5_NAME,cv,T5COL_1+"="+reportID,null);
+            cv.put(T5COL_6, payID);
+            int reply = db.update(TABLE5_NAME, cv, T5COL_1 + "=" + reportID, null);
 
             //return results
-            if(reply > 0)
-            {return true;}
-            else
-            {return false;}
+            if (reply > 0) {
+                return true;
+            } else {
+                return false;
+            }
         } catch (Exception msg) {
             Log.e("updateReportWithP ", msg.getMessage());
             return false;
         }
     }
 
+    //set reminder
+    public boolean setReminder(int paymentId,int x) {
+        try {
+            SQLiteDatabase db = this.getWritableDatabase();
 
+            ContentValues cv = new ContentValues();
+            cv.put(T3COL_10, x);
+            int reply = db.update(TABLE3_NAME, cv, T3COL_1 + "=" + paymentId, null);
+
+            //return results
+            if (reply > 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception msg) {
+            Log.e("setReminder ", msg.getMessage());
+            return false;
+        }
+    }
+
+    //check reminder
+    public Cursor checkReminder(int patiId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT "+ T3COL_1 + ", " + T3COL_3 +" FROM " + TABLE3_NAME
+                + " WHERE " + T3COL_2 + "=" + patiId + " AND " + T3COL_10 + "= 1";
+        Log.e("checkReminder ", query);
+        return db.rawQuery(query, null);
+    }
 }

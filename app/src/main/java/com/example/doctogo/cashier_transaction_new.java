@@ -17,6 +17,7 @@ import android.widget.Toast;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 public class cashier_transaction_new extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
     private EditText dueDateTxt;
@@ -26,7 +27,7 @@ public class cashier_transaction_new extends AppCompatActivity implements DatePi
     int amount_due;
     String due_Date;
     String amount_dueString;
-    String Date;
+    String date;
     String desc;
     String patientName;
     String doctorName;
@@ -35,6 +36,7 @@ public class cashier_transaction_new extends AppCompatActivity implements DatePi
     DatabaseHelper dbh;
     java.util.Date due_DateFormat;
     java.util.Date current_DateFormat;
+    Date currdate;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,7 +52,7 @@ public class cashier_transaction_new extends AppCompatActivity implements DatePi
         dueDateTxt = (EditText)findViewById(R.id.cashier_new_trans_duedate);
         dueDateTxt.setInputType(InputType.TYPE_NULL);
         Button btndone = (Button)findViewById(R.id.cashier_new_btn_done);
-        Button btncancel = (Button)findViewById(R.id.cashier_new_btn_cancel);
+        Button btnMSP = (Button)findViewById(R.id.cashier_new_btn_msp);
         Intent intent = getIntent();
         if(intent!=null){
             reportNum = intent.getIntExtra("report",0);
@@ -60,10 +62,10 @@ public class cashier_transaction_new extends AppCompatActivity implements DatePi
                 while(c.moveToNext()) {
                     patient_ID = c.getInt(0);
                     doctor_ID = c.getInt(1);
-                    Date = c.getString(2);
+                    date = c.getString(2);
                     desc = c.getString(3);
                 }
-                dateTxt.setText(Date);
+                dateTxt.setText(date);
                 caseDescTxt.setText(desc);
                 reportIdTxt.setText(Integer.toString(reportNum));
             }
@@ -107,10 +109,18 @@ public class cashier_transaction_new extends AppCompatActivity implements DatePi
             }
         });
 
-        btncancel.setOnClickListener(new View.OnClickListener() {
+        btnMSP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                currdate = Calendar.getInstance().getTime();
+                SimpleDateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+                date = df.format(currdate);
+                long pId = dbh.paymentInsert(patient_ID,date,0,reportNum);
+                int paymentID = (int)pId;
+                dbh.updatePaymentWithtransDate(paymentID,date);
+                dbh.updateReportWithPaymentID(paymentID,reportNum);
                 onBackPressed();
+
             }
         });
 

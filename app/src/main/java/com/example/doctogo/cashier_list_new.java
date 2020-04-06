@@ -28,7 +28,7 @@ public class cashier_list_new extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cashier_list_new);
         dbh = new DatabaseHelper(this);
-        Cursor c = dbh.viewReportWithoutPaymentId(-1);
+        Cursor c = dbh.viewReportWithoutPaymentId();
         if(c.getCount()>0) {
             while (c.moveToNext()) {
                 ReportList.add(c.getInt(0));

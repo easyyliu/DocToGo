@@ -12,4 +12,7 @@
     <item
         android:id="@+id/pop_decline"
         android:title="@string/pop_decline" />
+    <item
+        android:id="@+id/pop_MSP_reCheck"
+        android:title="@string/pop_MSP_reCheck" />
 </menu>
