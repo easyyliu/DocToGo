@@ -32,6 +32,7 @@ public class admin_account_details extends AppCompatActivity
         Button btn_Save = findViewById(R.id.btn_AdminDetailAccountSave);
         Button btn_Revert = findViewById(R.id.btn_AdminDetailAccountRevert);
         Button btn_Quit = findViewById(R.id.btn_AdminDetailAccountExit);
+        Button btn_Delete = findViewById(R.id.btn_AdminDetailAccountDelete);
 
         //button revert: reload data
         btn_Revert.setOnClickListener(new View.OnClickListener()
@@ -114,6 +115,21 @@ public class admin_account_details extends AppCompatActivity
                     Toast.makeText(getBaseContext(), "Account failed to update.",Toast.LENGTH_LONG).show();
                     getAccountData(targetID);
                 }
+            }
+        });
+
+        //button delete: remove account
+        btn_Delete.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                //get ID
+                int targetID = getIntent().getExtras().getInt("targetID",0);
+                //delete ID account
+                dbh.adminDelete(targetID);
+                //finish
+                finish();
             }
         });
 

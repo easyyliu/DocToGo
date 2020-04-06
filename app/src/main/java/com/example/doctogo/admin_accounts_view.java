@@ -71,7 +71,7 @@ public class admin_accounts_view extends AppCompatActivity
 
         if (requestCode == 1)
         {
-            generateListView(); // your "refresh" code
+            generateListView(); //"refresh" code
         }
     }
 
@@ -116,7 +116,7 @@ public class admin_accounts_view extends AppCompatActivity
             while(c.moveToNext())
             {
                 //add to list
-                account ac = new account(c.getInt(0),c.getString(1),c.getString(2),c.getString(3),c.getInt(3));
+                account ac = new account(c.getInt(0),c.getString(1),c.getString(2),c.getString(3),c.getInt(4));
                 accList.add(ac);
             }
         }
