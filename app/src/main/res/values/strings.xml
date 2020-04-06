@@ -38,7 +38,7 @@
     <string name="txt_FilterName">Filter userame</string>
     <string name="btn_logout">Log Out</string>
     <string name="btn_cashier_addNewTransaction">New Transaction</string>
-    <string name="btn_cashier_viewTransactions">View Transactions</string>
+    <string name="btn_cashier_viewTransactions">View Pending Transactions</string>
     <string name="cashierNameTxt" />
     <string name="txt_FirstName">First Name</string>
     <string name="txt_Username">Username*</string>
