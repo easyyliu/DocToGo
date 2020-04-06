@@ -208,14 +208,18 @@ public class cashier_transactions_view extends AppCompatActivity implements Date
         editlog.setPositiveButton("Done", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                tempAmount = Integer.parseInt(amountInput.getText().toString());
-                if(tempAmount >= 0){
-                    dbh.updatePaymentWithAmount(paymentId,tempAmount);
-                    finish();
-                    startActivity(getIntent());
-                }
-                else{
-                    Toast.makeText(cashier_transactions_view.this,"Enter valid amount", Toast.LENGTH_SHORT).show();
+                String temp =amountInput.getText().toString();
+                if (temp == ""|| temp.isEmpty()) {
+                    Toast.makeText(cashier_transactions_view.this, "Please Enter valid amount", Toast.LENGTH_SHORT).show();
+                } else {
+                    tempAmount = Integer.parseInt(amountInput.getText().toString());
+                    if (tempAmount >= 0) {
+                        dbh.updatePaymentWithAmount(paymentId, tempAmount);
+                        finish();
+                        startActivity(getIntent());
+                    } else {
+                        Toast.makeText(cashier_transactions_view.this, "Please Enter valid amount", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });

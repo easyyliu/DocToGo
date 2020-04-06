@@ -28,7 +28,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
-public class MyCustomAdapter extends BaseAdapter{
+public class LocateDoctorAdapter extends BaseAdapter{
 
     Context context;
     List<String> doctorName = new ArrayList<>();
@@ -55,7 +55,7 @@ public class MyCustomAdapter extends BaseAdapter{
     Calendar today = Calendar.getInstance();
     Calendar chosenDate = Calendar.getInstance();
 
-    public MyCustomAdapter(Context context, List<String> doctorName, List<String> doctorAddress,List<String> doctorCity,List<Integer> doctorID,int userID) {
+    public LocateDoctorAdapter(Context context, List<String> doctorName, List<String> doctorAddress, List<String> doctorCity, List<Integer> doctorID, int userID) {
         this.context = context;
         this.doctorID = doctorID;
         this.doctorName = doctorName;

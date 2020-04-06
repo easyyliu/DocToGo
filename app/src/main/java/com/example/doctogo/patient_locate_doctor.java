@@ -8,7 +8,6 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -54,7 +53,7 @@ public class patient_locate_doctor extends AppCompatActivity {
 
                 }
 
-                MyCustomAdapter adapter = new MyCustomAdapter(this,doctorName,doctorAddress,doctorCity,doctorID,userID);
+                LocateDoctorAdapter adapter = new LocateDoctorAdapter(this,doctorName,doctorAddress,doctorCity,doctorID,userID);
                 listViewShowDoctor.setAdapter(adapter);
 
             }catch (Exception e){
