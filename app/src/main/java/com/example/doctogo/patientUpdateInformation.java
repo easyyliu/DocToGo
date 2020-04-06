@@ -100,6 +100,7 @@ public class patientUpdateInformation extends AppCompatActivity {
                 }catch (Exception e){
                     Log.e("Query Update",e.getMessage());
                 }
+                onBackPressed();
             }
         });
     }
