@@ -1,14 +1,11 @@
 package com.example.doctogo;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.database.Cursor;
-import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,10 +15,8 @@ import android.widget.DatePicker;
 import android.widget.LinearLayout;
 import android.widget.NumberPicker;
 import android.widget.TextView;
-import android.widget.TimePicker;
 import android.widget.Toast;
 
-import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -83,7 +78,7 @@ public class LocateDoctorAdapter extends BaseAdapter{
     public View getView(final int position, View convertView, ViewGroup parent) {
         if(convertView == null){
             LayoutInflater layoutInflater = LayoutInflater.from(context);
-            convertView = layoutInflater.inflate(R.layout.listview_doctor,parent,false);
+            convertView = layoutInflater.inflate(R.layout.listview_bookdoctors,parent,false);
         }
 
 
