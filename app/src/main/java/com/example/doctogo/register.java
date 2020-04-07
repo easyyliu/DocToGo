@@ -118,7 +118,7 @@ public class register extends AppCompatActivity
                 if(success)
                 {finish();}
                 else
-                {Toast.makeText(getBaseContext(),"Error in database insertion.",Toast.LENGTH_LONG);}
+                {Toast.makeText(getBaseContext(),"Error in database insertion.",Toast.LENGTH_LONG).show();}
             }
         });
     }
