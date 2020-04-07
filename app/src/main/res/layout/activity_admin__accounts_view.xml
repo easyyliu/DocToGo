@@ -8,7 +8,7 @@
     android:background="@color/colorBackgroundActivity">
 
     <Spinner
-        android:id="@+id/spn_AdminViewRoleFilter"
+        android:id="@+id/spn_AdminViewAllRoleFilter"
         android:layout_width="match_parent"
         android:layout_height="38sp"
         android:background="#FFFFFF"
@@ -27,7 +27,16 @@
         android:importantForAutofill="no"
         android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spn_AdminViewRoleFilter" />
+        app:layout_constraintTop_toBottomOf="@+id/chk_AdminViewAllDeactFilter" />
+
+    <CheckBox
+        android:id="@+id/chk_AdminViewAllDeactFilter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        android:text="@string/FilterDeactivated"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spn_AdminViewAllRoleFilter" />
 
     <ListView
         android:id="@+id/lsv_AdminAllAccounts"

@@ -211,7 +211,8 @@
     <string name="listview_patient_appointment_docInfo"></string>
     <string name="listview_patient_appointment_date"></string>
     <string name="pop_cancel">Cancel Appointment</string>
-    <string name="btn_AdminDetailAccountDelete">Delete Account</string>
+    <string name="btn_AdminDetailAccountDelete">Deactivate Account</string>
+    <string name="FilterDeactivated">Deactivated Accounts Only</string>
 
 
 </resources>

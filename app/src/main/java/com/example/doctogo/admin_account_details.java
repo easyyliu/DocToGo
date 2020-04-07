@@ -1,12 +1,15 @@
 package com.example.doctogo;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.widget.NestedScrollView;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -24,6 +27,7 @@ public class admin_account_details extends AppCompatActivity
 
         //unpack extras, get account ID.
         int targetID = getIntent().getExtras().getInt("targetID",0);
+        boolean targetDeactive = getIntent().getExtras().getBoolean("targetDeactive",false);
 
         //put id into function to get data
         getAccountData(targetID);
@@ -118,20 +122,46 @@ public class admin_account_details extends AppCompatActivity
             }
         });
 
-        //button delete: remove account
-        btn_Delete.setOnClickListener(new View.OnClickListener()
+        //if deactivated, interface has difference
+        if(targetDeactive)
         {
-            @Override
-            public void onClick(View view)
+            //border color => red
+            NestedScrollView scrl = findViewById(R.id.scl_AdminDetailAccount);
+            scrl.setBackgroundColor(Color.RED);
+            //button => reactivate
+            btn_Delete.setText("Reactivate Account");
+            btn_Delete.setOnClickListener(new View.OnClickListener()
             {
-                //get ID
-                int targetID = getIntent().getExtras().getInt("targetID",0);
-                //delete ID account
-                dbh.adminDelete(targetID);
-                //finish
-                finish();
-            }
-        });
+                @Override
+                public void onClick(View view)
+                {
+                    //get ID
+                    int targetID = getIntent().getExtras().getInt("targetID",0);
+                    //deactivate ID account
+                    dbh.adminReactivate(targetID);
+                    //finish
+                    finish();
+                }
+            });
+        }
+        else
+        {
+            //button delete: remove account
+            btn_Delete.setOnClickListener(new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View view)
+                {
+                    //get ID
+                    int targetID = getIntent().getExtras().getInt("targetID",0);
+                    //deactivate ID account
+                    dbh.adminDeactivate(targetID);
+                    //finish
+                    finish();
+                }
+            });
+        }
+
 
     }
 

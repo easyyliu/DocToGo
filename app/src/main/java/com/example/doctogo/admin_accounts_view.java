@@ -1,10 +1,13 @@
 package com.example.doctogo;
 
+import androidx.annotation.ColorInt;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -13,6 +16,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -32,9 +37,10 @@ public class admin_accounts_view extends AppCompatActivity
 
         generateListView();
 
-        //attach listeners to filter controls (spinner & edittext)
-        Spinner roleFilter = findViewById(R.id.spn_AdminViewRoleFilter);
+        //attach listeners to filter controls (spinner & edittext * checkbox)
+        Spinner roleFilter = findViewById(R.id.spn_AdminViewAllRoleFilter);
         EditText nameFilter = findViewById(R.id.txt_AdminViewAllUsernameFilter);
+        CheckBox deactFilter = findViewById(R.id.chk_AdminViewAllDeactFilter);
         roleFilter.setOnItemSelectedListener(new Spinner.OnItemSelectedListener()
         {
 
@@ -63,6 +69,14 @@ public class admin_accounts_view extends AppCompatActivity
             @Override
             public void afterTextChanged(Editable editable) {}
         });
+        deactFilter.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b)
+            {
+                //run getListview again
+                generateListView();
+            }
+        });
     }
 
     @Override
@@ -78,8 +92,9 @@ public class admin_accounts_view extends AppCompatActivity
     private void generateListView()
     {
         //get filter inputs
-        Spinner roleFilterspn = findViewById(R.id.spn_AdminViewRoleFilter);
+        Spinner roleFilterspn = findViewById(R.id.spn_AdminViewAllRoleFilter);
         EditText nameFilter = findViewById(R.id.txt_AdminViewAllUsernameFilter);
+        CheckBox deactFilterBox = findViewById(R.id.chk_AdminViewAllDeactFilter);
 
         //with filter inputs, build sql query fragment
         String usernameFilter;
@@ -106,8 +121,11 @@ public class admin_accounts_view extends AppCompatActivity
                 roleFilter = " IS NOT NULL";
                 break;
         }
+        String deactFilter = " IS NOT NULL";
+        if(deactFilterBox.isChecked())
+        {deactFilter = " = 1";}
 
-        Cursor c = dbh.viewAllAccounts(usernameFilter,roleFilter);
+        Cursor c = dbh.viewAllAccounts(usernameFilter,roleFilter,deactFilter);
         //create an array of accounts
         final ArrayList<account> accList = new ArrayList<>();
         if(c.getCount()>0)
@@ -116,7 +134,7 @@ public class admin_accounts_view extends AppCompatActivity
             while(c.moveToNext())
             {
                 //add to list
-                account ac = new account(c.getInt(0),c.getString(1),c.getString(2),c.getString(3),c.getInt(4));
+                account ac = new account(c.getInt(0),c.getString(1),c.getString(2),c.getString(3),c.getInt(4),c.getInt(5));
                 accList.add(ac);
             }
         }
@@ -134,6 +152,7 @@ public class admin_accounts_view extends AppCompatActivity
                 int ID = adapter.getItem(position).id;
                 Intent detailActivity = new Intent(admin_accounts_view.this, admin_account_details.class);
                 detailActivity.putExtra("targetID",ID);
+                detailActivity.putExtra("targetDeactive",adapter.getItem(position).deactivated);
                 //need to refresh upon finishing detail activity
                 startActivityForResult(detailActivity, 1);
             }
@@ -144,13 +163,14 @@ public class admin_accounts_view extends AppCompatActivity
     private class account
     {
         public int id;
+        public boolean deactivated;
         public String userName;
         public String fullName;
         public String role;
 
         //constructor requires input id, firstname, lastname and role (int)
         //role will be automatically translated into string.
-        public account(int id, String username, String firstName, String lastName, int roleInt)
+        public account(int id, String username, String firstName, String lastName, int roleInt, int deactivated)
         {
             this.id = id;
             this.userName = (username);
@@ -170,6 +190,10 @@ public class admin_accounts_view extends AppCompatActivity
                     this.role = "Cashier";
                     break;
             }
+            if(deactivated == 1)
+            {this.deactivated = true;}
+            else
+            {this.deactivated = false;}
         }
     }
 
@@ -194,6 +218,7 @@ public class admin_accounts_view extends AppCompatActivity
             accID.setText((acc.userName));
             accName.setText(acc.fullName);
             accRole.setText(acc.role);
+
             // Return the view to render
             return v;
         }

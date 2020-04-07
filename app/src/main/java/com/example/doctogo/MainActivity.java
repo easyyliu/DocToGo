@@ -55,7 +55,16 @@ public class MainActivity extends AppCompatActivity {
                 Cursor user = dbh.loginUser(username,password);
                 if(user.getCount() == 1)
                 {
+
                     user.moveToFirst();
+
+                    //check if deactivated
+                    if(user.getInt(2) == 1)
+                    {
+                        //if true, Toast + cancel
+                        Toast.makeText(getBaseContext(),"Account deactivated. Cannot log in.",Toast.LENGTH_LONG).show();
+                        return;
+                    }
                     //Save user id to preferences
                     SharedPreferences storage = getApplicationContext().getSharedPreferences("DOCTOGOSESSION",MODE_PRIVATE);
                     SharedPreferences.Editor memoryMaster = storage.edit();

@@ -11,9 +11,9 @@ import androidx.annotation.Nullable;
 
 public class DatabaseHelper extends SQLiteOpenHelper
 {
-    private static int DATABASE_VERSION = 6;
+    private static int DATABASE_VERSION = 7;
     //DATABASE TABLES & COLUMNS
-    private static final String DATABASE_NAME = "DocToGoDatabase .db";
+    private static final String DATABASE_NAME = "DocToGoDatabase.db";
     /*
         Users Table: defines all users in the system.
         role (integer) column defines the roles the user is:
@@ -44,6 +44,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
     private final static String T1COL_14 = "FirstLogin";     //INTEGER     //flag, turn to 1 if admin register->have to modify self.
     private final static String T1COL_15 = "City";           //TEXT
     private final static String T1COL_16 = "MSP";            //INTEGER
+    private final static String T1COL_17 = "Deactivated";    //INTEGER     //flag, 0 => active, 1 => deactivated
 
     /*
         Appointment table: Defines a patient (role 2) having a schedule with a doctor (role 3).
@@ -140,7 +141,8 @@ public class DatabaseHelper extends SQLiteOpenHelper
                 T1COL_13+" INTEGER, " +
                 T1COL_14+" INTEGER, " +
                 T1COL_15+" TEXT, " +
-                T1COL_16+" INTEGER)";
+                T1COL_16+" INTEGER, " +
+                T1COL_17 +" INTEGER DEFAULT 0)";
         db.execSQL(query);
 
         //appointments
@@ -220,7 +222,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
     public Cursor loginUser(String user, String pass)
     {
         SQLiteDatabase db = this.getWritableDatabase();
-        String query = "SELECT "+T1COL_1+", "+T1COL_4+" FROM "+TABLE1_NAME+
+        String query = "SELECT "+T1COL_1+", "+T1COL_4+", "+T1COL_17 +" FROM "+TABLE1_NAME+
                 " WHERE "+T1COL_2+"=?  AND "+T1COL_3+"= ? ";
         return db.rawQuery(query,new String[]{user,pass});
     }
@@ -278,13 +280,14 @@ public class DatabaseHelper extends SQLiteOpenHelper
         {return false;}
     }
 
-    //get all accounts (id, name, pass, role) WHERE Role & Username MATCH filter.
-    public Cursor viewAllAccounts(String usernameFilter, String roleFilter)
+    //get all accounts (id, name, pass, role, deactivated) WHERE Role & Username & deactivated MATCH filter.
+    public Cursor viewAllAccounts(String usernameFilter, String roleFilter, String deactFilter)
     {
         SQLiteDatabase db = this.getWritableDatabase();
-        String query = "SELECT "+T1COL_1+", "+T1COL_2+", "+T1COL_5+", "+T1COL_6+", "+T1COL_4+ " FROM "+TABLE1_NAME
+        String query = "SELECT "+T1COL_1+", "+T1COL_2+", "+T1COL_5+", "+T1COL_6+", "+T1COL_4+", "+ T1COL_17 +" FROM "+TABLE1_NAME
                 +" WHERE " + T1COL_4 + roleFilter
-                +" AND " + T1COL_2 + usernameFilter;
+                +" AND " + T1COL_2 + usernameFilter
+                +" AND " + T1COL_17 + deactFilter;
         Log.e("DbAdminViewAll ", query);
         return db.rawQuery(query,null);
     }
@@ -337,19 +340,40 @@ public class DatabaseHelper extends SQLiteOpenHelper
     }
 
     //delete account from admin
-    public boolean adminDelete(int accID)
+    public boolean adminDeactivate(int accID)
     {
         try
         {
             SQLiteDatabase db = this.getWritableDatabase();
-           int reply = db.delete(TABLE1_NAME,T1COL_1+"="+accID,null);
+            ContentValues cv = new ContentValues();
+            cv.put(T1COL_17,1);
+            int reply = db.update(TABLE1_NAME,cv,T1COL_1+"="+accID,null);
             //return results
             if(reply > 0)
             {return true;}
             else
             {return false;}
         } catch (Exception msg) {
-            Log.e("DbAdminDeleteUser: "+accID, msg.getMessage());
+            Log.e("DbAdminDeactivateUser: "+accID, msg.getMessage());
+            return false;
+        }
+    }
+    //admin reactivate account
+    public boolean adminReactivate(int accID)
+    {
+        try
+        {
+            SQLiteDatabase db = this.getWritableDatabase();
+            ContentValues cv = new ContentValues();
+            cv.put(T1COL_17,0);
+            int reply = db.update(TABLE1_NAME,cv,T1COL_1+"="+accID,null);
+            //return results
+            if(reply > 0)
+            {return true;}
+            else
+            {return false;}
+        } catch (Exception msg) {
+            Log.e("DbAdminReactivateUser: "+accID, msg.getMessage());
             return false;
         }
     }
