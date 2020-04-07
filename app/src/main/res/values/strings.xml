@@ -179,7 +179,10 @@
     <string name="btnExitAppDoctorDesc">Image of Exit button</string>
     <string name="btnMainMenuDoctorDesc">Image of Main Menu button</string>
 
-    <!--PLACEHOLDERS. REMOVE AT FINAL-->
+    <string-array name="RegisterRoles">
+        <item>Patient</item>
+        <item>Doctor</item>
+    </string-array>
     <string-array name="Roles">
         <item>Admin</item>
         <item>Patient</item>

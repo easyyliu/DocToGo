@@ -329,6 +329,24 @@ class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    //delete account from admin
+    public boolean adminDelete(int accID)
+    {
+        try
+        {
+            SQLiteDatabase db = this.getWritableDatabase();
+           int reply = db.delete(TABLE1_NAME,T1COL_1+"="+accID,null);
+            //return results
+            if(reply > 0)
+            {return true;}
+            else
+            {return false;}
+        } catch (Exception msg) {
+            Log.e("DbAdminDeleteUser: "+accID, msg.getMessage());
+            return false;
+        }
+    }
+
     //Update Patient Information
 //    public Cursor updateInformationUser(int userId,String address,String email,String phone,int weight){
     public Cursor updateInformationUser(int userId, String address, String city, String email, String phone, int weight, int msp) {

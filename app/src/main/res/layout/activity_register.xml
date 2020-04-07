@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/colorBackgroundActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorBackgroundActivity"
+    android:layout_height="wrap_content"
     tools:context=".MainActivity"
     android:padding="20sp">
 
@@ -35,7 +40,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:entries="@array/Roles"
+        android:entries="@array/RegisterRoles"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_RegisterPassword" />
 -->
@@ -180,3 +185,5 @@
         app:layout_constraintTop_toBottomOf="@+id/spn_RegisterGender" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

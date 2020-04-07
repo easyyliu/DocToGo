@@ -65,7 +65,7 @@ public class register extends AppCompatActivity
                 if(username.isEmpty() || password.isEmpty() || email.isEmpty())
                 {
                     //if one of the req fields are empty, end the op + toast message
-                    Toast.makeText(getBaseContext(),"One or more required fields are empty.",Toast.LENGTH_LONG);
+                    Toast.makeText(getBaseContext(),"One or more required fields are empty.",Toast.LENGTH_LONG).show();
                     return;
                 }
 
