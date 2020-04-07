@@ -56,7 +56,7 @@
     <string name="txt_AdminDetailAccountLastname">Lastname:</string>
     <string name="txt_AdminDetailAccountEmail">Email:</string>
     <string name="btn_AdminDetailAccountSave">Save</string>
-    <string name="btn_AdminDetailAccountExit">Cancel</string>
+    <string name="btn_AdminDetailAccountExit">Back</string>
     <string name="btn_AdminDetailAccountRevert">Revert</string>
     <string name="txt_AdminDetailAccountUsername">Username:</string>
     <string name="txt_AdminDetailAccountPassword">Password:</string>
