@@ -179,6 +179,7 @@
     <string name="btnExitAppDoctorDesc">Image of Exit button</string>
     <string name="btnMainMenuDoctorDesc">Image of Main Menu button</string>
     <string name="btn_AdminDetailAccountDelete">Delete Account</string>
+    <string name="FilterDeactivated">Show deactivated accounts only</string>
 
 
     <string-array name="RegisterRoles">
