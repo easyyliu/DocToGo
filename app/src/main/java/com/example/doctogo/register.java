@@ -37,7 +37,7 @@ public class register extends AppCompatActivity
         final EditText ETAge = findViewById(R.id.txt_RegisterAge);
         final EditText ETWeight = findViewById(R.id.txt_RegisterWeight);
         final EditText ETMSP = findViewById(R.id.txt_RegisterMSP);
-        //final Spinner SPRole = findViewById(R.id.spn_RegisterRole);
+        final Spinner SPRole = findViewById(R.id.spn_RegisterRole);
         final Spinner SPGender = findViewById(R.id.spn_RegisterGender);
 
         //cancel button: return to login
@@ -87,8 +87,8 @@ public class register extends AppCompatActivity
                 int msp = 0;
                 if(!strMSP.isEmpty())
                 {msp = Integer.parseInt(strMSP);}
-                //int role;
-                /*
+                int role;
+
                 switch (SPRole.getSelectedItem().toString())
                 {
                     case "Admin":
@@ -108,12 +108,12 @@ public class register extends AppCompatActivity
                         return;
                 }
 
-                 */
+
                 String gender = SPGender.getSelectedItem().toString();
 
                 //make database insert operation
-                //boolean success = dbh.normalRegister(username,password,role,email,firstname,lastname,address,city,phone,weight,gender,age,msp);
-                boolean success = dbh.normalRegister(username,password,email,firstname,lastname,address,city,phone,weight,gender,age,msp);
+                boolean success = dbh.normalRegister(username,password,role,email,firstname,lastname,address,city,phone,weight,gender,age,msp);
+
                 //return to main login
                 if(success)
                 {finish();}
