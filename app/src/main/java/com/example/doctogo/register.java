@@ -111,6 +111,7 @@ public class register extends AppCompatActivity
 
                 String gender = SPGender.getSelectedItem().toString();
 
+
                 //make database insert operation
                 boolean success = dbh.normalRegister(username,password,role,email,firstname,lastname,address,city,phone,weight,gender,age,msp);
 
