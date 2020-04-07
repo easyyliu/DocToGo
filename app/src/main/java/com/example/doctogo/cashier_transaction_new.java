@@ -17,24 +17,22 @@ import android.widget.Toast;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 public class cashier_transaction_new extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
     private EditText dueDateTxt;
-    int reportNum;
-    int patient_ID;
-    int doctor_ID;
-    int amount_due;
-    String due_Date;
-    String amount_dueString;
-    String Date;
-    String desc;
-    String patientName;
-    String doctorName;
-    String address;
-    int MSP;
-    DatabaseHelper dbh;
-    java.util.Date due_DateFormat;
-    java.util.Date current_DateFormat;
+    private int reportNum;
+    private int patient_ID;
+    private int doctor_ID;
+    private int amount_due;
+    private String due_Date;
+    private String amount_dueString;
+    private String date;
+    private String desc;
+    private DatabaseHelper dbh;
+    private java.util.Date due_DateFormat;
+    private java.util.Date current_DateFormat;
+    private Date currdate;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,7 +48,7 @@ public class cashier_transaction_new extends AppCompatActivity implements DatePi
         dueDateTxt = (EditText)findViewById(R.id.cashier_new_trans_duedate);
         dueDateTxt.setInputType(InputType.TYPE_NULL);
         Button btndone = (Button)findViewById(R.id.cashier_new_btn_done);
-        Button btncancel = (Button)findViewById(R.id.cashier_new_btn_cancel);
+        Button btnMSP = (Button)findViewById(R.id.cashier_new_btn_msp);
         Intent intent = getIntent();
         if(intent!=null){
             reportNum = intent.getIntExtra("report",0);
@@ -60,33 +58,33 @@ public class cashier_transaction_new extends AppCompatActivity implements DatePi
                 while(c.moveToNext()) {
                     patient_ID = c.getInt(0);
                     doctor_ID = c.getInt(1);
-                    Date = c.getString(2);
+                    date = c.getString(2);
                     desc = c.getString(3);
                 }
-                dateTxt.setText(Date);
+                dateTxt.setText(date);
                 caseDescTxt.setText(desc);
                 reportIdTxt.setText(Integer.toString(reportNum));
             }
             Cursor u = dbh.getInformationUser(patient_ID);
             if(u.getCount()>0){
                 while(u.moveToNext()){
-                    patientName = u.getString(4) +" "+ u.getString(5);
-                    address = u.getString(6)+", "+u.getString(14);
-                    MSP = u.getInt(15);
+                    String patientName = u.getString(4) + " " + u.getString(5);
+                    String address = u.getString(6) + ", " + u.getString(14);
+                    int MSP = u.getInt(15);
                     patientTxt.setText(patientName);
                     addressTxt.setText(address);
                     if(MSP == 0) {
                         MSPTxt.setText("n/a");
                     }
                     else{
-                        MSPTxt.setText(MSP);
+                        MSPTxt.setText(Integer.toString(MSP));
                     }
                 }
             }
             Cursor v = dbh.getInformationUser(doctor_ID);
             if(v.getCount()>0){
                 while(v.moveToNext()){
-                    doctorName = v.getString(4) +" "+ v.getString(5);
+                    String doctorName = v.getString(4) + " " + v.getString(5);
                     doctorTxt.setText(doctorName);
                 }
             }
@@ -107,10 +105,18 @@ public class cashier_transaction_new extends AppCompatActivity implements DatePi
             }
         });
 
-        btncancel.setOnClickListener(new View.OnClickListener() {
+        btnMSP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                currdate = Calendar.getInstance().getTime();
+                SimpleDateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+                date = df.format(currdate);
+                long pId = dbh.paymentInsert(patient_ID,date,0,reportNum);
+                int paymentID = (int)pId;
+                dbh.updatePaymentWithtransDate(paymentID,date);
+                dbh.updateReportWithPaymentID(paymentID,reportNum);
                 onBackPressed();
+
             }
         });
 

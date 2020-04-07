@@ -8,7 +8,6 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -16,12 +15,12 @@ import java.util.List;
 
 public class patient_locate_doctor extends AppCompatActivity {
 
-    List<String> doctorName = new ArrayList<>();
-    List<String> doctorAddress = new ArrayList<>();
-    List<String> doctorCity = new ArrayList<>();
-    List<Integer> doctorID = new ArrayList<>();
+    private final List<String> doctorName = new ArrayList<>();
+    private final List<String> doctorAddress = new ArrayList<>();
+    private final List<String> doctorCity = new ArrayList<>();
+    private final List<Integer> doctorID = new ArrayList<>();
 
-    DatabaseHelper db = new DatabaseHelper(this);
+    private final DatabaseHelper db = new DatabaseHelper(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +53,7 @@ public class patient_locate_doctor extends AppCompatActivity {
 
                 }
 
-                MyCustomAdapter adapter = new MyCustomAdapter(this,doctorName,doctorAddress,doctorCity,doctorID,userID);
+                LocateDoctorAdapter adapter = new LocateDoctorAdapter(this,doctorName,doctorAddress,doctorCity,doctorID,userID);
                 listViewShowDoctor.setAdapter(adapter);
 
             }catch (Exception e){

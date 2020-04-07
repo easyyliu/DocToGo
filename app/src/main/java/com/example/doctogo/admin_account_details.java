@@ -3,7 +3,6 @@ package com.example.doctogo;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.widget.NestedScrollView;
 
-import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -88,7 +87,7 @@ public class admin_account_details extends AppCompatActivity
                 if(username.isEmpty() || password.isEmpty() || email.isEmpty())
                 {
                     //if one of the req fields are empty, end the op + toast message
-                    Toast.makeText(getBaseContext(),"One or more required fields are empty.",Toast.LENGTH_LONG);
+                    Toast.makeText(getBaseContext(),"One or more required fields are empty.",Toast.LENGTH_LONG).show();
                     return;
                 }
                 String firstname = accFirstName.getText().toString();

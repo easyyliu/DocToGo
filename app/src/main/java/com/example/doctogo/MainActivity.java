@@ -20,7 +20,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    DatabaseHelper dbh = new DatabaseHelper(this);
+    private final DatabaseHelper dbh = new DatabaseHelper(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState)

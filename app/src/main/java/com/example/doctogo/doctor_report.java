@@ -19,18 +19,17 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class doctor_report extends AppCompatActivity {
-    DoctorFragment updateFragmentDoctor = DoctorFragment.newInstance();
-    FragmentManager manager = getSupportFragmentManager();
-    DatabaseHelper dbh;
+    private DoctorFragment updateFragmentDoctor = DoctorFragment.newInstance();
+    private final FragmentManager manager = getSupportFragmentManager();
+    private DatabaseHelper dbh;
     private int appointment_ID;
     private int patient_ID;
     private String age;
     private String patientName;
-    private String dateString;
     private String dateReport;
     private String desc;
     private int doctorID;
-    EditText descEdit;
+    private EditText descEdit;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,7 +49,7 @@ public class doctor_report extends AppCompatActivity {
         Date date = Calendar.getInstance().getTime();
         SimpleDateFormat df = new SimpleDateFormat("MM/dd/yyyy");
         dateReport = df.format(date);
-        dateString = dateTxt.getText().toString() +" "+ df.format(date);
+        String dateString = dateTxt.getText().toString() + " " + df.format(date);
         Intent intent = getIntent();
         if (intent != null) {
             appointment_ID = intent.getIntExtra("appointment", 0);

@@ -9,10 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".patient_check_appointment"></activity>
-        <activity android:name=".Main2Activity" />
+        <activity android:name=".patient_check_history_details" />
+        <activity android:name=".patient_creditCard" />
+        <activity android:name=".patient_check_appointment" />
         <activity android:name=".message" />
-        <activity android:name=".DoctorAppointmentFragment" />
         <activity android:name=".cashier_transactions_archive" />
         <activity android:name=".cashier_list_archive" />
         <activity android:name=".cashier_list_view" />

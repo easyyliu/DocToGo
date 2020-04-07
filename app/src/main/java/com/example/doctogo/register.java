@@ -17,7 +17,7 @@ import android.widget.Toast;
 
 public class register extends AppCompatActivity
 {
-    DatabaseHelper dbh = new DatabaseHelper(this);
+    private final DatabaseHelper dbh = new DatabaseHelper(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -88,6 +88,7 @@ public class register extends AppCompatActivity
                 if(!strMSP.isEmpty())
                 {msp = Integer.parseInt(strMSP);}
                 int role;
+
                 switch (SPRole.getSelectedItem().toString())
                 {
                     case "Admin":
@@ -106,7 +107,10 @@ public class register extends AppCompatActivity
                         Toast.makeText(getBaseContext(), "Error in roles: invalid value", Toast.LENGTH_LONG).show();
                         return;
                 }
+
+
                 String gender = SPGender.getSelectedItem().toString();
+
 
                 //make database insert operation
                 boolean success = dbh.normalRegister(username,password,role,email,firstname,lastname,address,city,phone,weight,gender,age,msp);
@@ -115,7 +119,7 @@ public class register extends AppCompatActivity
                 if(success)
                 {finish();}
                 else
-                {Toast.makeText(getBaseContext(),"Error in database insertion.",Toast.LENGTH_LONG);}
+                {Toast.makeText(getBaseContext(),"Error in database insertion.",Toast.LENGTH_LONG).show();}
             }
         });
     }

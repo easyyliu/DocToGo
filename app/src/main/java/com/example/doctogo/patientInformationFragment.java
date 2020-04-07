@@ -24,8 +24,6 @@ import android.widget.Toast;
  */
 public class patientInformationFragment extends Fragment {
 
-    DatabaseHelper db;
-
     public patientInformationFragment() {
         // Required empty public constructor
     }
@@ -34,7 +32,7 @@ public class patientInformationFragment extends Fragment {
         return new patientInformationFragment();
     }
 
-    Spinner scrollMenu;
+    private Spinner scrollMenu;
 
     @Override
     public void onPause() {
@@ -59,7 +57,7 @@ public class patientInformationFragment extends Fragment {
         scrollMenu = view.findViewById(R.id.spScrollMenuDoctor);
 
         //Create db(databaseHelper) to execute query to get user information
-        db = new DatabaseHelper(getContext());
+            DatabaseHelper db = new DatabaseHelper(getContext());
 
         final SharedPreferences storage = getContext().getSharedPreferences("DOCTOGOSESSION", Context.MODE_PRIVATE);
         int userID = storage.getInt("USERID",0);

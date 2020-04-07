@@ -9,15 +9,16 @@
     tools:context=".cashier_list_view">
 
     <TextView
-        android:id="@+id/cashier_unpayedTitle"
+        android:id="@+id/cashier_viewTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/cashier_unpayedTitle"
+        android:gravity="center"
+        android:text="@string/cashier_viewTitle"
         android:textSize="24sp"
         android:textStyle="bold" />
 
     <ListView
-        android:id="@+id/cashier_unpayed_list"
+        android:id="@+id/cashier_view_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="0dp" />

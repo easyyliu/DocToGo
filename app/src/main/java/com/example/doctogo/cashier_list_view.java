@@ -20,23 +20,17 @@ import java.util.HashMap;
 import java.util.List;
 
 public class cashier_list_view extends AppCompatActivity {
-    DatabaseHelper dbh;
-    private ArrayList<Integer> paymentIdList = new ArrayList<Integer>();
-    private ArrayList<Integer> patiIdList = new ArrayList<Integer>();
-    private ArrayList<String> dueDateList = new ArrayList<String>();
+    private final ArrayList<Integer> paymentIdList = new ArrayList<>();
+    private final ArrayList<Integer> patiIdList = new ArrayList<>();
+    private final ArrayList<String> dueDateList = new ArrayList<>();
     private int[] payIdArr;
-    private int[] patientsIdArr;
-    private String[] dueDateArr;
-    private TextView title;
     private String patientNames;
-    private String dueDays;
-    Date curr;
-    Date due;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cashier_list_view);
-        dbh = new DatabaseHelper(this);
+        DatabaseHelper dbh = new DatabaseHelper(this);
         Cursor c = dbh.viewPaymentPayedOrNot(" IS NULL ");
         if(c.getCount()>0) {
             while (c.moveToNext()) {
@@ -45,12 +39,12 @@ public class cashier_list_view extends AppCompatActivity {
                 dueDateList.add(c.getString(2));
             }
             payIdArr = arrListtoarr(paymentIdList);
-            patientsIdArr = arrListtoarr(patiIdList);
-            dueDateArr = arrStringListtoarr(dueDateList);
-            List<HashMap<String, String>> newList = new ArrayList<HashMap<String, String>>();
+            int[] patientsIdArr = arrListtoarr(patiIdList);
+            String[] dueDateArr = arrStringListtoarr(dueDateList);
+            List<HashMap<String, String>> newList = new ArrayList<>();
 
             for (int i = 0; i < payIdArr.length; i++) {
-                HashMap<String, String> hm = new HashMap<String, String>();
+                HashMap<String, String> hm = new HashMap<>();
                 //use ID find patient's name
                 Cursor u = dbh.getInformationUser(patientsIdArr[i]);
                 if(u.getCount()>0){
@@ -61,15 +55,15 @@ public class cashier_list_view extends AppCompatActivity {
                 hm.put("txt1", patientNames);
                 SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
                 try {
-                    due = dateFormat.parse(dueDateArr[i]);
-                    curr =  Calendar.getInstance().getTime();
+                    Date due = dateFormat.parse(dueDateArr[i]);
+                    Date curr = Calendar.getInstance().getTime();
                     long daydiff= daysDiff(due, curr);
-                    dueDays = Long.toString(daydiff);
+                    String dueDays = Long.toString(daydiff);
                     if(daydiff > 1) {
-                        hm.put("txt2", dueDays+" Days");
+                        hm.put("txt2", dueDays +" Days");
                     }
                     else if(daydiff > 0 && daydiff <= 1){
-                        hm.put("txt2", dueDays+" Day");
+                        hm.put("txt2", dueDays +" Day");
                     }
                     else{
                         hm.put("txt2", "Over Due");
@@ -83,7 +77,7 @@ public class cashier_list_view extends AppCompatActivity {
             String[] from = {"txt1", "txt2"};
             int[] to = {R.id.cashier_listview2_patient, R.id.cashier_listview2_due};
             SimpleAdapter adapter = new SimpleAdapter(getBaseContext(), newList, R.layout.listview_cashier2, from, to);
-            ListView listView = (ListView) findViewById(R.id.cashier_unpayed_list);
+            ListView listView = (ListView) findViewById(R.id.cashier_view_list);
             listView.setAdapter(adapter);
             listView.setAdapter(adapter);
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -98,22 +92,22 @@ public class cashier_list_view extends AppCompatActivity {
 
         }
         else{
-            title = (TextView)findViewById(R.id.cashier_unpayedTitle);
-            title.setText("Empty, all transactions have been payed");
+            TextView title = (TextView) findViewById(R.id.cashier_viewTitle);
+            title.setText("Empty, all transactions have been paid");
         }
 
     }
 
-    public static int[] arrListtoarr(List<Integer> arrList)
+    private static int[] arrListtoarr(List<Integer> arrList)
     {
         int[] arr = new int[arrList.size()];
         for (int i=0; i < arr.length; i++)
         {
-            arr[i] = arrList.get(i).intValue();
+            arr[i] = arrList.get(i);
         }
         return arr;
     }
-    public static String[] arrStringListtoarr(List<String> arrList)
+    private static String[] arrStringListtoarr(List<String> arrList)
     {
         String[] arr2 = new String[arrList.size()];
         for (int i=0; i < arr2.length; i++)
@@ -122,7 +116,7 @@ public class cashier_list_view extends AppCompatActivity {
         }
         return arr2;
     }
-    public static long daysDiff(Date date1, Date date2) {
+    private static long daysDiff(Date date1, Date date2) {
         Calendar cal1 = Calendar.getInstance();
         Calendar cal2 = Calendar.getInstance();
         Date temp1;
@@ -137,12 +131,10 @@ public class cashier_list_view extends AppCompatActivity {
         cal2.set(Calendar.SECOND, 0);
         cal1.set(Calendar.MILLISECOND, 0);
         cal2.set(Calendar.MILLISECOND, 0);
-        Date temp;
 
         temp1 = cal1.getTime();
         temp2 = cal2.getTime();
-        long diff = (temp1.getTime() - temp2.getTime()) / 1000 / 60 / 60 / 24;
-        return diff;
+        return (temp1.getTime() - temp2.getTime()) / 1000 / 60 / 60 / 24;
     }
     @Override
     protected void onRestart() {

@@ -16,18 +16,15 @@ import java.util.HashMap;
 import java.util.List;
 
 public class cashier_list_archive extends AppCompatActivity {
-    DatabaseHelper dbh;
-    private ArrayList<Integer> paymentIdList = new ArrayList<Integer>();
-    private ArrayList<Integer> patiIdList = new ArrayList<Integer>();
+    private final ArrayList<Integer> paymentIdList = new ArrayList<>();
+    private final ArrayList<Integer> patiIdList = new ArrayList<>();
     private int[] payIdArr;
-    private int[] patientsIdArr;
-    private TextView title;
     private String patientNames;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cashier_list_archive);
-        dbh = new DatabaseHelper(this);
+        DatabaseHelper dbh = new DatabaseHelper(this);
         Cursor c = dbh.viewPaymentPayedOrNot(" IS NOT NULL ");
         if (c.getCount() > 0) {
             while (c.moveToNext()) {
@@ -36,10 +33,10 @@ public class cashier_list_archive extends AppCompatActivity {
 
             }
             payIdArr = arrListtoarr(paymentIdList);
-            patientsIdArr = arrListtoarr(patiIdList);
-            List<HashMap<String, String>> newList = new ArrayList<HashMap<String, String>>();
+            int[] patientsIdArr = arrListtoarr(patiIdList);
+            List<HashMap<String, String>> newList = new ArrayList<>();
             for (int i = 0; i < payIdArr.length; i++) {
-                HashMap<String, String> hm = new HashMap<String, String>();
+                HashMap<String, String> hm = new HashMap<>();
                 //use ID find patient's name
                 Cursor u = dbh.getInformationUser(patientsIdArr[i]);
                 if (u.getCount() > 0) {
@@ -69,27 +66,18 @@ public class cashier_list_archive extends AppCompatActivity {
 
         }
         else{
-            title = (TextView)findViewById(R.id.cashier_archiveTitle);
+            TextView title = (TextView) findViewById(R.id.cashier_archiveTitle);
             title.setText("Empty, no transaction in Archive");
         }
     }
 
-    public static int[] arrListtoarr(List<Integer> arrList)
+    private static int[] arrListtoarr(List<Integer> arrList)
     {
         int[] arr = new int[arrList.size()];
         for (int i=0; i < arr.length; i++)
         {
-            arr[i] = arrList.get(i).intValue();
+            arr[i] = arrList.get(i);
         }
         return arr;
-    }
-    public static String[] arrStringListtoarr(List<String> arrList)
-    {
-        String[] arr2 = new String[arrList.size()];
-        for (int i=0; i < arr2.length; i++)
-        {
-            arr2[i] = arrList.get(i);
-        }
-        return arr2;
     }
 }

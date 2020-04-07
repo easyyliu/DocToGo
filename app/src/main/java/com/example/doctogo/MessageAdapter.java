@@ -12,12 +12,10 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 
-public class MessageAdapter extends ArrayAdapter {
 
-    private TextView text;
-    private ArrayList<SingleMessage> messageList = new ArrayList();
-    private LinearLayout singleMessageLayout;
+class MessageAdapter extends ArrayAdapter {
 
+    private final ArrayList<SingleMessage> messageList = new ArrayList<SingleMessage>();
 
 
     public MessageAdapter(Context context, int id) {
@@ -44,10 +42,10 @@ public class MessageAdapter extends ArrayAdapter {
             LayoutInflater inflater = (LayoutInflater) this.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             row = inflater.inflate(R.layout.single_message, viewGroup, false);
         }
-        text = (TextView) row.findViewById(R.id.singleMessage);
-        singleMessageLayout = (LinearLayout) row.findViewById(R.id.singleMessageContainer);
+        TextView text = (TextView) row.findViewById(R.id.singleMessage);
+        LinearLayout singleMessageLayout = (LinearLayout) row.findViewById(R.id.singleMessageContainer);
         text.setText(singleMessage.message);
-        singleMessageLayout.setGravity(singleMessage.position ? Gravity.LEFT : Gravity.RIGHT);
+        singleMessageLayout.setGravity(singleMessage.position ? Gravity.START : Gravity.END);
         return row;
     }
 

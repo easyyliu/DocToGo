@@ -13,7 +13,6 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.widget.SimpleAdapter;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,17 +20,12 @@ import java.util.List;
 
 public class patient_check_appointment extends AppCompatActivity {
 
-    DatabaseHelper dbh;
-    private String doctorName;
-    private String doctorAddress;
+    private DatabaseHelper dbh;
     private String doctor;
-    private ArrayList<String> doctorAddressList = new ArrayList<String>();
-    private ArrayList<Integer> doctorIdList = new ArrayList<Integer>();
-    private ArrayList<String> dateList = new ArrayList<String>();
-    private ArrayList<Integer> appIdList = new ArrayList<Integer>();
+    private final ArrayList<Integer> doctorIdList = new ArrayList<>();
+    private final ArrayList<String> dateList = new ArrayList<>();
+    private final ArrayList<Integer> appIdList = new ArrayList<>();
     private int[] appIdArr;
-    private int[] doctorIdArr;
-    private String[] dateArr;
     private int a;
 
     @Override
@@ -50,17 +44,17 @@ public class patient_check_appointment extends AppCompatActivity {
                 dateList.add(c.getString(3));
             }
             appIdArr = arrListtoarr(appIdList);
-            doctorIdArr = arrListtoarr(doctorIdList);
-            dateArr = arrStringListtoarr(dateList);
-            List<HashMap<String, String>> newList = new ArrayList<HashMap<String, String>>();
+            int[] doctorIdArr = arrListtoarr(doctorIdList);
+            String[] dateArr = arrStringListtoarr(dateList);
+            List<HashMap<String, String>> newList = new ArrayList<>();
             for (int i = 0; i < appIdArr.length; i++) {
-                HashMap<String, String> hm = new HashMap<String, String>();
+                HashMap<String, String> hm = new HashMap<>();
                 //use ID find patient's name
                 Cursor u = dbh.getInformationUser(doctorIdArr[i]);
                 if (u.getCount() > 0) {
                     while (u.moveToNext()) {
-                        doctorName = "Doctor Name: " + u.getString(4) + " " + u.getString(5);
-                        doctorAddress = "Address: " + u.getString(6) + ", " + u.getString(14);
+                        String doctorName = "Doctor Name: " + u.getString(4) + " " + u.getString(5);
+                        String doctorAddress = "Address: " + u.getString(6) + ", " + u.getString(14);
                         doctor = doctorName + "\n" + doctorAddress;
                     }
                 }
@@ -109,16 +103,16 @@ public class patient_check_appointment extends AppCompatActivity {
         }
     }
 
-    public static int[] arrListtoarr(List<Integer> arrList)
+    private static int[] arrListtoarr(List<Integer> arrList)
     {
         int[] arr = new int[arrList.size()];
         for (int i=0; i < arr.length; i++)
         {
-            arr[i] = arrList.get(i).intValue();
+            arr[i] = arrList.get(i);
         }
         return arr;
     }
-    public static String[] arrStringListtoarr(List<String> arrList)
+    private static String[] arrStringListtoarr(List<String> arrList)
     {
         String[] arr2 = new String[arrList.size()];
         for (int i=0; i < arr2.length; i++)

@@ -45,7 +45,7 @@
         app:layout_constraintBottom_toTopOf="@+id/message_inputText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/line3"></ListView>
+        app:layout_constraintTop_toBottomOf="@+id/line3" />
 
     <EditText
         android:id="@+id/message_inputText"

@@ -16,7 +16,6 @@
     <string name="doctorReportTitle">REPORTS</string>
     <string name="patientLocationDocName">Doctor Name: </string>
     <string name="patientLocationDocAddress">Address: </string>
-    <string name="patientLocationDocCity">City:</string>
     <string name="patientLocationBtnApp">Book an appointment</string>
     <string name="button_patient_locate_doctor">LOCATE DOCTOR</string>
     <string name="button_patient_payments">PAYMENTS</string>
@@ -24,7 +23,7 @@
     <string name="button_patient_update_information">UPDATE PERSONAL INFORMATION</string>
     <string name="button_update_information">UPDATE INFORMATION</string>
     <string name="title_locate_doctor">LOCATE DOCTOR</string>
-    <string name="title_patient_payment">PAYMENT DUE</string>
+    <string name="title_patient_payment">PAYMENT</string>
     <string name="title_patient_history">MEDICAL HISTORY</string>
     <string name="title_patient_update_information">PERSONAL INFORMATION</string>
     <string name="txt_LoginPasswordText">Password</string>
@@ -38,8 +37,7 @@
     <string name="txt_FilterName">Filter userame</string>
     <string name="btn_logout">Log Out</string>
     <string name="btn_cashier_addNewTransaction">New Transaction</string>
-    <string name="btn_cashier_viewTransactions">View Transactions</string>
-    <string name="cashierNameTxt" />
+    <string name="btn_cashier_viewTransactions">View Pending Transactions</string>
     <string name="txt_FirstName">First Name</string>
     <string name="txt_Username">Username*</string>
     <string name="txt_Password">Password*</string>
@@ -58,7 +56,7 @@
     <string name="txt_AdminDetailAccountLastname">Lastname:</string>
     <string name="txt_AdminDetailAccountEmail">Email:</string>
     <string name="btn_AdminDetailAccountSave">Save</string>
-    <string name="btn_AdminDetailAccountExit">Done</string>
+    <string name="btn_AdminDetailAccountExit">Back</string>
     <string name="btn_AdminDetailAccountRevert">Revert</string>
     <string name="txt_AdminDetailAccountUsername">Username:</string>
     <string name="txt_AdminDetailAccountPassword">Password:</string>
@@ -69,12 +67,9 @@
     <string name="txt_AdminDetailAccountWeight">Weight:</string>
     <string name="txt_AdminDetailAccountQualifications">Qualifications:</string>
     <string name="txt_Qualifications">Qualifications</string>
-    <string name="cashier_new_patientTxt"></string>
+    <string name="cashier_new_patientTxt" />
     <string name="cashier_newNameTxt">Patient Name</string>
-    <string name="add_image">An add image to show the list of patients</string>
     <string name="cashier_patient_desc" />
-    <string name="cashier_new_select_date">Select Date</string>
-    <string name="cashier_new_due_date" />
     <string name="cashier_new_patient_payment_amount" />
     <string name="cashier_newReportTitle">Select A Report</string>
     <string name="cashier_newReportTxt">Report#</string>
@@ -82,22 +77,18 @@
     <string name="cashier_newDoctor">Doctor Name</string>
     <string name="cashier_new_doctorTxt" />
     <string name="cashier_newAddress">Patient Address</string>
-    <string name="cashier_newDetail">Case detail</string>
     <string name="cashier_new_amount">Amount</string>
     <string name="cashier_new_dueDate">Due Date</string>
-    <string name="cashier_new_dueDateTxt" />
     <string name="cashier_new_btn_done">Done</string>
-    <string name="cashier_new_btn_cancel">Cancel</string>
     <string name="cashier_newDescription">Case Description</string>
     <string name="cashier_patient_address" />
     <string name="cashier_newCaseDate">Date</string>
     <string name="cashier_new_CaseDateTxt" />
     <string name="cashier_listview1_reportNum" />
     <string name="cashier_listview1_patient" />
-    <string name="cashier_listview2_payId" />
     <string name="cashier_listview2_patient" />
     <string name="cashier_listview2_due" />
-    <string name="cashier_unpayedTitle">Select A Transaction</string>
+    <string name="cashier_viewTitle">Select A Transaction</string>
     <string name="cashier_view_TranscationNumber">Transaction#</string>
     <string name="cashier_view_dueDate">Due Date</string>
     <string name="cashier_view_TranscationNumberTxt" />
@@ -108,41 +99,27 @@
     <string name="pop_amount">Amount</string>
     <string name="pop_date">Due Date</string>
     <string name="btn_cashier_historyTransaction">"Transaction Archive "</string>
-    <string name="pop_trans_date">Transaction Date</string>
     <string name="cashier_archiveTitle">Archive Transactions List</string>
     <string name="cashier_archive_transID">Transaction#</string>
     <string name="cashier_transDate">Transaction Date</string>
-    <string name="cashier_archive_descTxt" />
     <string name="cashier_archive_addressTxt" />
     <string name="cashier_archive_transIDTxt" />
     <string name="cashier_archive_transDateTxt" />
     <string name="cashier_archive_patientTxt" />
-    <string name="cashier_archive_doctorTxt" />
     <string name="cashier_archive_amountTxt" />
     <string name="cashier_listview1_arrow"><![CDATA[>]]></string>
     <string name="cashier_listview2_arrow"><![CDATA[>]]></string>
     <string name="cashier_new_trans_dueDate">Click to enter</string>
     <string name="appointment_listview1" />
     <string name="appointment_listview2" />
-    <string name="title_doctor_comments">COMMENTS</string>
     <string name="pop_message">Message</string>
     <string name="pop_report">Report</string>
-    <string name="title_message_activity">WELCOME</string>
-    <string name="title_message_name">Patient Name:</string>
-    <string name="title_message_age">Age:</string>
-    <string name="title_message_docName">Doctor Name:</string>
     <string name="singleMessage" />
     <string name="message_sendImg">image of Sending icon</string>
     <string name="message_inputText" />
-    <string name="button_patient_Message">MESSAGE</string>
     <string name="doctor_report_patientName">Patient Name:</string>
     <string name="doctor_report_age">Age:</string>
     <string name="doctor_report_date">Date:</string>
-    <string name="doctor_report_dateTxt" />
-    <string name="doctor_report_patientNameTxt" />
-    <string name="doctor_report_ageTxt" />
-    <string name="doctor_report_doctorName">Doctor Name:</string>
-    <string name="doctor_report_doctorNameTxt" />
     <string name="doctor_report_desc">Case Description/Comment:</string>
     <string name="btn_doctor_report_submit">SUBMIT</string>
     <string name="title_message">MESSAGE</string>
@@ -164,6 +141,45 @@
     <string name="cashier_archive_mspTxt" />
     <string name="title_cashier">WELCOME</string>
     <string name="name_cashier" />
+    <string name="btncheckAppointment">CHECK APPOINTMENT</string>
+    <string name="title_patient_appointment">CHECK APPOINTMENT</string>
+    <string name="listview_patient_appointment_docInfo" />
+    <string name="listview_patient_appointment_date" />
+    <string name="pop_cancel">Cancel Appointment</string>
+    <string name="listview_patient_patient_appointInformation" />
+    <string name="listview_patient_payment_pending" />
+    <string name="patient_payment_credit_amount">Amount:</string>
+    <string name="patient_payment_credit_dueDate">Due Date:</string>
+    <string name="patient_payment_credit_number">Credit Card#:</string>
+    <string name="patient_payment_credit_expiryDate">Expiry Date:</string>
+    <string name="patient_payment_credit_amountTXT" />
+    <string name="patient_payment_credit_dueDateTXT" />
+    <string name="patient_payment_credit_numberTXT">xxxxxxxxxxxxxxxx</string>
+    <string name="patient_payment_credit_expiryDateTXT">mmyy</string>
+    <string name="btn_credit">SUBMIT</string>
+    <string name="cashier_view_credit">Credit Card#:</string>
+    <string name="cashier_view_creditTxt" />
+    <string name="cashier_view_expiryTxt" />
+    <string name="cashier_view_expiry">Expiry Date:</string>
+    <string name="pop_closing_transaction">Closing Transaction</string>
+    <string name="pop_decline">Decline Credit</string>
+    <string name="listview_patient_history_date" />
+    <string name="listview_patient_history_docName" />
+    <string name="patient_payment_history_date">Date:</string>
+    <string name="patient_payment_history_dateTXT" />
+    <string name="patient_payment_history_address">Address:</string>
+    <string name="patient_payment_history_addressTXT" />
+    <string name="patient_payment_history_doctorName">Doctor Name:</string>
+    <string name="patient_payment_history_doctorNameTXT" />
+    <string name="patient_payment_history_descTXT" />
+    <string name="patient_payment_history_finalAmount">Amount:</string>
+    <string name="patient_payment_history_finalAmountTXT" />
+    <string name="cashier_new_btn_msp">MSP CHECKED</string>
+    <string name="pop_MSP_reCheck">MSP ReChecked</string>
+    <string name="btnExitAppDoctorDesc">Image of Exit button</string>
+    <string name="btnMainMenuDoctorDesc">Image of Main Menu button</string>
+    <string name="btn_AdminDetailAccountDelete">Delete Account</string>
+
 
     <string-array name="RegisterRoles">
         <item>Patient</item>
@@ -191,28 +207,14 @@
     </string-array>
 
     <string-array name="ScrollMenu">
-        <item></item>
+        <item />
         <item>Locate Doctor</item>
         <item>Payments</item>
         <item>Check History</item>
         <item>Update Personal Information</item>
     </string-array>
 
-    <string-array name="ScrollDoctor">
-        <item></item>
-        <item>View Appointments</item>
-        <item>Reports</item>
-    </string-array>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="btncheckAppointment">CHECK APPOINTMENT</string>
-    <string name="title_patient_appointment">CHECK APPOINTMENT</string>
-    <string name="listview_patient_appointment_docInfo"></string>
-    <string name="listview_patient_appointment_date"></string>
-    <string name="pop_cancel">Cancel Appointment</string>
-    <string name="btn_AdminDetailAccountDelete">Deactivate Account</string>
-    <string name="FilterDeactivated">Deactivated Accounts Only</string>
 
 
 </resources>

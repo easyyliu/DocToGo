@@ -13,19 +13,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ImageButton;
-import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class DoctorFragment extends Fragment {
-
-    DatabaseHelper db;
 
     public DoctorFragment() {
         // Required empty public constructor
@@ -35,7 +30,7 @@ public class DoctorFragment extends Fragment {
         return new DoctorFragment();
     }
 
-    Spinner scrollMenu;
+    //Spinner scrollMenu;
 
 
     @Override
@@ -56,7 +51,7 @@ public class DoctorFragment extends Fragment {
             //scrollMenu = view.findViewById(R.id.spScrollMenuDoctor);
 
             //Create db(databaseHelper) to execute query to get user information
-            db = new DatabaseHelper(getContext());
+            DatabaseHelper db = new DatabaseHelper(getContext());
 
             final SharedPreferences storage = getContext().getSharedPreferences("DOCTOGOSESSION", Context.MODE_PRIVATE);
             int userID = storage.getInt("USERID",0);
